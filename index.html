@@ -284,14 +284,20 @@ body.profile #page-profile{transform:translateX(0)}
 .foot{padding:0 18px 26px;color:var(--muted);font-size:11px;line-height:1.5}
 .foot .sig{font-family:var(--pixel);font-size:10px;color:var(--blue)}
 
+#blueCurtain{
+  position:absolute;inset:0;z-index:25;background:var(--blue);transform-origin:top;transform:scaleY(0);pointer-events:none;
+}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
 
 <div id="app">
+<div id="blueCurtain" aria-hidden="true"></div>
 
   <!-- ============ PAGE 1 — CHAT ============ -->
   <section class="page" id="page-chat" aria-label="Chat">
@@ -537,14 +543,39 @@ body.profile #page-profile{transform:translateX(0)}
     body.classList.add("profile");
     profilePage.setAttribute("aria-hidden","false");
     chatPage.setAttribute("aria-hidden","true");
-    backToChat.focus({preventScroll:true});
-    document.getElementById("profileScroll").scrollTop=0;
+    const curtain = document.getElementById('blueCurtain');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || typeof gsap === 'undefined') {
+      backToChat.focus({preventScroll:true});
+      document.getElementById("profileScroll").scrollTop=0;
+      return;
+    }
+    const tl = gsap.timeline({
+      onComplete: ()=>{ 
+        backToChat.focus({preventScroll:true});
+        document.getElementById("profileScroll").scrollTop=0;
+      }
+    });
+    tl.to(curtain, {scaleY:1, duration:0.28, ease:'power2.in'})
+      .to(curtain, {scaleY:0, duration:0.28, ease:'power2.out'}, '+=0.04')
+      .to('#page-profile', {x:'0%', duration:0.5, ease:'cubic-bezier(.32,.72,0,1)'}, '-=0.18')
+      .to('#page-chat', {x:'-26%', opacity:0.55, duration:0.5, ease:'cubic-bezier(.32,.72,0,1)'}, '<');
   }
   function goChat(){
     body.classList.remove("profile");
     profilePage.setAttribute("aria-hidden","true");
     chatPage.setAttribute("aria-hidden","false");
-    openProfile.focus({preventScroll:true});
+    const curtain = document.getElementById('blueCurtain');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || typeof gsap === 'undefined') {
+      openProfile.focus({preventScroll:true});
+      return;
+    }
+    const tl = gsap.timeline({
+      onComplete: ()=>{ openProfile.focus({preventScroll:true}); }
+    });
+    tl.to(curtain, {scaleY:1, duration:0.28, ease:'power2.in'})
+      .to(curtain, {scaleY:0, duration:0.28, ease:'power2.out'}, '+=0.04')
+      .to('#page-profile', {x:'100%', duration:0.5, ease:'cubic-bezier(.32,.72,0,1)'}, '-=0.18')
+      .to('#page-chat', {x:'0%', opacity:1, duration:0.5, ease:'cubic-bezier(.32,.72,0,1)'}, '<');
   }
   openProfile.addEventListener("click", goProfile);
   backToChat.addEventListener("click", goChat);
@@ -632,6 +663,17 @@ body.profile #page-profile{transform:translateX(0)}
     a.appendChild(ph); a.appendChild(cap);
     strip.appendChild(a);
   });
+  if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.utils.toArray('.polaroid').forEach(function(card){
+      gsap.from(card, {y:20, opacity:0, duration:0.5, ease:'power2.out'});
+      card.addEventListener('mouseenter', function(){
+        gsap.to(card, {y:-6, rotation:-0.4, duration:0.18, ease:'power2.out'});
+      });
+      card.addEventListener('mouseleave', function(){
+        gsap.to(card, {y:0, rotation:0, duration:0.18, ease:'power2.out'});
+      });
+    });
+  }
 
   /* ---------- experience + education ---------- */
   function entryHTML(e){
@@ -699,6 +741,9 @@ body.profile #page-profile{transform:translateX(0)}
       frag.appendChild(c);
     });
     ghGrid.appendChild(frag);
+    if (typeof gsap !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.fromTo('.gh-cell', {opacity:0, scale:0.6}, {opacity:1, scale:1, duration:0.35, stagger:{each:0.008, from:'start'}, ease:'back.out(1.4)'});
+    }
     var n=(typeof total==="number")?total:0;
     ghHead.textContent="";
     var strong=el("b",null,n.toLocaleString());
