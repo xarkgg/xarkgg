@@ -74,7 +74,23 @@ body.profile #page-profile{transform:translateX(0)}
   background:var(--blue);color:#fff;
   padding:calc(8px + env(safe-area-inset-top)) 12px 8px;
   min-height:56px;flex:0 0 auto;z-index:3;
+  position:relative;
 }
+.status-chip{
+  position:absolute;
+  left:62px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:11px;
+  padding:2px 8px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.15);
+  color:#fff;
+  opacity:1;
+  transition:opacity .2s ease;
+  pointer-events:none;
+}
+.status-chip.hidden{opacity:0}
 .avatar-btn{padding:0;border-radius:999px;flex:0 0 auto}
 .avatar-btn img{width:38px;height:38px;border-radius:999px;background:#fff;object-fit:cover}
 .chat-name{font-weight:600;font-size:16px;line-height:1.1}
@@ -105,10 +121,15 @@ body.profile #page-profile{transform:translateX(0)}
 }
 .bubble{
   max-width:82%;margin:0 0 8px auto;
-  background:var(--blue);color:#fff;
+  background:#023EC0;color:#fff;
   padding:8px 11px 7px;border-radius:18px;
   box-shadow:var(--shadow);font-size:14px;line-height:1.42;
   animation:pop .34s var(--ease) both;
+}
+.bubble.incoming{
+  margin-left:0;margin-right:auto;
+  background:#EEEEEE;color:var(--ink);
+  border-radius:12px 12px 12px 4px;
 }
 .bubble .meta{display:block;text-align:right;font-size:10px;opacity:.72;margin-top:3px}
 .bubble a{color:#fff;text-decoration:underline;text-underline-offset:2px}
@@ -310,12 +331,12 @@ body.profile #page-profile{transform:translateX(0)}
         <div class="chat-name">Manass Kusko</div>
         <div class="chat-sub">smart contract dev</div>
       </div>
+      <div class="status-chip" id="winterChip">winter arc</div>
     </header>
 
     <div class="chat-body" id="chatBody">
-      <span class="chip">winter arc</span>
-
       <div class="day-divider">Today</div>
+      <div class="bubble incoming">hey 👋 i&rsquo;m Manass — aka Xark.</div>
     </div>
 
     <form class="input-bar" id="composer" autocomplete="off">
@@ -591,6 +612,16 @@ body.profile #page-profile{transform:translateX(0)}
   var rowTg=document.getElementById("rowTg");
   var rowX=document.getElementById("rowX");
   var lastFocus=null;
+  var chatBody=document.getElementById("chatBody");
+  var winterChip=document.getElementById("winterChip");
+  if(chatBody && winterChip){
+    var onScroll=function(){
+      if(chatBody.scrollTop===0){ winterChip.classList.remove('hidden'); }
+      else { winterChip.classList.add('hidden'); }
+    };
+    chatBody.addEventListener('scroll', onScroll);
+    onScroll();
+  }
 
   function buildLinks(){
     var text=(msg.value||"").trim();
