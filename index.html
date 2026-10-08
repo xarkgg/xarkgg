@@ -518,42 +518,21 @@ body.profile #page-profile{transform:translateX(0)}
     {t:"Sherwood", y:"Builder · Solidity", d:"Sep – Oct 2026",
       p:"Programmable downside protection for tokenized stocks on Robinhood Chain: set a floor, keep the upside, settle on verified prices.",
       tags:["Solidity","Robinhood Chain","DeFi"]},
-    {t:"Exetazo", y:"Builder · LexHack 2026", d:"Sep 2026",
-      p:"Browser extension that scans legal agreements on websites for risky clauses, with deterministic, evidence-based scoring.",
-      tags:["TypeScript","Browser Extension","Security"]},
-    {t:"BuyMePap", y:"Builder", d:"Sep 2026",
-      p:"\u201CBuy Me a Coffee\u201D for Nigeria and Africa: creator pages plus naira tips, powered by Paystack.",
-      tags:["JavaScript","Paystack","Fintech"]},
-    {t:"ThreeUI", y:"Builder · open source", d:"Aug – Sep 2026",
-      p:"Community catalog of live, interactive Three.js components with the complete source for each one.",
-      tags:["Three.js","HTML","Open Source"]},
-    {t:"Condition", y:"Builder", d:"Aug – Sep 2026",
-      p:"Privacy-preserving parametric insurance on Midnight: public policies, private claims, and a public proof of fair settlement.",
-      tags:["Midnight","Privacy","JavaScript"]},
+    {t:"Legacy", y:"Builder · RWA", d:"Jul – Aug 2026",
+      p:"Succession layer for tokenized real-world assets — three Solidity contracts on Monad testnet with a plain web frontend.",
+      tags:["Solidity","Monad","RWA"]},
     {t:"Handshake", y:"Builder", d:"Aug – Sep 2026",
       p:"A cross-chain delivery-versus-payment (DvP) settlement on Creditcoin, using the Attestcoin Protocol.",
       tags:["Creditcoin","DvP","TypeScript"]},
-    {t:"Etch", y:"Co-builder \u00b7 with Timothy Bayode", d:"2026",
-      p:"A multichain identity protocol that ties one domain name to multiple wallet addresses.",
-      tags:["Identity","Multichain","Web3"]},
-    {t:"Agent Marketplace", y:"Builder", d:"Aug 2026",
-      p:"AI agents marketplace on BNB Smart Chain.",
-      tags:["BSC","AI","TypeScript"]},
-    {t:"Legacy", y:"Builder · Cleanverse Build", d:"Jul – Aug 2026",
-      p:"Succession layer for tokenized real-world assets \u2014 three Solidity contracts on Monad testnet with a plain web frontend.",
-      tags:["Solidity","Monad","RWA"]},
+    {t:"Exetazo", y:"Builder · Security", d:"Sep 2026",
+      p:"Browser extension that scans legal agreements on websites for risky clauses, with deterministic, evidence-based scoring.",
+      tags:["TypeScript","Browser Extension","Security"]},
     {t:"Shell SDK", y:"Creator · @shellxyz/sdk", d:"Jun – Jul 2026",
       p:"Modular Solana transaction security SDK on npm: a local heuristic engine, a transaction decoder, and docs.",
       tags:["Solana","SDK","Security"]},
-    {t:"Web3 Content Writer / DevRel", y:"Content & DevRel", d:"Ongoing",
-      p:"Long-form content and developer relations for Streamflow Finance, PayRam, Xerberus, Real Finance and Moove.xyz.",
-      tags:["DevRel","Content","Web3"]},
-    {t:"My School Guide", y:"Technical Lead · university project", d:"Team of 12",
-      p:"Led a 12-person team building a unified campus app: wayfinding with the Google Maps API, lost & found, facility issue tracking, a peer tutor and study-group finder, and an event hub.",
-      tags:["Leadership","Google Maps API","Product"]},
-    {t:"Hackathons & ad contests", y:"Participant", d:"Ongoing",
-      p:"Regular hackathon builder \u2014 Cleanverse Build, LexHack 2026 and HackHydra \u2014 alongside AdArena/Adrena ad contests.",
-      tags:["Hackathons","Ad Contests"]}
+    {t:"Condition", y:"Builder", d:"Aug – Sep 2026",
+      p:"Privacy-preserving parametric insurance on Midnight: public policies, private claims, and a public proof of fair settlement.",
+      tags:["Midnight","Privacy","JavaScript"]}
   ];
 
   var EDUCATION = [
@@ -724,19 +703,17 @@ body.profile #page-profile{transform:translateX(0)}
 
   /* ---------- experience + education ---------- */
   function entryHTML(e){
-    var d=document.createElement("details");
-    var s=document.createElement("summary");
-    s.appendChild(el("span","t",e.t));
-    s.appendChild(el("span","d",e.d));
-    s.appendChild(el("span","y",e.y));
-    s.appendChild(chevron());
-    d.appendChild(s);
+    var d=document.createElement("div");
+    d.style.cssText="border-bottom:1px solid var(--hair);padding:13px 6px";
+    var t=el("span","t",e.t); t.style.cssText="font-size:15px;font-weight:650;display:block";
+    var dd=el("span","d",e.d); dd.style.cssText="font-size:12px;color:var(--muted);display:block;text-align:right;white-space:nowrap;padding-top:3px";
+    var y=el("span","y",e.y); y.style.cssText="font-size:12.5px;color:var(--muted);display:block;margin-top:3px";
     var b=el("div","body");
     b.appendChild(el("p",null,e.p));
     var tw=el("div","tags");
-    (e.tags||[]).forEach(function(t){ tw.appendChild(el("span","tag",t)); });
+    (e.tags||[]).forEach(function(t){ tw.appendChild(el("span","tag",t)) });
     b.appendChild(tw);
-    d.appendChild(b);
+    d.appendChild(t); d.appendChild(dd); d.appendChild(y); d.appendChild(b);
     return d;
   }
   var expWrap=document.getElementById("experience");
