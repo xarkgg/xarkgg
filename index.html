@@ -266,8 +266,16 @@ body.profile #page-profile{transform:translateX(0)}
   background:var(--polaroid-border);border:1px solid #E3E3E5;border-radius:3px;
   padding:7px 7px 10px;box-shadow:var(--shadow);color:var(--ink);
   transition:transform .18s var(--ease),box-shadow .18s;
+  position:relative;
+}
+.polaroid::after{
+  content:"";position:absolute;inset:0;width:100%;height:24px;background:var(--polaroid-border);border-radius:0 0 3px 3px;bottom:0;left:0;
 }
 .polaroid:active,.polaroid:hover{transform:translateY(-2px) rotate(-.4deg);box-shadow:0 6px 16px rgba(16,24,40,.16)}
+/* per-project accent overrides */
+.polaroid.sherwood::after{background:#003FC0}
+.polaroid.condition::after{background:#023EC0}
+.polaroid.exetazo::after{background:#000000}
 .polaroid .ph{width:100%;aspect-ratio:1/1;background:#fff;border-radius:2px;overflow:hidden}
 .polaroid .ph img{width:100%;height:100%;object-fit:contain;background:#fff}
 .polaroid .cap{display:block;text-align:center;font-size:11.5px;font-weight:600;margin-top:8px;line-height:1.25}
@@ -503,15 +511,9 @@ body.profile #page-profile{transform:translateX(0)}
 
   /* ---------- data ---------- */
   var PROJECTS = [
-    {name:"Sherwood", kind:"Solidity · DeFi", url:"https://sherwoodnotes.vercel.app", img:"assets/thumbs/sherwood.jpg"},
-    {name:"Condition", kind:"Midnight · Privacy", url:"https://trycondition.vercel.app", img:"assets/thumbs/condition.jpg"},
-    {name:"Exetazo", kind:"TypeScript · Security", url:"https://exetazo.xyz", img:"assets/thumbs/exetazo.jpg"},
-    {name:"Legacy", kind:"Solidity · RWA", url:"https://legacydemo.vercel.app", img:"assets/thumbs/legacy.jpg"},
-    {name:"Shell SDK", kind:"Solana · SDK", url:"https://github.com/xarkgg/shell", img:"assets/thumbs/shell.jpg"},
-    {name:"BuyMePap", kind:"Paystack · Fintech", url:"https://buymepap.vercel.app", img:"assets/thumbs/buymepap.jpg"},
-    {name:"Handshake", kind:"Creditcoin · DvP", url:"https://github.com/xarkgg/handshake", img:"assets/thumbs/handshake.jpg"},
-    {name:"ThreeUI", kind:"Three.js · Open source", url:"https://threeui.com", img:"assets/thumbs/threeui.jpg"},
-    {name:"Agent Market", kind:"BSC · AI", url:"https://github.com/xarkgg/agentmarketplace-bsc", img:"assets/thumbs/agentmarketplace-bsc.jpg"}
+    {name:"Sherwood", kind:"Solidity · DeFi", url:"https://sherwoodnotes.vercel.app", img:"https://sherwoodnotes.vercel.app/og-image.jpg"},
+    {name:"Condition", kind:"Midnight · Privacy", url:"https://trycondition.vercel.app", img:"https://trycondition.vercel.app/og-image.jpg"},
+    {name:"Exetazo", kind:"TypeScript · Security", url:"https://exetazo.xyz", img:"https://exetazo.xyz/og-image.jpg"}
   ];
 
   var EXPERIENCE = [
@@ -677,12 +679,14 @@ body.profile #page-profile{transform:translateX(0)}
   /* ---------- projects strip ---------- */
   var strip=document.getElementById("projects");
   PROJECTS.forEach(function(p){
-    var a=el("a","polaroid");
+    var cls=p.name.toLowerCase().replace(/ /g,'').replace('.','');
+    var a=el("a","polaroid "+cls);
     a.href=p.url; a.target="_blank"; a.rel="noopener";
     a.setAttribute("aria-label",p.name+" \u2014 "+p.kind+" (opens in a new tab)");
     var ph=el("div","ph");
     var im=document.createElement("img");
-    im.src=p.img; im.alt=""; im.loading="lazy"; im.width=160; im.height=160;
+    im.src=p.img; im.alt=""; im.loading="lazy";
+    im.style.cssText="width:100%;height:100%;object-fit:cover;aspect-ratio:1.91/1";
     ph.appendChild(im);
     var cap=el("span","cap",p.name);
     cap.appendChild(el("small",null,p.kind));
