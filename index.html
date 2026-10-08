@@ -598,11 +598,18 @@ body.profile #page-profile{transform:translateX(0)}
   document.getElementById("clipBtn").addEventListener("click", openSheet);
   composer.addEventListener("submit", function(e){
     e.preventDefault();
-    if((msg.value||"").trim().length===0){
+    var text=(msg.value||"").trim();
+    if(text.length===0){
       field.classList.remove("nudge"); void field.offsetWidth; field.classList.add("nudge");
       msg.focus();
       return;
     }
+    // best-effort forward to Vercel contact endpoint
+    fetch("/api/message", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({text:text, client:12})
+    }).catch(function(){});
     openSheet();
   });
   sheetWrap.addEventListener("click", function(e){ if(e.target===sheetWrap) closeSheet(); });
