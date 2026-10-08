@@ -1,0 +1,18 @@
+# Agent / internal planning files — never published
+AGENT.md
+AGENTS.md
+CLAUDE.md
+QWEN.md
+REFERENCES.md
+
+# Source artwork: full-resolution photo-edit drafts, not used by the site.
+assets/pfp.png
+assets/pfpbluefill.png
+assets/pfpwhitefill.png
+assets/wallpaper.png
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
