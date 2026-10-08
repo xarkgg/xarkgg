@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geo&display=swap" rel="stylesheet">
 <style>
 :root{
   --blue:#003FC0;
@@ -29,6 +30,7 @@
   --wall:url('https://i.ibb.co/b5pDBjhq/file-0000000013388243ac0ad05c9cd175a8.png');
   --pixel:'Silkscreen',ui-monospace,SFMono-Regular,Menlo,monospace;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --font-display:"Geo",system-ui,sans-serif;
   --ease:cubic-bezier(.32,.72,0,1);
   --shadow:0 1px 2px rgba(16,24,40,.10),0 1px 3px rgba(16,24,40,.06);
 }
@@ -83,6 +85,7 @@ body.profile #page-profile{transform:translateX(0)}
   margin:8px auto 12px;
   display:block;
   width:max-content;
+  font-family:var(--font-display);
   font-size:11px;
   padding:4px 12px;
   border-radius:999px;
@@ -99,7 +102,7 @@ body.profile #page-profile{transform:translateX(0)}
 .status-chip.hidden{opacity:0}
 .avatar-btn{padding:0;border-radius:999px;flex:0 0 auto}
 .avatar-btn img{width:38px;height:38px;border-radius:999px;background:#fff;object-fit:cover}
-.chat-name{font-weight:600;font-size:16px;line-height:1.1}
+.chat-name{font-family:var(--font-display);font-weight:600;font-size:16px;line-height:1.1}
 .chat-sub{font-size:12px;opacity:.82;margin-top:2px}
 
 .chat-body{
@@ -181,7 +184,7 @@ body.profile #page-profile{transform:translateX(0)}
 }
 .sheet-wrap.open .sheet{transform:translateY(0)}
 .sheet-grip{width:38px;height:4px;border-radius:99px;background:#CFD3DA;margin:6px auto 10px}
-.sheet-title{font-size:12px;color:var(--muted);padding:0 20px 8px;letter-spacing:.3px}
+.sheet-title{font-family:var(--font-display);font-size:12px;color:var(--muted);padding:0 20px 8px;letter-spacing:.3px}
 .sheet-msg{
   margin:0 12px 10px;padding:9px 12px;border-radius:10px;
   background:#fff;border:1px solid var(--hair);font-size:13px;color:var(--ink);
@@ -221,7 +224,7 @@ body.profile #page-profile{transform:translateX(0)}
   width:104px;height:104px;border-radius:999px;margin:0 auto 12px;
   border:3px solid #fff;box-shadow:0 6px 18px rgba(0,63,192,.22);position:relative;z-index:1;
 }
-.hero h1{margin:0;font-size:21px;font-weight:700;position:relative;z-index:1}
+.hero h1{margin:0;font-family:var(--font-display);font-size:21px;font-weight:700;position:relative;z-index:1}
 .hero .handle{margin-top:3px;color:var(--blue);font-weight:600;font-size:14px;position:relative;z-index:1}
 .hero .tagline{margin:8px auto 0;max-width:300px;color:var(--muted);font-size:13.5px;position:relative;z-index:1}
 .views{
@@ -235,7 +238,7 @@ body.profile #page-profile{transform:translateX(0)}
 .block{padding:6px 0 4px}
 .block+.block{border-top:1px solid var(--hair)}
 .block-h{
-  font-family:var(--pixel);font-size:11px;letter-spacing:.5px;text-transform:uppercase;
+  font-family:var(--font-display);font-size:11px;letter-spacing:.5px;text-transform:uppercase;
   color:var(--ink);margin:0;padding:16px 18px 10px;
 }
 .block-h .accent{color:var(--blue)}
