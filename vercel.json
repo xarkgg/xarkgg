@@ -2,8 +2,5 @@
   "framework": null,
   "installCommand": "",
   "buildCommand": "",
-  "outputDirectory": ".",
-  "functions": {
-    "api/message.js": { "runtime": "nodejs18.x" }
-  }
+  "outputDirectory": "."
 }
