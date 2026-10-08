@@ -78,6 +78,14 @@ body.profile #page-profile{transform:translateX(0)}
   min-height:56px;flex:0 0 auto;z-index:3;
   position:relative;
 }
+.header-views{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:4px;
+  font-size:12px;
+  opacity:.9;
+}
 .status-chip{
   position:absolute;
   left:62px;
@@ -261,7 +269,7 @@ body.profile #page-profile{transform:translateX(0)}
 }
 .polaroid:active,.polaroid:hover{transform:translateY(-2px) rotate(-.4deg);box-shadow:0 6px 16px rgba(16,24,40,.16)}
 .polaroid .ph{width:100%;aspect-ratio:1/1;background:#fff;border-radius:2px;overflow:hidden}
-.polaroid .ph img{width:100%;height:100%;object-fit:cover}
+.polaroid .ph img{width:100%;height:100%;object-fit:contain;background:#fff}
 .polaroid .cap{display:block;text-align:center;font-size:11.5px;font-weight:600;margin-top:8px;line-height:1.25}
 .polaroid .cap small{display:block;color:var(--muted);font-weight:500;font-size:10px;margin-top:2px}
 
@@ -346,6 +354,10 @@ body.profile #page-profile{transform:translateX(0)}
         <div class="chat-name">Manass Kusko</div>
         <div class="chat-sub">smart contract dev</div>
       </div>
+      <div class="header-views" title="Total site visits">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span id="viewCount">·</span>
+      </div>
     </header>
     <div class="status-chip" id="winterChip">winter arc</div>
 
@@ -408,10 +420,6 @@ body.profile #page-profile{transform:translateX(0)}
         <h1>Manass Kusko</h1>
         <div class="handle">Xark · @xarkgg</div>
         <p class="tagline">smart contract dev — Solidity, smart contracts and web3, with ai/llm and backend.</p>
-        <div class="views" title="Total site visits">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-          <span class="n" id="viewCount">·</span><span>views</span>
-        </div>
       </div>
 
       <!-- projects -->
@@ -436,8 +444,8 @@ body.profile #page-profile{transform:translateX(0)}
       <section class="block">
         <h2 class="block-h">Skills</h2>
         <div class="tags">
-          <span class="tag accent">Solidity</span>
-          <span class="tag accent">Smart Contracts</span>
+          <span class="tag">Solidity</span>
+          <span class="tag">Smart Contracts</span>
           <span class="tag">Web3 / Crypto</span>
           <span class="tag">AI / LLM</span>
           <span class="tag">Backend</span>
@@ -787,7 +795,7 @@ body.profile #page-profile{transform:translateX(0)}
     ghHead.textContent="";
     var strong=el("b",null,n.toLocaleString());
     ghHead.appendChild(strong);
-    ghHead.appendChild(document.createTextNode(" activities in the last year \u2014 @xarkgg"));
+    ghHead.appendChild(document.createTextNode(" activities in the last year"));
     var sc=ghScroll;
     requestAnimationFrame(function(){ if(sc) sc.scrollLeft=sc.scrollWidth; });
   }
