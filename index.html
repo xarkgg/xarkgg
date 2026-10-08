@@ -20,6 +20,7 @@
   --blue:#003FC0;
   --blue-alt:#023EC0;
   --polaroid-border:#EEEEEE;
+  --ec:#ECECEC;
   --bg:#EFEFEF;
   --ink:#111418;
   --muted:#6B7280;
@@ -93,7 +94,7 @@ body.profile #page-profile{transform:translateX(0)}
   display:block;width:max-content;margin:2px auto 12px;
   padding:6px 14px;border-radius:999px;
   background:rgba(255,255,255,.86);backdrop-filter:blur(6px);
-  border:1px solid var(--hair);
+  border:1px solid var(--ec);
   color:var(--blue);font-weight:600;font-size:12px;letter-spacing:.3px;
   box-shadow:var(--shadow);
 }
@@ -105,7 +106,7 @@ body.profile #page-profile{transform:translateX(0)}
 .bubble{
   max-width:82%;margin:0 0 8px auto;
   background:var(--blue);color:#fff;
-  padding:8px 11px 7px;border-radius:12px 12px 4px 12px;
+  padding:8px 11px 7px;border-radius:18px;
   box-shadow:var(--shadow);font-size:14px;line-height:1.42;
   animation:pop .34s var(--ease) both;
 }
@@ -342,6 +343,8 @@ body.profile #page-profile{transform:translateX(0)}
     <div class="sheet-wrap" id="sheetWrap" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
       <div class="sheet" id="sheet">
         <div class="sheet-grip" aria-hidden="true"></div>
+        <!-- Hugeicons inline SVG -->
+        <svg viewBox="0 0 24 24" width="0" height="0" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/></svg>
         <div class="sheet-title" id="sheetTitle">Send to</div>
         <div class="sheet-msg" id="sheetMsg" hidden></div>
         <a class="row" id="rowMail" href="mailto:kuskomanass@gmail.com">
@@ -452,8 +455,7 @@ body.profile #page-profile{transform:translateX(0)}
       </section>
 
       <div class="foot">
-        <span class="sig">xarkgg</span><br>
-        Built as a WhatsApp-style chat. Tap the avatar on the home screen to jump here.
+        <span class="sig">xarkgg</span>
       </div>
     </div>
   </section>
