@@ -33,6 +33,8 @@
   --font-display:"Geo",system-ui,sans-serif;
   --ease:cubic-bezier(.32,.72,0,1);
   --shadow:0 1px 2px rgba(16,24,40,.10),0 1px 3px rgba(16,24,40,.06);
+  --spring-damping:1.0;
+  --spring-response:0.3;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -43,11 +45,29 @@ body{
   background:var(--bg);
   height:100vh;height:100dvh;
   overflow:hidden;
+  tap-highlight-color: transparent;
 }
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
 a{color:var(--blue);text-decoration:none}
 img{display:block;max-width:100%}
 :focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px}
+
+/* Apple Design: Response pattern - instant feedback on pointer-down */
+.button:active {
+  transform: scale(0.97);
+  transition: transform 100ms ease-out;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .sheet { transition: opacity 200ms ease; transform: none !important; }
+  .bubble { animation: none; }
+  .chip { transition: background .2s ease; }
+  .row { transition: background .16s ease; }
+  .pill { transition: transform .16s var(--ease),border-color .16s; }
+  .status-chip { transition: opacity .2s ease; }
+}
 
 #app{
   position:relative;
@@ -137,6 +157,9 @@ body.profile #page-profile{transform:translateX(0)}
   color:var(--blue);font-weight:600;font-size:12px;letter-spacing:.3px;
   box-shadow:var(--shadow);
 }
+.chip:hover { transform: translateY(-2px); }
+.chip:active { transform: scale(0.96); }
+
 .day-divider{
   width:max-content;margin:0 auto 12px;padding:4px 12px;border-radius:8px;
   background:rgba(255,255,255,.78);backdrop-filter:blur(6px);
@@ -193,8 +216,11 @@ body.profile #page-profile{transform:translateX(0)}
 .sheet{
   width:100%;background:var(--bg);border-radius:16px 16px 0 0;
   padding:8px 0 calc(10px + env(safe-area-inset-bottom));
-  transform:translateY(100%);transition:transform .3s var(--ease);
+  transform:translateY(100%);transition:transform .3s var(--ease) cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow:0 -8px 30px rgba(16,24,40,.22);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
 }
 .sheet-wrap.open .sheet{transform:translateY(0)}
 .sheet-grip{width:38px;height:4px;border-radius:99px;background:#CFD3DA;margin:6px auto 10px}
@@ -205,6 +231,15 @@ body.profile #page-profile{transform:translateX(0)}
   max-height:74px;overflow:auto;line-height:1.4;
 }
 .sheet-msg[hidden]{display:none}
+
+/* Reduced transparency */
+@media (prefers-reduced-transparency: reduce) {
+  .sheet {
+    background: white;
+    backdrop-filter: none;
+    border-top: 1px solid var(--hair);
+  }
+}
 .row{
   display:flex;align-items:center;gap:14px;width:100%;
   padding:13px 20px;font-size:15px;font-weight:500;color:var(--ink);
@@ -303,6 +338,7 @@ body.profile #page-profile{transform:translateX(0)}
   font-size:12.5px;font-weight:600;color:var(--ink);box-shadow:var(--shadow);
 }
 .tag.accent{background:var(--blue);border-color:var(--blue);color:#fff}
+.tag:hover{transform:translateY(-1px)}
 
 /* experience + education */
 .exp{padding:0 12px 10px}
@@ -511,9 +547,9 @@ body.profile #page-profile{transform:translateX(0)}
 
   /* ---------- data ---------- */
   var PROJECTS = [
-    {name:"Sherwood", kind:"Solidity · DeFi", url:"https://sherwoodnotes.vercel.app", img:"https://sherwoodnotes.vercel.app/og-image.jpg"},
-    {name:"Condition", kind:"Midnight · Privacy", url:"https://trycondition.vercel.app", img:"https://trycondition.vercel.app/og-image.jpg"},
-    {name:"Exetazo", kind:"TypeScript · Security", url:"https://exetazo.xyz", img:"https://exetazo.xyz/og-image.jpg"}
+    {name:"Sherwood", kind:"Solidity · DeFi", url:"https://sherwoodnotes.vercel.app", img:"https://sherwoodnotes.vercel.app/og.png"},
+    {name:"Condition", kind:"Midnight · Privacy", url:"https://trycondition.vercel.app", img:"https://trycondition.vercel.app/og.png"},
+    {name:"Exetazo", kind:"TypeScript · Security", url:"https://exetazo.xyz", img:"https://exetazo.xyz/og.png"}
   ];
 
   var EXPERIENCE = [
