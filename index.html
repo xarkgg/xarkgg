@@ -42,16 +42,11 @@ box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,
 .cap{flex:1;min-width:0;border-radius:999px;padding:5px 16px;text-align:center}
 .cap b{font-family:var(--sans);font-weight:600;letter-spacing:-.02em;font-size:20px;line-height:1.1}
 .cap span{font:500 12px/1.3 var(--sans);font-variant-numeric:tabular-nums;color:var(--sub)}
-.cap i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#34c759;margin-right:5px;vertical-align:0}
 .views{display:flex;align-items:center;gap:5px;border-radius:999px;height:44px;padding:0 12px;font:500 13px var(--sans);font-variant-numeric:tabular-nums;color:var(--ink);flex:none;max-width:40%}
 .views span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .views svg{width:18px;height:18px;flex:none;color:var(--sub)}
 .thread{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:calc(84px + env(safe-area-inset-top)) 12px 170px;display:flex;flex-direction:column;gap:2px;scroll-behavior:smooth}
 .thread::-webkit-scrollbar{display:none}
-.intro{text-align:center;padding:10px 8px 2px;min-width:0}
-.intro img{width:72px;height:72px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 10px;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 8px 28px rgba(0,63,192,.3)}
-.intro h2{font:600 28px/1.1 var(--sans);letter-spacing:-.02em;overflow-wrap:anywhere}
-.intro p{font:500 12px/1.5 var(--sans);font-variant-numeric:tabular-nums;color:var(--sub);margin-top:4px;letter-spacing:0}
 .day{align-self:center;font:500 12px var(--sans);font-variant-numeric:tabular-nums;color:var(--sub);margin:14px 0 8px;letter-spacing:.02em;text-align:center}
 .day b{font-weight:500;color:#B4B8C0}
 .b{position:relative;max-width:78%;min-width:0;padding:9px 14px;border-radius:18px;font-size:16px;line-height:1.4;letter-spacing:-.005em;animation:pop .5s var(--spring) both;overflow-wrap:anywhere;word-break:break-word}
@@ -88,8 +83,6 @@ box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,
 .cm{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;min-width:0}
 .card em{flex:none;max-width:100%;font:500 12px/1.4 var(--sans);font-variant-numeric:tabular-nums;font-style:normal;color:#B3C6FF;background:#18213F;box-shadow:inset 0 0 0 1px #2A3A6E;padding:2px 8px;border-radius:999px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dom{flex:none;max-width:100%;font:500 12px/1.4 var(--sans);font-variant-numeric:tabular-nums;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:0}
-.live{position:absolute;top:8px;left:8px;z-index:1;display:inline-flex;align-items:center;gap:5px;font:500 12px/1 var(--sans);font-variant-numeric:tabular-nums;color:var(--ink);background:rgba(11,11,15,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);padding:5px 8px;border-radius:999px}
-.live::before{content:"";width:6px;height:6px;border-radius:50%;background:#34c759;box-shadow:0 0 8px #34c759}
 .tags{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
 .tags span{max-width:100%;font:500 13px/1.4 var(--sans);font-variant-numeric:tabular-nums;color:var(--ink);background:#2A2C34;box-shadow:inset 0 0 0 1px #383A43;padding:4px 10px;border-radius:999px;overflow-wrap:anywhere}
 .b .tags{gap:4px;padding:2px 0}
@@ -196,15 +189,10 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
   <section class="view" id="chat" aria-label="Chat with Xark">
     <header class="top">
       <button class="av glass" id="toProfile" aria-label="Open profile"><img src="assets/avatar-profile.jpg" alt="Manass Kusko" /></button>
-      <div class="cap glass"><b class="ell">Manass Kusko</b><span class="ell"><i></i>smart contract dev · online</span></div>
+      <div class="cap glass"><b class="ell">Manass Kusko</b><span class="ell">smart contract dev · online</span></div>
       <div class="views glass" title="Visits" aria-label="Visit count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span id="vc">…</span></div>
     </header>
     <main class="thread" id="thread" aria-live="polite">
-      <div class="intro">
-        <img src="assets/avatar-profile.jpg" alt="" />
-        <h2>Manass Kusko</h2>
-        <p>Smart contract developer · Abuja, Nigeria</p>
-      </div>
       <p class="day" id="day"><b>Today</b></p>
     </main>
     <div class="dock">
@@ -261,13 +249,13 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 
   <div hidden id="tplProjects">
     <div class="row">
-      <a class="card" href="https://sherwoodnotes.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="S"><img src="https://repository-images.githubusercontent.com/1362303941/ff6263d8-4040-49df-a20e-a630fedf4893" alt="Sherwood preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><span class="live">Live</span><div class="cb"><h4>Sherwood</h4><p>Downside protection for tokenized stocks on Robinhood Chain</p><div class="cm"><em>Solidity · DeFi</em><span class="dom">sherwoodnotes.vercel.app</span></div></div></a>
-      <a class="card" href="https://trycondition.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="C"><img src="https://repository-images.githubusercontent.com/1352271598/8f656dde-7842-493c-bf4e-61668d25e32f" alt="Condition preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><span class="live">Live</span><div class="cb"><h4>Condition</h4><p>Privacy-preserving parametric insurance on Midnight</p><div class="cm"><em>Midnight · Privacy</em><span class="dom">trycondition.vercel.app</span></div></div></a>
-      <a class="card" href="https://exetazo.xyz" target="_blank" rel="noopener"><figure class="ci" data-i="E"><img src="https://opengraph.githubassets.com/1/xarkgg/exetazo" alt="Exetazo preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><span class="live">Live</span><div class="cb"><h4>Exetazo</h4><p>Browser extension that flags risky clauses in legal agreements</p><div class="cm"><em>TypeScript · Security</em><span class="dom">exetazo.xyz</span></div></div></a>
-      <a class="card" href="https://legacydemo.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="L"><img src="https://repository-images.githubusercontent.com/1318032669/71ef472e-696d-404b-9489-14d47075da0e" alt="Legacy preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><span class="live">Live</span><div class="cb"><h4>Legacy</h4><p>Succession layer for tokenized real-world assets on Monad</p><div class="cm"><em>Solidity · RWA</em><span class="dom">github.com/xarkgg/legacy</span></div></div></a>
+      <a class="card" href="https://sherwoodnotes.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="S"><img src="https://repository-images.githubusercontent.com/1362303941/ff6263d8-4040-49df-a20e-a630fedf4893" alt="Sherwood preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Sherwood</h4><p>Downside protection for tokenized stocks on Robinhood Chain</p><div class="cm"><em>Solidity · DeFi</em><span class="dom">sherwoodnotes.vercel.app</span></div></div></a>
+      <a class="card" href="https://trycondition.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="C"><img src="https://repository-images.githubusercontent.com/1352271598/8f656dde-7842-493c-bf4e-61668d25e32f" alt="Condition preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Condition</h4><p>Privacy-preserving parametric insurance on Midnight</p><div class="cm"><em>Midnight · Privacy</em><span class="dom">trycondition.vercel.app</span></div></div></a>
+      <a class="card" href="https://exetazo.xyz" target="_blank" rel="noopener"><figure class="ci" data-i="E"><img src="https://opengraph.githubassets.com/1/xarkgg/exetazo" alt="Exetazo preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Exetazo</h4><p>Browser extension that flags risky clauses in legal agreements</p><div class="cm"><em>TypeScript · Security</em><span class="dom">exetazo.xyz</span></div></div></a>
+      <a class="card" href="https://legacydemo.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="L"><img src="https://repository-images.githubusercontent.com/1318032669/71ef472e-696d-404b-9489-14d47075da0e" alt="Legacy preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Legacy</h4><p>Succession layer for tokenized real-world assets on Monad</p><div class="cm"><em>Solidity · RWA</em><span class="dom">github.com/xarkgg/legacy</span></div></div></a>
       <a class="card" href="https://github.com/xarkgg/handshake" target="_blank" rel="noopener"><figure class="ci" data-i="H"><img src="https://repository-images.githubusercontent.com/1341972765/a4b0f401-a243-4808-b76f-a3e745f03609" alt="Handshake preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Handshake</h4><p>Cross-chain DvP settlement on Creditcoin</p><div class="cm"><em>Creditcoin · DvP</em><span class="dom">github.com/xarkgg/handshake</span></div></div></a>
       <a class="card" href="https://github.com/xarkgg/shell" target="_blank" rel="noopener"><figure class="ci fit" data-i="S"><img src="https://repository-images.githubusercontent.com/1279311793/2526aa18-cca3-4d9e-b78c-d7225324e72b" alt="Shell SDK preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Shell SDK</h4><p>Transaction-security SDK for Solana, published as @shellxyz/sdk</p><div class="cm"><em>Solana · Security</em><span class="dom">github.com/xarkgg/shell</span></div></div></a>
-      <a class="card" href="https://folks.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="F"><img src="https://opengraph.githubassets.com/1/xarkgg/folks" alt="Folks preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><span class="live">Live</span><div class="cb"><h4>Folks</h4><p>Simpler payments for creators across Africa</p><div class="cm"><em>Payments</em><span class="dom">folks.vercel.app</span></div></div></a>
+      <a class="card" href="https://folks.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="F"><img src="https://opengraph.githubassets.com/1/xarkgg/folks" alt="Folks preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Folks</h4><p>Simpler payments for creators across Africa</p><div class="cm"><em>Payments</em><span class="dom">folks.vercel.app</span></div></div></a>
     </div>
   </div>
 </div>
