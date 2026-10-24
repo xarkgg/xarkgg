@@ -11,6 +11,24 @@ Plain HTML, CSS and JavaScript in a single `index.html`. No framework, no build
 step, no bundler. Mobile-first, light theme in the brand palette
 (`#003FC0` / `#023EC0` / `#EEEEEE` / `#EFEFEF`).
 
+## iOS 26 look (ios-kit)
+
+The UI is built on [ios-kit](https://github.com/kitlangton/ios-kit) by Kit Langton:
+Liquid Glass chrome (header, composer, buttons, chips), the kit's sheet for the
+channel picker, and inset-grouped lists on the profile. `#app` is the kit's
+screen (`.ios-screen .ios .ios-light`); brand colours are re-asserted on top of
+the kit's system tokens.
+
+ios-kit isn't on the npm registry yet, so it installs from GitHub and is vendored
+(the site still has no build step):
+
+```bash
+npm install          # installs github:kitlangton/ios-kit, then copies it to vendor/ios-kit/
+```
+
+Commit `vendor/ios-kit/` after updating. Real refraction renders in Chromium;
+Safari and Firefox get the kit's blur-and-saturate fallback.
+
 ## Local preview
 
 ```bash
@@ -30,6 +48,8 @@ assets/
   avatar-profile.jpg  profile avatar (blue fill)
   wallpaper.jpg       chat background
   thumbs/*.jpg        project thumbnails
+vendor/ios-kit/       ios-kit.js + ios-kit.css (vendored by npm install)
+package.json          ios-kit dependency + vendor script
 netlify.toml          publish settings + security headers
 ```
 
