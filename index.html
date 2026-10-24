@@ -16,6 +16,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Geo&display=swap" rel="stylesheet">
+<!-- ios-kit (github:kitlangton/ios-kit) — iOS 26 Liquid Glass. Vendored by `npm install` into vendor/ios-kit. -->
+<link rel="stylesheet" href="vendor/ios-kit/ios-kit.css">
 <style>
 :root{
   --blue:#003FC0;
@@ -373,6 +375,107 @@ body.profile #page-profile{transform:translateX(0)}
 .foot{padding:0 18px 26px;color:var(--muted);font-size:11px;line-height:1.5}
 .foot .sig{font-size:10px;color:var(--blue)}
 
+
+/* =================================================================
+   ios-kit layer — iOS 26 Liquid Glass across the whole site.
+   #app is the kit's screen (.ios-screen .ios .ios-light); brand tokens
+   are re-asserted on top of the kit's system colours.
+   ================================================================= */
+#app.ios{
+  --blue:#003FC0; --bg:#EFEFEF; --label:var(--ink);
+  --brand-glass:rgba(0,63,192,.80);
+  font-family:var(--sf);
+}
+#app .chat-name,#app .hero h1,#app .block-h,#app .sheet-kicker{font-family:var(--font-display)}
+
+/* floating glass chrome */
+.chat-header,.profile-header{
+  position:absolute;top:0;left:0;right:0;z-index:30;
+  background:none;color:var(--ink);
+  padding:calc(10px + env(safe-area-inset-top)) 12px 10px;min-height:0;gap:8px;
+  pointer-events:none;
+}
+.chat-header>*,.profile-header>*{pointer-events:auto}
+.chat-header::before,.profile-header::before{
+  content:"";position:absolute;inset:0 0 -18px;z-index:-1;pointer-events:none;
+  background:linear-gradient(rgba(239,239,239,.55),rgba(239,239,239,0));
+}
+.avatar-btn.lg{width:46px;height:46px;padding:3px;display:grid;place-items:center}
+.avatar-btn.lg img{width:40px;height:40px}
+.chat-title{padding:6px 16px 7px;color:#fff;--lg-tint:var(--brand-glass)}
+.chat-title .chat-sub{opacity:.86}
+.header-views.lg{margin-left:auto;padding:8px 12px;opacity:1;color:var(--ink);font-family:var(--sf);font-weight:600;font-variant-numeric:tabular-nums}
+.header-views svg{color:var(--blue)}
+
+.status-chip{
+  left:14px;top:calc(64px + env(safe-area-inset-top));
+  background:none;border:0;box-shadow:var(--glass-shadow);
+  color:var(--blue);padding:5px 12px;
+  transition:opacity .25s ease,transform .35s cubic-bezier(.3,1.45,.45,1);
+}
+.status-chip::before{display:none}
+.status-chip.hidden{transform:translateY(-6px) scale(.85)}
+
+.chat-body{padding:calc(76px + env(safe-area-inset-top)) 12px calc(86px + env(safe-area-inset-bottom))}
+.bubble{border-radius:20px;padding:8px 13px 8px;font-size:16px;line-height:1.35;box-shadow:none}
+.bubble.incoming{background:#E9E9EB;border-radius:20px 20px 20px 6px}
+.bubble:not(.incoming){background:var(--blue);border-radius:20px 20px 6px 20px}
+
+.input-bar{
+  position:absolute;left:0;right:0;bottom:0;z-index:30;
+  background:none;border-top:0;align-items:center;
+  padding:8px 10px calc(10px + env(safe-area-inset-bottom));
+}
+.icon-btn.lg,.send-btn.lg{width:46px;height:46px;background:none;color:var(--ink)}
+.icon-btn.lg:hover,.icon-btn.lg:active{background:none;color:var(--blue)}
+.send-btn.lg{--lg-tint:var(--brand-glass);color:#fff}
+.send-btn.lg:active{background:none;transform:none}
+.field.lg{background:none;box-shadow:var(--glass-shadow);border-radius:28px;min-height:46px;align-items:center}
+.field input{font-family:var(--sf);font-size:17px;padding:12px 8px 12px 18px}
+.field input::placeholder{color:var(--label2)}
+
+/* channel sheet (IOS.sheet) — sized to this site, not the 956pt phone */
+#app .ios-sheet{height:auto;max-height:calc(100% - 90px);bottom:calc(9px + env(safe-area-inset-bottom))}
+#app .ios-sheet-layer.large .ios-sheet{height:calc(100% - 56px);max-height:none;bottom:0}
+#app .ios-sheet-nav{height:64px}
+#app .ios-sheet-nav h3{font-family:var(--font-display);font-weight:600;font-size:16px}
+#app .ios-sheet-body{padding-bottom:22px}
+.sheet-quote{margin:0 18px 14px;padding:10px 14px;border-radius:20px 20px 20px 6px;background:var(--blue);color:#fff;font-size:15px;line-height:1.35;max-height:84px;overflow:auto}
+.sheet-quote[hidden]{display:none}
+a.ios-cell{color:var(--label);text-decoration:none;transition:background .16s}
+a.ios-cell:hover,a.ios-cell:active{background:var(--fill4)}
+.ios-cell .glyph{width:30px;height:30px;flex:none;border-radius:8px;display:grid;place-items:center;background:var(--blue);color:#fff}
+.ios-cell .glyph svg{width:17px;height:17px}
+.ios-cell .val{font-size:15px;max-width:52%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* profile */
+.profile-header .icon-btn.lg{color:var(--ink)}
+.profile-header .icon-btn.lg:hover,.profile-header .icon-btn.lg:active{background:none;color:var(--blue)}
+.profile-header .ttl.lg{padding:10px 16px;font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--ink)}
+.profile-scroll{padding-top:calc(66px + env(safe-area-inset-top))}
+.hero{padding-top:10px}
+.block{padding:4px 0 10px}
+.block+.block{border-top:0}
+.block-h{padding:18px 34px 8px;color:var(--label2)}
+.card{margin:0 16px;background:#fff;border-radius:26px;overflow:hidden}
+.gh.card{padding:16px 16px 14px}
+.exp.card{padding:0}
+.exp.card>div{padding:14px 20px!important;border-bottom:0!important;position:relative}
+.exp.card>div+div::before{content:"";position:absolute;top:0;left:20px;right:20px;height:1px;background:var(--sep);transform:scaleY(var(--hairline));transform-origin:top}
+.tags{padding:0 18px 4px}
+.tag{background:#fff;border:0;box-shadow:none;font-family:var(--sf);font-weight:500;font-size:14px;padding:6px 13px}
+.exp .body .tags .tag{background:var(--fill3)}
+.connect.card{display:block;padding:0}
+.connect.card a.ios-cell .val{color:var(--label2)}
+.connect.card a.ios-cell .glyph{background:var(--blue)}
+.foot{padding:18px 34px 30px}
+
+#app .lg[interactive]{transition:transform .42s cubic-bezier(.3,1.45,.45,1),box-shadow .3s ease,color .18s}
+.profile-header .ttl.lg{margin:0 auto;transform:translateX(-27px)}
+@media (prefers-reduced-transparency:reduce){
+  #app .lg{--glass-tint:rgba(255,255,255,.96);--brand-glass:var(--blue)}
+}
+
 #blueCurtain{
   position:absolute;inset:0;z-index:25;background:var(--blue);transform-origin:top;transform:scaleY(0);pointer-events:none;
 }
@@ -385,77 +488,72 @@ body.profile #page-profile{transform:translateX(0)}
 </head>
 <body>
 
-<div id="app">
+<div id="app" class="ios-screen ios ios-light">
 <div id="blueCurtain" aria-hidden="true"></div>
 
   <!-- ============ PAGE 1 — CHAT ============ -->
   <section class="page" id="page-chat" aria-label="Chat">
     <header class="chat-header">
-      <button class="avatar-btn" id="openProfile" aria-label="Open profile — projects, experience and links">
+      <button class="avatar-btn" id="openProfile" data-glass="circle" interactive aria-label="Open profile — projects, experience and links">
         <img src="assets/avatar-header.png" alt="Manass Kusko" width="38" height="38">
       </button>
-      <div>
-        <div class="chat-name">Manass Kusko</div>
-        <div class="chat-sub">smart contract dev</div>
+      <div class="chat-title" data-glass="capsule">
+        <div>
+          <div class="chat-name">Manass Kusko</div>
+          <div class="chat-sub">smart contract dev</div>
+        </div>
       </div>
-      <div class="header-views" title="Total site visits">
+      <div class="header-views" data-glass="capsule" title="Total site visits">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
         <span id="viewCount">·</span>
       </div>
     </header>
-    <div class="status-chip" id="winterChip">winter arc</div>
+    <div class="status-chip" id="winterChip" data-glass="capsule">winter arc</div>
 
     <div class="chat-body" id="chatBody">
       <div class="bubble incoming">hey 👋 i&rsquo;m Manass — aka Xark.</div>
     </div>
 
     <form class="input-bar" id="composer" autocomplete="off">
-      <button type="button" class="icon-btn" id="clipBtn" aria-label="Choose a channel" aria-haspopup="dialog">
+      <button type="button" class="icon-btn" id="clipBtn" data-glass="circle" interactive aria-label="Choose a channel" aria-haspopup="dialog">
         <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </button>
-      <div class="field" id="field">
+      <div class="field" id="field" data-glass="composer">
         <label for="msg" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Your message</label>
         <input id="msg" type="text" placeholder="Message" enterkeyhint="send" maxlength="500">
       </div>
-      <button type="submit" class="send-btn" id="sendBtn" aria-label="Send">
+      <button type="submit" class="send-btn" id="sendBtn" data-glass="circle" interactive aria-label="Send">
         <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
       </button>
     </form>
 
-    <!-- channel sheet -->
-    <div class="sheet-wrap" id="sheetWrap" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
-      <div class="sheet" id="sheet">
-        <div class="sheet-grip" aria-hidden="true"></div>
-        <!-- Hugeicons inline SVG -->
-        <svg viewBox="0 0 24 24" width="0" height="0" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/></svg>
-        <div class="sheet-title" id="sheetTitle">Send to</div>
-        <div class="sheet-msg" id="sheetMsg" hidden></div>
-        <a class="row" id="rowMail" href="mailto:kuskomanass@gmail.com">
+    <!-- channel sheet: rendered into an ios-kit sheet (IOS.sheet) on demand -->
+    <template id="sheetTpl">
+      <div class="sheet-quote" data-q hidden></div>
+      <div class="ios-group">
+        <a class="ios-cell" data-ch="mail" href="mailto:kuskomanass@gmail.com">
           <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 9 6 9-6"/></svg></span>
-          <span>Mail<span class="d" style="display:block;font-size:11.5px;color:var(--muted);font-weight:500">kuskomanass@gmail.com</span></span>
-          <span class="chev" aria-hidden="true">›</span>
+          <span>Mail</span><span class="val">kuskomanass@gmail.com</span><span class="chev" data-chev></span>
         </a>
-        <a class="row" id="rowTg" href="https://t.me/xarkgg" target="_blank" rel="noopener">
+        <a class="ios-cell" data-ch="tg" href="https://t.me/xarkgg" target="_blank" rel="noopener">
           <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.7 4.3 2.9 11.5c-1.1.4-1.1 1.1-.2 1.4l4.7 1.5 1.8 5.5c.2.6.4.7 1 .3l2.5-1.8 4.6 3.4c.8.5 1.4.2 1.6-.8l2.9-13.6c.3-1.2-.4-1.7-1.1-1.4zM7.6 13.9l9.2-5.8c.5-.3.9-.1.5.2l-7.4 6.7-.3 3z"/></svg></span>
-          <span>Telegram<span class="d" style="display:block;font-size:11.5px;color:var(--muted);font-weight:500">@xarkgg</span></span>
-          <span class="chev" aria-hidden="true">›</span>
+          <span>Telegram</span><span class="val">@xarkgg</span><span class="chev" data-chev></span>
         </a>
-        <a class="row" id="rowX" href="https://x.com/xarkgg" target="_blank" rel="noopener">
+        <a class="ios-cell" data-ch="x" href="https://x.com/xarkgg" target="_blank" rel="noopener">
           <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.5h3.3l-7.2 8.2 8.4 11.1h-6.6l-5.2-6.8-5.9 6.8H1.7l7.7-8.8L1.2 2.5h6.8l4.7 6.2zm-1.2 17.6h1.8L7.1 4.3H5.1z"/></svg></span>
-          <span>X<span class="d" style="display:block;font-size:11.5px;color:var(--muted);font-weight:500">@xarkgg</span></span>
-          <span class="chev" aria-hidden="true">›</span>
+          <span>X</span><span class="val">@xarkgg</span><span class="chev" data-chev></span>
         </a>
       </div>
-    </div>
+    </template>
   </section>
 
   <!-- ============ PAGE 2 — PROFILE ============ -->
   <section class="page" id="page-profile" aria-label="Profile" aria-hidden="true">
     <header class="profile-header">
-      <button class="icon-btn" id="backToChat" aria-label="Back to chat">
+      <button class="icon-btn" id="backToChat" data-glass="circle" interactive aria-label="Back to chat">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18 9 12l6-6"/></svg>
       </button>
-      <span class="ttl">Profile</span>
+      <span class="ttl" data-glass="capsule">Profile</span>
     </header>
 
     <div class="profile-scroll" id="profileScroll">
@@ -475,7 +573,7 @@ body.profile #page-profile{transform:translateX(0)}
       <!-- github activity -->
       <section class="block">
         <h2 class="block-h">GitHub <span class="accent">activity</span></h2>
-        <div class="gh">
+        <div class="gh card">
           <div class="gh-head" id="ghHead">Loading contributions for <b>@xarkgg</b>…</div>
           <div class="gh-scroll" id="ghScroll"><div class="gh-grid" id="ghGrid" role="img" aria-label="GitHub contribution heatmap"></div></div>
           <div class="gh-legend" aria-hidden="true">Less
@@ -501,34 +599,34 @@ body.profile #page-profile{transform:translateX(0)}
       <!-- experience -->
       <section class="block">
         <h2 class="block-h">Experience</h2>
-        <div class="exp" id="experience"></div>
+        <div class="exp card" id="experience"></div>
       </section>
 
       <!-- education -->
       <section class="block">
         <h2 class="block-h">Education</h2>
-        <div class="exp" id="education"></div>
+        <div class="exp card" id="education"></div>
       </section>
 
       <!-- connect -->
       <section class="block">
         <h2 class="block-h">Connect</h2>
-        <div class="connect">
-          <a class="pill" href="https://github.com/xarkgg" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.6 2 12.3c0 4.5 2.9 8.4 6.8 9.7.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.4-3.4-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10.3 10.3 0 0 0 22 12.3C22 6.6 17.5 2 12 2z"/></svg>
-            <span>GitHub</span><span class="go">@xarkgg</span>
+        <div class="connect card ios-group">
+          <a class="ios-cell" href="https://github.com/xarkgg" target="_blank" rel="noopener">
+            <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.6 2 12.3c0 4.5 2.9 8.4 6.8 9.7.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.4-3.4-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10.3 10.3 0 0 0 22 12.3C22 6.6 17.5 2 12 2z"/></svg></span>
+            <span>GitHub</span><span class="val">@xarkgg</span><span class="chev" data-chev></span>
           </a>
-          <a class="pill" href="https://x.com/xarkgg" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.5h3.3l-7.2 8.2 8.4 11.1h-6.6l-5.2-6.8-5.9 6.8H1.7l7.7-8.8L1.2 2.5h6.8l4.7 6.2zm-1.2 17.6h1.8L7.1 4.3H5.1z"/></svg>
-            <span>X</span><span class="go">@xarkgg</span>
+          <a class="ios-cell" href="https://x.com/xarkgg" target="_blank" rel="noopener">
+            <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.5h3.3l-7.2 8.2 8.4 11.1h-6.6l-5.2-6.8-5.9 6.8H1.7l7.7-8.8L1.2 2.5h6.8l4.7 6.2zm-1.2 17.6h1.8L7.1 4.3H5.1z"/></svg></span>
+            <span>X</span><span class="val">@xarkgg</span><span class="chev" data-chev></span>
           </a>
-          <a class="pill" href="https://t.me/xarkgg" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.7 4.3 2.9 11.5c-1.1.4-1.1 1.1-.2 1.4l4.7 1.5 1.8 5.5c.2.6.4.7 1 .3l2.5-1.8 4.6 3.4c.8.5 1.4.2 1.6-.8l2.9-13.6c.3-1.2-.4-1.7-1.1-1.4zM7.6 13.9l9.2-5.8c.5-.3.9-.1.5.2l-7.4 6.7-.3 3z"/></svg>
-            <span>Telegram</span><span class="go">@xarkgg</span>
+          <a class="ios-cell" href="https://t.me/xarkgg" target="_blank" rel="noopener">
+            <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.7 4.3 2.9 11.5c-1.1.4-1.1 1.1-.2 1.4l4.7 1.5 1.8 5.5c.2.6.4.7 1 .3l2.5-1.8 4.6 3.4c.8.5 1.4.2 1.6-.8l2.9-13.6c.3-1.2-.4-1.7-1.1-1.4zM7.6 13.9l9.2-5.8c.5-.3.9-.1.5.2l-7.4 6.7-.3 3z"/></svg></span>
+            <span>Telegram</span><span class="val">@xarkgg</span><span class="chev" data-chev></span>
           </a>
-          <a class="pill" href="mailto:kuskomanass@gmail.com">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 9 6 9-6"/></svg>
-            <span>Mail</span><span class="go">kuskomanass@gmail.com</span>
+          <a class="ios-cell" href="mailto:kuskomanass@gmail.com">
+            <span class="glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <span>Mail</span><span class="val">kuskomanass@gmail.com</span><span class="chev" data-chev></span>
           </a>
         </div>
       </section>
@@ -541,7 +639,8 @@ body.profile #page-profile{transform:translateX(0)}
 
 </div>
 
-<script>
+<script type="module">
+import IOS from "./vendor/ios-kit/ios-kit.js";
 (function(){
   "use strict";
 
@@ -635,7 +734,7 @@ body.profile #page-profile{transform:translateX(0)}
   backToChat.addEventListener("click", goChat);
   document.addEventListener("keydown", function(e){
     if(e.key==="Escape"){
-      if(sheetWrap.classList.contains("open")) closeSheet();
+      if(activeSheet) closeSheet();
       else if(body.classList.contains("profile")) goChat();
     }
   });
@@ -644,12 +743,9 @@ body.profile #page-profile{transform:translateX(0)}
   var composer=document.getElementById("composer");
   var msg=document.getElementById("msg");
   var field=document.getElementById("field");
-  var sheetWrap=document.getElementById("sheetWrap");
-  var sheetMsg=document.getElementById("sheetMsg");
-  var sheetTitle=document.getElementById("sheetTitle");
-  var rowMail=document.getElementById("rowMail");
-  var rowTg=document.getElementById("rowTg");
-  var rowX=document.getElementById("rowX");
+  var sheetTpl=document.getElementById("sheetTpl");
+  var appRoot=document.getElementById("app");
+  var activeSheet=null;
   var lastFocus=null;
   var chatBody=document.getElementById("chatBody");
   var winterChip=document.getElementById("winterChip");
@@ -662,33 +758,45 @@ body.profile #page-profile{transform:translateX(0)}
     onScroll();
   }
 
-  function buildLinks(){
-    var text=(msg.value||"").trim();
+  function buildSheetBody(text){
+    var frag=sheetTpl.content.cloneNode(true);
     var has=text.length>0;
-    sheetMsg.hidden=!has;
-    sheetMsg.textContent="\u201C"+text+"\u201D";
-    sheetTitle.textContent=has?"Send your message to":"Reach me on";
+    var q=frag.querySelector("[data-q]");
+    q.hidden=!has; q.textContent=text;
+    frag.querySelectorAll("[data-chev]").forEach(function(c){ c.innerHTML=IOS.icon("chevron.right"); });
+    var mail=frag.querySelector('[data-ch="mail"]'), tg=frag.querySelector('[data-ch="tg"]'), x=frag.querySelector('[data-ch="x"]');
     if(has){
-      rowMail.href="mailto:kuskomanass@gmail.com?subject="+encodeURIComponent("Hi Xark")+"&body="+encodeURIComponent(text);
-      rowTg.href="https://t.me/share/url?url="+encodeURIComponent("https://x.com/xarkgg")+"&text="+encodeURIComponent(text);
-      rowX.href="https://x.com/intent/tweet?text="+encodeURIComponent(text);
-    }else{
-      rowMail.href="mailto:kuskomanass@gmail.com";
-      rowTg.href="https://t.me/xarkgg";
-      rowX.href="https://x.com/xarkgg";
+      mail.href="mailto:kuskomanass@gmail.com?subject="+encodeURIComponent("Hi Xark")+"&body="+encodeURIComponent(text);
+      tg.href="https://t.me/share/url?url="+encodeURIComponent("https://x.com/xarkgg")+"&text="+encodeURIComponent(text);
+      x.href="https://x.com/intent/tweet?text="+encodeURIComponent(text);
     }
+    var wrap=document.createElement("div");
+    wrap.appendChild(frag);
+    return wrap;
   }
   function openSheet(){
+    if(activeSheet) return;
     lastFocus=document.activeElement;
-    buildLinks();
-    sheetWrap.hidden=false;
-    requestAnimationFrame(function(){ sheetWrap.classList.add("open"); });
-    rowMail.focus({preventScroll:true});
+    var text=(msg.value||"").trim();
+    var body=buildSheetBody(text);
+    activeSheet=IOS.sheet(appRoot,{
+      title: text.length?"Send your message to":"Reach me on",
+      body: body,
+      detent: "medium",
+      onClose: function(){
+        activeSheet=null;
+        if(lastFocus&&lastFocus.focus) lastFocus.focus({preventScroll:true});
+      }
+    });
+    activeSheet.el.setAttribute("aria-modal","true");
+    body.querySelectorAll("a.ios-cell").forEach(function(r){
+      r.addEventListener("click", function(){ window.setTimeout(closeSheet,60); });
+    });
+    var first=body.querySelector("a.ios-cell");
+    if(first) window.setTimeout(function(){ first.focus({preventScroll:true}); },60);
   }
   function closeSheet(){
-    sheetWrap.classList.remove("open");
-    window.setTimeout(function(){ sheetWrap.hidden=true; },220);
-    if(lastFocus&&lastFocus.focus) lastFocus.focus({preventScroll:true});
+    if(activeSheet) activeSheet.close();
   }
   document.getElementById("clipBtn").addEventListener("click", openSheet);
   composer.addEventListener("submit", function(e){
@@ -707,10 +815,8 @@ body.profile #page-profile{transform:translateX(0)}
     }).catch(function(){});
     openSheet();
   });
-  sheetWrap.addEventListener("click", function(e){ if(e.target===sheetWrap) closeSheet(); });
-  [rowMail,rowTg,rowX].forEach(function(r){
-    r.addEventListener("click", function(){ window.setTimeout(closeSheet,60); });
-  });
+
+  document.querySelectorAll(".connect [data-chev]").forEach(function(c){ c.innerHTML=IOS.icon("chevron.right"); });
 
   /* ---------- projects strip ---------- */
   var strip=document.getElementById("projects");
