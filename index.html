@@ -9,15 +9,15 @@
 <title>Manass Kusko — Xark · smart contract dev</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" />
 <style>
 :root{color-scheme:dark;--blue:#1F5BFF;--blue2:#003FC0;--acc:#86A6FF;--bg:#0B0B0F;--s1:#15161B;--s2:#1C1D23;--in:#1F2026;--ink:#F2F3F5;--sub:#8A8F98;--sep:rgba(255,255,255,.08);
---sans:Geist,system-ui,sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:"Geist Mono",ui-monospace,monospace;
+--sans:"Inter Tight",system-ui,sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:"Geist Mono",ui-monospace,monospace;
 --glow:radial-gradient(120% 60% at 0 0,rgba(0,63,192,.12),transparent 65%);
 --spring:cubic-bezier(.34,1.56,.64,1);--ease:cubic-bezier(.22,1,.36,1)}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font:16px/1.4 var(--sans);color:var(--ink);background-color:#050507;
+body{font:16px/1.4 var(--sans);letter-spacing:-.005em;color:var(--ink);background-color:#050507;
 background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E"),linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
 background-size:160px 160px,32px 32px,32px 32px;-webkit-font-smoothing:antialiased;overflow:hidden}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
@@ -46,36 +46,59 @@ box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,
 .views{display:flex;align-items:center;gap:5px;border-radius:999px;height:44px;padding:0 12px;font:13px var(--mono);color:var(--ink);flex:none;max-width:40%}
 .views span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .views svg{width:18px;height:18px;flex:none;color:var(--sub)}
-.thread{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:calc(84px + env(safe-area-inset-top)) 12px 170px;display:flex;flex-direction:column;gap:4px;scroll-behavior:smooth}
+.thread{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:calc(84px + env(safe-area-inset-top)) 12px 170px;display:flex;flex-direction:column;gap:2px;scroll-behavior:smooth}
 .thread::-webkit-scrollbar{display:none}
-.day{align-self:center;font:12px var(--mono);color:var(--sub);margin:6px 0 10px;letter-spacing:.04em}
-.b{position:relative;max-width:78%;min-width:0;padding:8px 14px;border-radius:20px;font-size:16px;animation:pop .45s var(--spring) both;overflow-wrap:anywhere;word-break:break-word}
-.b.in{align-self:flex-start;background:var(--in);color:var(--ink);transform-origin:left bottom}
-.b.out{align-self:flex-end;background:linear-gradient(180deg,var(--blue),var(--blue2));color:#fff;transform-origin:right bottom;margin-top:6px}
-.b.tail.in::before,.b.tail.out::before{content:"";position:absolute;bottom:0;width:20px;height:20px}
-.b.tail.in::before{left:-7px;background:radial-gradient(circle at 0 0,transparent 13px,var(--in) 13.5px) ;clip-path:polygon(0 100%,100% 0,100% 100%);border-bottom-right-radius:4px}
-.b.tail.out::before{right:-7px;background:radial-gradient(circle at 100% 0,transparent 13px,var(--blue2) 13.5px);clip-path:polygon(0 0,100% 100%,0 100%);border-bottom-left-radius:4px}
-.b.wide{max-width:100%;width:100%;padding:10px 0 10px 10px}
-@keyframes pop{from{opacity:0;transform:scale(.6) translateY(10px)}to{opacity:1;transform:none}}
-.typing{display:flex;gap:4px;padding:12px 14px}
-.typing span{width:8px;height:8px;border-radius:50%;background:var(--sub);animation:bounce 1s infinite ease-in-out}
-.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
-@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
-.row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 10px 4px 0}
+.intro{text-align:center;padding:10px 8px 2px;min-width:0}
+.intro img{width:72px;height:72px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 10px;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 8px 28px rgba(0,63,192,.3)}
+.intro h2{font:italic 400 28px/1.1 var(--serif);letter-spacing:0;overflow-wrap:anywhere}
+.intro p{font:12px/1.5 var(--mono);color:var(--sub);margin-top:4px;letter-spacing:0}
+.day{align-self:center;font:12px var(--mono);color:var(--sub);margin:14px 0 8px;letter-spacing:.02em;text-align:center}
+.day b{font-weight:500;color:#B4B8C0}
+.b{position:relative;max-width:78%;min-width:0;padding:9px 14px;border-radius:18px;font-size:16px;line-height:1.4;letter-spacing:-.005em;animation:pop .5s var(--spring) both;overflow-wrap:anywhere;word-break:break-word}
+.b:not(.gp){margin-top:10px}
+.b.in{align-self:flex-start;background:#1C1D23;border:1px solid rgba(255,255,255,.06);color:var(--ink);transform-origin:left bottom}
+.b.out{align-self:flex-end;background:linear-gradient(180deg,#2F6BFF,#003FC0);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 6px 10px -6px rgba(255,255,255,.18);color:#fff;transform-origin:right bottom}
+.b.in.gp{border-top-left-radius:6px}.b.in.gn{border-bottom-left-radius:6px}
+.b.out.gp{border-top-right-radius:6px}.b.out.gn{border-bottom-right-radius:6px}
+.b.tail.in::before,.b.tail.out::before{content:"";position:absolute;width:20px;height:20px}
+.b.tail.in::before{bottom:-1px;left:-8px;background:radial-gradient(circle at 0 0,transparent 13px,#1C1D23 13.5px);clip-path:polygon(0 100%,100% 0,100% 100%);border-bottom-right-radius:4px}
+.b.tail.out::before{bottom:0;right:-7px;background:radial-gradient(circle at 100% 0,transparent 13px,#003FC0 13.5px);clip-path:polygon(0 0,100% 100%,0 100%);border-bottom-left-radius:4px}
+.b.wide{max-width:none;width:calc(100% + 24px);margin-left:-12px;margin-right:-12px;padding:0;background:none;border:0}
+.b.wide.tail::before{content:none}
+.dlv{align-self:flex-end;font:12px var(--mono);color:var(--sub);margin:3px 4px 0;letter-spacing:0;animation:fade .3s .15s both}
+@keyframes pop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}}
+.typing{display:flex;gap:5px;padding:13px 14px}
+.typing span{width:8px;height:8px;border-radius:50%;background:#8A8F98;animation:pulse 1.2s infinite ease-in-out}
+.typing span:nth-child(2){animation-delay:.18s}.typing span:nth-child(3){animation-delay:.36s}
+@keyframes pulse{0%,70%,100%{opacity:.35;transform:scale(.85)}35%{opacity:1;transform:scale(1)}}
+.row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 12px 4px;scroll-padding:0 12px;scrollbar-width:none}
 .row::-webkit-scrollbar{display:none}
-.card{position:relative;flex:0 0 200px;width:200px;min-width:0;scroll-snap-align:start;background:var(--s1);border-radius:16px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--sep);transition:transform .3s var(--spring)}
-.card.feat{flex-basis:244px;width:244px}
-.card:active{transform:scale(.96)}
-.card img{width:100%;height:110px;object-fit:cover;display:block;background:var(--s2)}
-.card.feat img{height:140px}
-.card div{padding:10px 12px 12px;min-width:0}
+.card{position:relative;flex:0 0 auto;width:260px;min-width:0;scroll-snap-align:start;display:flex;flex-direction:column;background:var(--s1);border:1px solid var(--sep);border-radius:18px;overflow:hidden;transition:transform .3s var(--spring)}
+.prow .card{width:280px}
+.card:active{transform:scale(.97)}
+.ci{position:relative;margin:0;width:100%;aspect-ratio:1.91/1;background:#0E0F14;overflow:hidden;border-bottom:1px solid var(--sep)}
+.ci img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ci.fit img{object-fit:contain;background:#0E0F14}
+.ci::after{content:attr(data-i);position:absolute;inset:0;display:none;place-items:center;font:italic 400 64px/1 var(--serif);color:#3B4160;background:radial-gradient(80% 90% at 30% 20%,rgba(0,63,192,.18),transparent 70%)}
+.ci.err::after{display:grid}
+.cb{padding:10px 12px 12px;min-width:0}
 .card h4{font-size:16px;font-weight:600;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.card p{font-size:13px;color:#A9AEB7;margin:4px 0 10px;line-height:1.35;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.card em{display:inline-block;max-width:100%;font:12px/1.4 var(--mono);font-style:normal;color:#B3C6FF;background:#18213F;box-shadow:inset 0 0 0 1px #2A3A6E;padding:2px 8px;border-radius:999px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:top}
+.card p{font-size:13px;color:#A9AEB7;margin:3px 0 10px;line-height:1.35;min-height:2.7em;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cm{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;min-width:0}
+.card em{flex:none;max-width:100%;font:12px/1.4 var(--mono);font-style:normal;color:#B3C6FF;background:#18213F;box-shadow:inset 0 0 0 1px #2A3A6E;padding:2px 8px;border-radius:999px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dom{flex:none;max-width:100%;font:12px/1.4 var(--mono);color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:0}
 .live{position:absolute;top:8px;left:8px;z-index:1;display:inline-flex;align-items:center;gap:5px;font:12px/1 var(--mono);color:var(--ink);background:rgba(11,11,15,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);padding:5px 8px;border-radius:999px}
 .live::before{content:"";width:6px;height:6px;border-radius:50%;background:#34c759;box-shadow:0 0 8px #34c759}
 .tags{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
 .tags span{max-width:100%;font:13px/1.4 var(--mono);color:var(--ink);background:#2A2C34;box-shadow:inset 0 0 0 1px #383A43;padding:4px 10px;border-radius:999px;overflow-wrap:anywhere}
+.b .tags{gap:4px;padding:2px 0}
+.b .tags span{font:12px/1.4 var(--mono);letter-spacing:0;color:#D6D9DF;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);padding:3px 8px}
+.chipw{position:relative;margin:0 -12px}
+.chipw::before,.chipw::after{content:"";position:absolute;top:0;bottom:6px;width:22px;z-index:1;pointer-events:none}
+.chipw::before{left:0;background:linear-gradient(90deg,var(--bg),rgba(11,11,15,0))}
+.chipw::after{right:0;background:linear-gradient(270deg,var(--bg),rgba(11,11,15,0))}
+.chipw .chips{padding:4px 14px 10px;scroll-padding:0 14px;scrollbar-width:none}
 .xp{list-style:none;font-size:15px}
 .xp li{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px solid var(--sep)}
 .xp li>span{min-width:0;overflow-wrap:anywhere}
@@ -177,15 +200,20 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
       <div class="views glass" title="Visits" aria-label="Visit count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span id="vc">…</span></div>
     </header>
     <main class="thread" id="thread" aria-live="polite">
-      <p class="day">Today</p>
+      <div class="intro">
+        <img src="assets/avatar-profile.jpg" alt="" />
+        <h2>Manass Kusko</h2>
+        <p>smart contract dev · abuja, ng</p>
+      </div>
+      <p class="day" id="day"><b>Today</b></p>
     </main>
     <div class="dock">
-      <div class="chips" id="chips" hidden>
-        <button class="glass" data-k="Projects">Projects</button>
-        <button class="glass" data-k="Stack">Stack</button>
-        <button class="glass" data-k="Experience">Experience</button>
-        <button class="glass" data-k="Contact">Contact</button>
-      </div>
+      <div class="chipw" id="chipw" hidden><div class="chips" id="chips">
+        <button class="glass" data-k="Projects">🧱 Projects</button>
+        <button class="glass" data-k="Stack">⚙️ Stack</button>
+        <button class="glass" data-k="Experience">📜 Experience</button>
+        <button class="glass" data-k="Contact">✉️ Contact</button>
+      </div></div>
       <form class="compose" id="form" autocomplete="off">
         <button type="button" class="circ glass" id="person" aria-label="Contact options"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></button>
         <label class="field glass"><input id="msg" placeholder="Message" aria-label="Message" enterkeyhint="send" /><button class="send" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></label>
@@ -233,14 +261,14 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 
   <div hidden id="tplProjects">
     <div class="row">
-      <a class="card feat" href="https://sherwoodnotes.vercel.app" target="_blank" rel="noopener"><span class="live">live</span><img src="assets/thumbs/sherwood.jpg" alt="Sherwood" /><div><h4>Sherwood</h4><p>Downside protection for tokenized stocks on Robinhood Chain</p><em>Solidity · DeFi</em></div></a>
-      <a class="card feat" href="https://trycondition.vercel.app" target="_blank" rel="noopener"><span class="live">live</span><img src="assets/thumbs/condition.jpg" alt="Condition" /><div><h4>Condition</h4><p>Privacy-preserving parametric insurance on Midnight</p><em>Midnight · Privacy</em></div></a>
-      <a class="card feat" href="https://exetazo.xyz" target="_blank" rel="noopener"><span class="live">live</span><img src="assets/thumbs/exetazo.jpg" alt="Exetazo" /><div><h4>Exetazo</h4><p>Browser extension that flags risky clauses in legal agreements</p><em>TypeScript · Security</em></div></a>
-      <a class="card" href="https://github.com/xarkgg/legacy" target="_blank" rel="noopener"><img src="assets/thumbs/legacy.jpg" alt="Legacy" /><div><h4>Legacy</h4><p>Succession layer for tokenized real-world assets on Monad</p><em>Solidity · RWA</em></div></a>
-      <a class="card" href="https://github.com/xarkgg/handshake" target="_blank" rel="noopener"><img src="assets/thumbs/handshake.jpg" alt="Handshake" /><div><h4>Handshake</h4><p>Cross-chain DvP settlement on Creditcoin</p><em>Creditcoin · DvP</em></div></a>
-      <a class="card" href="https://github.com/xarkgg/shell" target="_blank" rel="noopener"><img src="assets/thumbs/shell.jpg" alt="Shell SDK" /><div><h4>Shell SDK</h4><p>Solana transaction-security SDK, @shellxyz/sdk</p><em>Solana · Security</em></div></a>
-      <a class="card" href="https://github.com/xarkgg/folks" target="_blank" rel="noopener"><img src="assets/thumbs/buymepap.jpg" alt="Folks" /><div><h4>Folks</h4><p>Simplifying payments for creators in Africa</p><em>Payments</em></div></a>
-      <a class="card" href="https://github.com/xarkgg/threeui" target="_blank" rel="noopener"><img src="assets/thumbs/threeui.jpg" alt="ThreeUI" /><div><h4>ThreeUI</h4><p>Open-source catalog of live interactive UI components</p><em>Frontend · OSS</em></div></a>
+      <a class="card" href="https://sherwoodnotes.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="S"><img src="https://repository-images.githubusercontent.com/1362303941/ff6263d8-4040-49df-a20e-a630fedf4893" alt="Sherwood preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><span class="live">live</span><div class="cb"><h4>Sherwood</h4><p>Downside protection for tokenized stocks on Robinhood Chain</p><div class="cm"><em>Solidity · DeFi</em><span class="dom">sherwoodnotes.vercel.app</span></div></div></a>
+      <a class="card" href="https://trycondition.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="C"><img src="https://repository-images.githubusercontent.com/1352271598/8f656dde-7842-493c-bf4e-61668d25e32f" alt="Condition preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><span class="live">live</span><div class="cb"><h4>Condition</h4><p>Privacy-preserving parametric insurance on Midnight</p><div class="cm"><em>Midnight · Privacy</em><span class="dom">trycondition.vercel.app</span></div></div></a>
+      <a class="card" href="https://exetazo.xyz" target="_blank" rel="noopener"><figure class="ci" data-i="E"><img src="https://opengraph.githubassets.com/1/xarkgg/exetazo" alt="Exetazo preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><span class="live">live</span><div class="cb"><h4>Exetazo</h4><p>Browser extension that flags risky clauses in legal agreements</p><div class="cm"><em>TypeScript · Security</em><span class="dom">exetazo.xyz</span></div></div></a>
+      <a class="card" href="https://legacydemo.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="L"><img src="https://repository-images.githubusercontent.com/1318032669/71ef472e-696d-404b-9489-14d47075da0e" alt="Legacy preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><span class="live">live</span><div class="cb"><h4>Legacy</h4><p>Succession layer for tokenized real-world assets on Monad</p><div class="cm"><em>Solidity · RWA</em><span class="dom">github.com/xarkgg/legacy</span></div></div></a>
+      <a class="card" href="https://github.com/xarkgg/handshake" target="_blank" rel="noopener"><figure class="ci" data-i="H"><img src="https://repository-images.githubusercontent.com/1341972765/a4b0f401-a243-4808-b76f-a3e745f03609" alt="Handshake preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Handshake</h4><p>Cross-chain DvP settlement on Creditcoin</p><div class="cm"><em>Creditcoin · DvP</em><span class="dom">github.com/xarkgg/handshake</span></div></div></a>
+      <a class="card" href="https://github.com/xarkgg/shell" target="_blank" rel="noopener"><figure class="ci fit" data-i="S"><img src="https://repository-images.githubusercontent.com/1279311793/2526aa18-cca3-4d9e-b78c-d7225324e72b" alt="Shell SDK preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Shell SDK</h4><p>Solana transaction-security SDK, @shellxyz/sdk</p><div class="cm"><em>Solana · Security</em><span class="dom">github.com/xarkgg/shell</span></div></div></a>
+      <a class="card" href="https://folks.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="F"><img src="https://opengraph.githubassets.com/1/xarkgg/folks" alt="Folks preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><span class="live">live</span><div class="cb"><h4>Folks</h4><p>Simplifying payments for creators in Africa</p><div class="cm"><em>Payments</em><span class="dom">folks.vercel.app</span></div></div></a>
+      <a class="card" href="https://threeui.com" target="_blank" rel="noopener"><figure class="ci" data-i="T"><img src="https://opengraph.githubassets.com/1/xarkgg/threeui" alt="ThreeUI preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><span class="live">live</span><div class="cb"><h4>ThreeUI</h4><p>Open-source catalog of live interactive UI components</p><div class="cm"><em>Frontend · OSS</em><span class="dom">threeui.com</span></div></div></a>
     </div>
   </div>
 </div>
@@ -301,14 +329,25 @@ fetch("https://github-contributions-api.jogruber.de/v4/xarkgg?y=last").then(func
  var l=(d.contributions||[]).filter(function(c){return c&&c.date&&c.date<=today});if(!l.length||!d.total)throw 0;gh(l,d.total.lastYear)}).catch(function(){});
 function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
 function scroll(){thread.scrollTop=thread.scrollHeight}
-function add(cls,html){
+try{$("day").innerHTML="<b>Today</b> "+esc(new Date().toLocaleTimeString([],{hour:"numeric",minute:"2-digit"}))}catch(_){}
+var dlv=document.createElement("p");dlv.className="dlv";dlv.textContent="Delivered";
+function place(b){
+ var side=b.classList.contains("out")?"out":"in";
+ if(side==="out"&&dlv.parentNode)dlv.remove();
  var last=thread.lastElementChild;
- if(last&&last.classList.contains("b")&&last.classList.contains(cls.split(" ")[0]))last.classList.remove("tail");
+ if(last&&last.classList.contains("b")&&last.classList.contains(side)&&!last.classList.contains("wide")&&!b.classList.contains("wide")){
+  last.classList.remove("tail");last.classList.add("gn");b.classList.add("gp")}
+ thread.appendChild(b);
+ if(side==="out"){dlv.style.animation="none";dlv.offsetWidth;dlv.style.animation="";thread.appendChild(dlv)}
+ scroll();return b;
+}
+function add(cls,html){
  var b=document.createElement("div");b.className="b tail "+cls;
  if(typeof html==="string")b.innerHTML=html;else b.appendChild(html);
- thread.appendChild(b);scroll();return b;
+ return place(b);
 }
-async function type(ms){var t=document.createElement("div");t.className="b in typing";t.setAttribute("aria-label","typing");t.innerHTML="<span></span><span></span><span></span>";thread.appendChild(t);scroll();await wait(ms||700);t.remove()}
+async function type(ms){var t=document.createElement("div");t.className="b in tail typing";t.setAttribute("aria-label","typing");t.innerHTML="<span></span><span></span><span></span>";place(t);await wait(ms||700);
+ var p=t.previousElementSibling;t.remove();if(t.classList.contains("gp")&&p){p.classList.remove("gn");p.classList.add("tail")}}
 async function say(html,cls){await type();add("in"+(cls?" "+cls:""),html);await wait(250)}
 var replies={
  Projects:function(){var n=$("tplProjects").firstElementChild.cloneNode(true);return say(n,"wide")},
@@ -319,7 +358,7 @@ var replies={
 };
 var q=Promise.resolve();
 chips.addEventListener("click",function(e){var k=e.target.closest("button");if(!k)return;var key=k.dataset.k;add("out",esc(key));q=q.then(function(){return wait(200)}).then(function(){return replies[key]()}).catch(function(){})});
-$("form").addEventListener("submit",function(e){e.preventDefault();var i=$("msg"),m=i.value.trim();if(!m)return;i.value="";add("out",esc(m));
+$("form").addEventListener("submit",function(e){e.preventDefault();var i=$("msg"),m=i.value.trim();if(!m){openSheet();return}i.value="";add("out",esc(m));
  try{fetch("/api/message",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:m,client:12})}).catch(function(){})}catch(_){}
  setTimeout(function(){openSheet(m)},reduce?50:450)});
 $("person").onclick=function(){openSheet()};
@@ -336,7 +375,7 @@ fetch("https://abacus.jasoncameron.dev/hit/xarkgg/portfolio").then(function(r){i
  await say("hey 👋 i'm Manass — aka Xark.");
  await say("i write smart contracts and ship on-chain things: Solidity, Solana, Midnight, Monad, plus AI agents and backend.");
  await say("most of my work comes out of hackathons. tap a chip or my avatar to see what i've built.");
- chips.hidden=false;busy=false;})();
+ $("chipw").hidden=false;busy=false;})();
 })();
 </script>
 </body>
