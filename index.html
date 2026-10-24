@@ -6,7 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#0B0B0F" />
 <meta name="color-scheme" content="dark" />
-<title>Manass Kusko (Xark) · Smart contract developer</title>
+<title>Manass Kusko (xarkgg) · Smart contract developer</title>
+<meta name="description" content="Manass Kusko (xarkgg): smart contracts, on-chain products, AI agents and backend." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
@@ -39,9 +40,7 @@ box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,
 .top>*{min-width:0}
 .av{width:44px;height:44px;border-radius:50%;overflow:hidden;flex:none;padding:2px}
 .av img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
-.cap{flex:1;min-width:0;border-radius:999px;padding:5px 16px;text-align:center}
-.cap b{font-family:var(--sans);font-weight:600;letter-spacing:-.02em;font-size:20px;line-height:1.1}
-.cap span{font:500 12px/1.3 var(--sans);font-variant-numeric:tabular-nums;color:var(--sub)}
+.nm{flex:1;min-width:0;font:600 17px/1.2 var(--sans);letter-spacing:-.01em;color:#fff;padding-left:2px}
 .views{display:flex;align-items:center;gap:5px;border-radius:999px;height:44px;padding:0 12px;font:500 13px var(--sans);font-variant-numeric:tabular-nums;color:var(--ink);flex:none;max-width:40%}
 .views span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .views svg{width:18px;height:18px;flex:none;color:var(--sub)}
@@ -70,19 +69,22 @@ box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,
 .row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 12px 4px;scroll-padding:0 12px;scrollbar-width:none}
 .row::-webkit-scrollbar{display:none}
 .card{position:relative;flex:0 0 auto;width:260px;min-width:0;scroll-snap-align:start;display:flex;flex-direction:column;background:var(--s1);border:1px solid var(--sep);border-radius:18px;overflow:hidden;transition:transform .3s var(--spring)}
-.prow .card{width:280px}
+.card,.prow .card{width:min(334px,calc(100vw - 24px))}
 .card:active{transform:scale(.97)}
 .ci{position:relative;margin:0;width:100%;aspect-ratio:1.91/1;background:#0E0F14;overflow:hidden;border-bottom:1px solid var(--sep)}
 .ci img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .ci.fit img{object-fit:contain;background:#0E0F14}
 .ci::after{content:attr(data-i);position:absolute;inset:0;display:none;place-items:center;font:600 64px/1 var(--sans);letter-spacing:-.02em;color:#3B4160;background:radial-gradient(80% 90% at 30% 20%,rgba(0,63,192,.18),transparent 70%)}
 .ci.err::after{display:grid}
-.cb{padding:10px 12px 12px;min-width:0}
+.cb{padding:10px 10px 12px 12px;min-width:0}
 .card h4{font-size:16px;font-weight:600;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .card p{font-size:13px;color:#A9AEB7;margin:3px 0 10px;line-height:1.35;min-height:2.7em;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.cm{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;min-width:0}
-.card em{flex:none;max-width:100%;font:500 12px/1.4 var(--sans);font-variant-numeric:tabular-nums;font-style:normal;color:#B3C6FF;background:#18213F;box-shadow:inset 0 0 0 1px #2A3A6E;padding:2px 8px;border-radius:999px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.dom{flex:none;max-width:100%;font:500 12px/1.4 var(--sans);font-variant-numeric:tabular-nums;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:0}
+.cm{display:flex;flex-wrap:nowrap;align-items:center;gap:5px;min-width:0;white-space:nowrap}
+.cl{flex:none;width:14px;height:14px;border-radius:4px;display:block;object-fit:cover}
+svg.cl:not([fill]){fill:#fff}
+.card em{flex:none;font:500 12px/1.4 var(--sans);font-variant-numeric:tabular-nums;font-style:normal;color:#B3C6FF;background:#18213F;box-shadow:inset 0 0 0 1px #2A3A6E;padding:2px 8px;border-radius:999px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card em{padding:2px 6px;letter-spacing:0}
+.dom{flex:1 1 auto;min-width:0;margin-left:1px;font:500 12px/1.4 var(--sans);font-variant-numeric:tabular-nums;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:0}
 .tags{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
 .tags span{max-width:100%;font:500 13px/1.4 var(--sans);font-variant-numeric:tabular-nums;color:var(--ink);background:#2A2C34;box-shadow:inset 0 0 0 1px #383A43;padding:4px 10px;border-radius:999px;overflow-wrap:anywhere}
 .b .tags{gap:4px;padding:2px 0}
@@ -191,7 +193,10 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 .phero .tl{margin-top:8px;font-size:15px;color:#C3C7CE}
 .acts{display:flex;justify-content:center;gap:22px;margin-top:20px}
 .acts a,.acts button{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:var(--acc)}
-.acts .circ{width:56px;height:56px}
+.acts .circ{width:56px;height:56px;color:#fff}
+.acts .circ svg{width:24px;height:24px}
+.acts a:active .circ,.acts button:active .circ{transform:scale(.9)}
+.acts a:focus-visible .circ,.acts button:focus-visible .circ{box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),0 0 0 2px var(--bg),0 0 0 4px var(--acc)}
 .sec{padding:0 16px;margin-bottom:26px;scroll-margin-top:84px}
 .sec h3{font:500 12px var(--sans);font-variant-numeric:tabular-nums;text-transform:uppercase;color:var(--sub);letter-spacing:.08em;margin:0 0 8px 16px}
 .prow{margin:0 -16px;padding:2px 16px 4px;scroll-padding:0 16px}
@@ -203,10 +208,10 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 </head>
 <body>
 <div class="device" id="dev">
-  <section class="view" id="chat" aria-label="Chat with Xark">
+  <section class="view" id="chat" aria-label="Chat with xarkgg">
     <header class="top">
       <button class="av glass" id="toProfile" aria-label="Open profile"><img src="assets/avatar-profile.jpg" alt="Manass Kusko" /></button>
-      <div class="cap glass"><b class="ell">Manass Kusko</b><span class="ell">smart contract dev · online</span></div>
+      <b class="nm ell">Manass Kusko</b>
       <div class="views glass" title="Visits" aria-label="Visit count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span id="vc">…</span></div>
     </header>
     <main class="thread" id="thread" aria-live="polite">
@@ -231,12 +236,12 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
     <div class="phero">
       <img class="big" src="assets/avatar-profile.jpg" alt="Manass Kusko" />
       <h1 class="serif">Manass Kusko</h1>
-      <p class="h">Xark · @xarkgg</p>
+      <p class="h">@xarkgg</p>
       <p class="tl">Smart contracts, on-chain products, AI agents and backend.</p>
       <div class="acts">
-        <button id="pMsg"><span class="ico ico--lg i-msg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.5L5 21.5l4-2c.9.3 2 .5 3 .5 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg></span>Message</button>
-        <a href="https://github.com/xarkgg" target="_blank" rel="noopener" aria-label="GitHub (opens in a new tab)"><span class="ico ico--lg i-gh" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></span>GitHub</a>
-        <a href="https://x.com/xarkgg" target="_blank" rel="noopener" aria-label="X (opens in a new tab)"><span class="ico ico--lg i-x" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg></span>X</a>
+        <button id="pMsg"><span class="circ glass" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.5L5 21.5l4-2c.9.3 2 .5 3 .5 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg></span>Message</button>
+        <a href="https://github.com/xarkgg" target="_blank" rel="noopener" aria-label="GitHub (opens in a new tab)"><span class="circ glass" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></span>GitHub</a>
+        <a href="https://x.com/xarkgg" target="_blank" rel="noopener" aria-label="X (opens in a new tab)"><span class="circ glass" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg></span>X</a>
       </div>
     </div>
     <div class="sec" id="pProjects"><h3>Projects</h3><div class="row prow" id="pProj"></div></div>
@@ -266,13 +271,13 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 
   <div hidden id="tplProjects">
     <div class="row">
-      <a class="card" href="https://sherwoodnotes.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="S"><img src="https://repository-images.githubusercontent.com/1362303941/ff6263d8-4040-49df-a20e-a630fedf4893" alt="Sherwood preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Sherwood</h4><p>Downside protection for tokenized stocks on Robinhood Chain</p><div class="cm"><em>Solidity · DeFi</em><span class="dom">sherwoodnotes.vercel.app</span></div></div></a>
-      <a class="card" href="https://trycondition.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="C"><img src="https://repository-images.githubusercontent.com/1352271598/8f656dde-7842-493c-bf4e-61668d25e32f" alt="Condition preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Condition</h4><p>Privacy-preserving parametric insurance on Midnight</p><div class="cm"><em>Midnight · Privacy</em><span class="dom">trycondition.vercel.app</span></div></div></a>
-      <a class="card" href="https://exetazo.xyz" target="_blank" rel="noopener"><figure class="ci" data-i="E"><img src="https://opengraph.githubassets.com/1/xarkgg/exetazo" alt="Exetazo preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Exetazo</h4><p>Browser extension that flags risky clauses in legal agreements</p><div class="cm"><em>TypeScript · Security</em><span class="dom">exetazo.xyz</span></div></div></a>
-      <a class="card" href="https://legacydemo.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="L"><img src="https://repository-images.githubusercontent.com/1318032669/71ef472e-696d-404b-9489-14d47075da0e" alt="Legacy preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Legacy</h4><p>Succession layer for tokenized real-world assets on Monad</p><div class="cm"><em>Solidity · RWA</em><span class="dom">github.com/xarkgg/legacy</span></div></div></a>
-      <a class="card" href="https://github.com/xarkgg/handshake" target="_blank" rel="noopener"><figure class="ci" data-i="H"><img src="https://repository-images.githubusercontent.com/1341972765/a4b0f401-a243-4808-b76f-a3e745f03609" alt="Handshake preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Handshake</h4><p>Cross-chain DvP settlement on Creditcoin</p><div class="cm"><em>Creditcoin · DvP</em><span class="dom">github.com/xarkgg/handshake</span></div></div></a>
-      <a class="card" href="https://github.com/xarkgg/shell" target="_blank" rel="noopener"><figure class="ci fit" data-i="S"><img src="https://repository-images.githubusercontent.com/1279311793/2526aa18-cca3-4d9e-b78c-d7225324e72b" alt="Shell SDK preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Shell SDK</h4><p>Transaction-security SDK for Solana, published as @shellxyz/sdk</p><div class="cm"><em>Solana · Security</em><span class="dom">github.com/xarkgg/shell</span></div></div></a>
-      <a class="card" href="https://folks.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="F"><img src="https://opengraph.githubassets.com/1/xarkgg/folks" alt="Folks preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Folks</h4><p>Simpler payments for creators across Africa</p><div class="cm"><em>Payments</em><span class="dom">folks.vercel.app</span></div></div></a>
+      <a class="card" href="https://sherwoodnotes.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="S"><img src="https://repository-images.githubusercontent.com/1362303941/ff6263d8-4040-49df-a20e-a630fedf4893" alt="Sherwood preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Sherwood</h4><p>Downside protection for tokenized stocks on Robinhood Chain</p><div class="cm"><svg class="cl" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2.84 24h.53c.096 0 .192-.048.224-.128C7.591 13.696 11.94 8.656 14.67 5.638c.112-.128.064-.225-.096-.225h-4.88a.55.55 0 0 0-.45.225L5.746 9.972c-.514.642-.642 1.236-.642 2.086v4.43c-1.14 3.194-1.862 5.361-2.392 7.32-.032.125.016.192.129.192M20.447.646c-.754-.802-4.157-.834-5.730-.224a3 3 0 0 0-.786.465 41 41 0 0 0-3.323 3.178c-.112.113-.064.225.097.225h5.409c.497 0 .786.289.786.786v6.1c0 .16.128.208.225.064l3.258-4.254c.53-.69.69-.898.835-1.861.192-1.413.08-3.58-.77-4.479m-6.982 16.18 2.231-3.676a.7.7 0 0 0 .064-.29V6.73c0-.16-.112-.225-.224-.097-3.355 3.74-5.971 7.672-8.395 12.407-.06.12.016.225.16.177l5.009-1.54c.565-.174.882-.402 1.155-.852"/></svg><em>Robinhood / Stocks</em><span class="dom">sherwoodnotes.vercel.app</span></div></div></a>
+      <a class="card" href="https://trycondition.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="C"><img src="https://repository-images.githubusercontent.com/1352271598/8f656dde-7842-493c-bf4e-61668d25e32f" alt="Condition preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Condition</h4><p>Privacy-preserving parametric insurance on Midnight</p><div class="cm"><img class="cl" src="midnight.png" alt="" /><em>Midnight / Insurance</em><span class="dom">trycondition.vercel.app</span></div></div></a>
+      <a class="card" href="https://exetazo.xyz" target="_blank" rel="noopener"><figure class="ci" data-i="E"><img src="https://opengraph.githubassets.com/1/xarkgg/exetazo" alt="Exetazo preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Exetazo</h4><p>Browser extension that flags risky clauses in legal agreements</p><div class="cm"><svg class="cl" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><em>Web / Legal</em><span class="dom">exetazo.xyz</span></div></div></a>
+      <a class="card" href="https://legacydemo.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="L"><img src="https://repository-images.githubusercontent.com/1318032669/71ef472e-696d-404b-9489-14d47075da0e" alt="Legacy preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Legacy</h4><p>Succession layer for tokenized real-world assets on Monad</p><div class="cm"><img class="cl" src="monad.png" alt="" /><em>Monad / RWA</em><span class="dom">github.com/xarkgg/legacy</span></div></div></a>
+      <a class="card" href="https://github.com/xarkgg/handshake" target="_blank" rel="noopener"><figure class="ci" data-i="H"><img src="https://repository-images.githubusercontent.com/1341972765/a4b0f401-a243-4808-b76f-a3e745f03609" alt="Handshake preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Handshake</h4><p>Cross-chain DvP settlement on Creditcoin</p><div class="cm"><img class="cl" src="creditcoin.png" alt="" /><em>Creditcoin / DvP</em><span class="dom">github.com/xarkgg/handshake</span></div></div></a>
+      <a class="card" href="https://github.com/xarkgg/shell" target="_blank" rel="noopener"><figure class="ci fit" data-i="S"><img src="https://repository-images.githubusercontent.com/1279311793/2526aa18-cca3-4d9e-b78c-d7225324e72b" alt="Shell SDK preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Shell SDK</h4><p>Transaction-security SDK for Solana, published as @shellxyz/sdk</p><div class="cm"><svg class="cl" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m23.8764 18.0313-3.962 4.1393a.9201.9201 0 0 1-.306.2106.9407.9407 0 0 1-.367.0742H.4599a.4689.4689 0 0 1-.2522-.0733.4513.4513 0 0 1-.1696-.1962.4375.4375 0 0 1-.0314-.2545.4438.4438 0 0 1 .117-.2298l3.9649-4.1393a.92.92 0 0 1 .3052-.2102.9407.9407 0 0 1 .3658-.0746H23.54a.4692.4692 0 0 1 .2523.0734.4531.4531 0 0 1 .1697.196.438.438 0 0 1 .0313.2547.4442.4442 0 0 1-.1169.2297zm-3.962-8.3355a.9202.9202 0 0 0-.306-.2106.941.941 0 0 0-.367-.0742H.4599a.4687.4687 0 0 0-.2522.0734.4513.4513 0 0 0-.1696.1961.4376.4376 0 0 0-.0314.2546.444.444 0 0 0 .117.2297l3.9649 4.1394a.9204.9204 0 0 0 .3052.2102c.1154.049.24.0744.3658.0746H23.54a.469.469 0 0 0 .2523-.0734.453.453 0 0 0 .1697-.1961.4382.4382 0 0 0 .0313-.2546.4444.4444 0 0 0-.1169-.2297zM.46 6.7225h18.7815a.9411.9411 0 0 0 .367-.0742.9202.9202 0 0 0 .306-.2106l3.962-4.1394a.4442.4442 0 0 0 .117-.2297.4378.4378 0 0 0-.0314-.2546.453.453 0 0 0-.1697-.196.469.469 0 0 0-.2523-.0734H4.7596a.941.941 0 0 0-.3658.0745.9203.9203 0 0 0-.3052.2102L.1246 5.9687a.4438.4438 0 0 0-.1169.2295.4375.4375 0 0 0 .0312.2544.4512.4512 0 0 0 .1692.196.4689.4689 0 0 0 .2518.0739z"/></svg><em>Solana / Security</em><span class="dom">github.com/xarkgg/shell</span></div></div></a>
+      <a class="card" href="https://folks.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="F"><img src="https://opengraph.githubassets.com/1/xarkgg/folks" alt="Folks preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Folks</h4><p>Simpler payments for creators across Africa</p><div class="cm"><svg class="cl" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><em>Web / Payments</em><span class="dom">folks.vercel.app</span></div></div></a>
     </div>
   </div>
 </div>
@@ -299,7 +304,7 @@ var ic={
 function tile(k,cls){return '<span class="ico'+(cls?" "+cls:"")+'" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">'+ic[k]+'</svg></span>'}
 function rows(m){
  var e=m?encodeURIComponent(m):"";
- var L=[["mail","Mail","kuskomanass@gmail.com",m?"mailto:kuskomanass@gmail.com?subject=Hi%20Xark&body="+e:"mailto:kuskomanass@gmail.com"],
+ var L=[["mail","Mail","kuskomanass@gmail.com",m?"mailto:kuskomanass@gmail.com?subject=Hi%20xarkgg&body="+e:"mailto:kuskomanass@gmail.com"],
  ["tg","Telegram","@xarkgg",m?"https://t.me/share/url?url=https%3A%2F%2Fx.com%2Fxarkgg&text="+e:"https://t.me/xarkgg"],
  ["x","X","@xarkgg",m?"https://x.com/intent/tweet?text="+e:"https://x.com/xarkgg"],
  ["gh","GitHub","@xarkgg","https://github.com/xarkgg"]];
@@ -307,14 +312,14 @@ function rows(m){
   return '<a href="'+r[3]+'"'+ext+' aria-label="'+r[1]+', '+r[2]+(ext?" (opens in a new tab)":"")+'">'+tile(r[0],"i-"+r[0])+'<span class="t"><b>'+r[1]+'</b><span>'+r[2]+'</span></span>'+chev+'</a>'}).join("");
 }
 $("pList").innerHTML=rows();
-var SKILLS=["Solidity","Smart contracts","Solana","Web3","AI and LLM agents","Backend","TypeScript","DevRel","Design"];
+var SKILLS=["Solidity","Smart contracts","EVM","Non-EVM chains","Web3","AI and LLM agents","Backend","TypeScript","DevRel","Design"];
 var XP=[
- ["Sherwood","Builder","Sep–Oct 2026","Programmable downside protection for tokenized stocks on Robinhood Chain.",["Solidity","Robinhood Chain","DeFi"]],
- ["Exetazo","Builder, Security","Sep 2026","Scans website legal agreements for risky clauses with deterministic, evidence-based scoring. Built for LexHack 2026.",["TypeScript","Browser extension","Security"]],
- ["Condition","Builder","Aug–Sep 2026","Privacy-preserving parametric insurance on Midnight: public policies, private claims, public proof of fair settlement.",["Midnight","Privacy"]],
- ["Handshake","Builder","Aug–Sep 2026","Cross-chain DvP settlement on Creditcoin via the Attestcoin Protocol.",["Creditcoin","DvP","TypeScript"]],
- ["Legacy","Builder, RWA","Jul–Aug 2026","Succession layer for tokenized real-world assets: three Solidity contracts on Monad testnet, for the Cleanverse “Trusted Assets” hackathon.",["Solidity","Monad","RWA"]],
- ["Shell SDK","Creator","Jun–Jul 2026","Modular Solana transaction-security SDK on npm, @shellxyz/sdk.",["Solana","SDK","Security"]]];
+ ["Sherwood","Builder","Sep–Oct 2026","Downside protection for tokenized stocks.",["Solidity","DeFi"]],
+ ["Exetazo","Builder, Security","Sep 2026","Legal-agreement risk scanner browser extension, with deterministic, evidence-based scoring.",["TypeScript","Browser extension","Security"]],
+ ["Condition","Builder","Aug–Sep 2026","Privacy-preserving parametric insurance: public policies, private claims, public proof of fair settlement.",["Privacy"]],
+ ["Handshake","Builder","Aug–Sep 2026","Cross-chain delivery-versus-payment settlement.",["DeFi","TypeScript"]],
+ ["Legacy","Builder, RWA","Jul–Aug 2026","Succession layer for tokenized real-world assets, built as three Solidity contracts.",["Solidity","RWA"]],
+ ["Shell SDK","Creator","Jun–Jul 2026","Modular transaction-security SDK.",["SDK","Security","TypeScript"]]];
 function tagsHtml(a){return a.map(function(t){return"<span>"+t+"</span>"}).join("")}
 $("pTags").innerHTML=tagsHtml(SKILLS);
 var XPI={"Sherwood":"shield","Exetazo":"search","Condition":"umbrella","Handshake":"swap","Legacy":"cube","Shell SDK":"hammer"};
@@ -360,14 +365,14 @@ function add(cls,html){
  if(typeof html==="string")b.innerHTML=html;else b.appendChild(html);
  return place(b);
 }
-async function type(ms){var t=document.createElement("div");t.className="b in tail typing";t.setAttribute("aria-label","Xark is typing");t.innerHTML="<span></span><span></span><span></span>";place(t);await wait(ms||700);
+async function type(ms){var t=document.createElement("div");t.className="b in tail typing";t.setAttribute("aria-label","xarkgg is typing");t.innerHTML="<span></span><span></span><span></span>";place(t);await wait(ms||700);
  var p=t.previousElementSibling;t.remove();if(t.classList.contains("gp")&&p){p.classList.remove("gn");p.classList.add("tail")}}
 async function say(html,cls){await type();add("in"+(cls?" "+cls:""),html);await wait(250)}
 var replies={
  Projects:async function(){await say("Here's what I've shipped recently.");var n=$("tplProjects").firstElementChild.cloneNode(true);return say(n,"wide")},
  Stack:async function(){await say("What I work with day to day.");return say('<div class="tags">'+tagsHtml(SKILLS)+"</div>")},
  Experience:async function(){await say("Recent builds, newest first.");
-  return say('<ul class="xp">'+XP.map(function(r){return"<li><span>"+r[0]+"</span><small>"+r[2]+"</small></li>"}).join("")+"</ul><p>Currently studying Computer Science at the Federal University of Lafia.</p>")},
+  return say('<ul class="xp">'+XP.map(function(r){return"<li><span>"+r[0]+"</span><small>"+r[2]+"</small></li>"}).join("")+"</ul><p>Currently studying Computer Science.</p>")},
  Contact:async function(){await say("Here's the best way to reach me.");openSheet()}
 };
 var q=Promise.resolve();
@@ -386,7 +391,7 @@ $("toProfile").onclick=openProfile;$("back").onclick=closeProfile;$("pMsg").oncl
 document.addEventListener("keydown",function(e){if(e.key!=="Escape")return;if(dev.classList.contains("open"))closeSheet();else if(dev.classList.contains("prof"))closeProfile()});
 fetch("https://abacus.jasoncameron.dev/hit/xarkgg/portfolio").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){$("vc").textContent=d&&d.value!=null?Number(d.value).toLocaleString():"—"}).catch(function(){$("vc").textContent="—"});
 (async function(){busy=true;await wait(400);
- await say("I'm Manass, also known as Xark. I build smart contracts and on-chain products on Solidity, Solana, Midnight and Monad, plus AI agents and the backends behind them.");
+ await say("I'm Manass, also known as xarkgg. I build smart contracts and on-chain products across EVM and non-EVM chains, plus AI agents and the backends behind them.");
  await say("Most of my work starts at hackathons and keeps going after. Pick a topic below, or tap my photo for the full profile.");
  $("chipw").hidden=false;busy=false;})();
 })();
