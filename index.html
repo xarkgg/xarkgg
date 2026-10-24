@@ -117,12 +117,28 @@ box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,
 .group{background:var(--s1);border-radius:16px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--sep)}
 .group>*{position:relative}
 .group>*+*::before{content:"";position:absolute;top:0;left:16px;right:0;height:1px;background:var(--sep)}
-.group>a+a::before{left:58px}
+.group>a+a::before,.group.tiled>*+*::before{left:58px}
+.sheet .group>a+a::before{left:62px}
 .group a,.li{display:flex;align-items:center;gap:12px;padding:10px 14px 10px 16px;min-height:52px;min-width:0}
-.group a{padding-left:14px}
 .group a:active,.group summary:active{background:rgba(255,255,255,.05)}
-.glyph{width:30px;height:30px;border-radius:8px;background:var(--blue);color:#fff;display:grid;place-items:center;flex:none}
-.glyph svg{width:17px;height:17px}
+/* iOS app-icon tiles */
+.ico{--g1:#8E8E93;--g2:#636366;position:relative;width:30px;height:30px;border-radius:23%;background:linear-gradient(180deg,var(--g1),var(--g2));color:#fff;display:grid;place-items:center;flex:none;overflow:hidden;
+box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 0 0 .5px rgba(255,255,255,.16),0 1px 2px rgba(0,0,0,.35),0 3px 8px rgba(0,0,0,.28)}
+.ico::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 48%);pointer-events:none}
+.ico svg{position:relative;z-index:1;width:60%;height:60%;display:block;filter:drop-shadow(0 .5px .5px rgba(0,0,0,.18))}
+.sheet .ico{width:34px;height:34px}
+.ico--lg{width:56px;height:56px}
+.i-mail{--g1:#1E9BFF;--g2:#0A63F5}
+.i-tg{--g1:#37BBFE;--g2:#1E96D4}
+.i-x{--g1:#2A2A2A;--g2:#000000}
+.i-x svg{width:52%;height:52%}
+.i-gh{--g1:#3A3F47;--g2:#161B22}
+.i-msg{--g1:#34C759;--g2:#248A3D}
+.i-edu{--g1:#FF9F0A;--g2:#F57C00}
+.acts .ico{transition:transform .25s var(--spring)}
+.acts a:active .ico,.acts button:active .ico{transform:scale(.92)}
+.acts a:focus-visible,.acts button:focus-visible{outline:0}
+.acts a:focus-visible .ico,.acts button:focus-visible .ico{box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 0 0 2px var(--bg),0 0 0 4px var(--acc)}
 .group .t{flex:1;min-width:0}
 .group .t b{display:block;font-weight:500;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .group .t span{font-size:13px;color:var(--sub);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -158,6 +174,7 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 .done{color:var(--acc);font-weight:600;font-size:16px;height:44px;padding:0 4px;flex:none}
 .smsg{display:flex;justify-content:flex-end;margin-bottom:14px}
 .smsg .b{animation:none}
+.smsg[hidden],.smsg:has(.b:empty){display:none!important}
 /* profile */
 #profile{transform:translateX(100%);background:var(--glow),var(--bg);overflow-y:auto;overflow-x:hidden;z-index:10;box-shadow:-10px 0 30px rgba(0,0,0,.5)}
 .prof #profile{transform:none}
@@ -217,9 +234,9 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
       <p class="h">Xark · @xarkgg</p>
       <p class="tl">Smart contracts, on-chain products, AI agents and backend.</p>
       <div class="acts">
-        <button id="pMsg"><span class="circ glass"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.5L5 21.5l4-2c.9.3 2 .5 3 .5 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg></span>Message</button>
-        <a href="https://github.com/xarkgg" target="_blank" rel="noopener"><span class="circ glass"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></span>GitHub</a>
-        <a href="https://x.com/xarkgg" target="_blank" rel="noopener"><span class="circ glass"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg></span>X</a>
+        <button id="pMsg"><span class="ico ico--lg i-msg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.5L5 21.5l4-2c.9.3 2 .5 3 .5 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg></span>Message</button>
+        <a href="https://github.com/xarkgg" target="_blank" rel="noopener" aria-label="GitHub (opens in a new tab)"><span class="ico ico--lg i-gh" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></span>GitHub</a>
+        <a href="https://x.com/xarkgg" target="_blank" rel="noopener" aria-label="X (opens in a new tab)"><span class="ico ico--lg i-x" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg></span>X</a>
       </div>
     </div>
     <div class="sec" id="pProjects"><h3>Projects</h3><div class="row prow" id="pProj"></div></div>
@@ -229,8 +246,8 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
       </div>
     </div>
     <div class="sec" id="pSkills"><h3>Skills</h3><div class="group pad"><div class="tags" id="pTags"></div></div></div>
-    <div class="sec" id="pXp"><h3>Experience</h3><div class="group" id="pXpList"></div></div>
-    <div class="sec" id="pEdu"><h3>Education</h3><div class="group">
+    <div class="sec" id="pXp"><h3>Experience</h3><div class="group tiled" id="pXpList"></div></div>
+    <div class="sec" id="pEdu"><h3>Education</h3><div class="group tiled" id="pEduList">
       <div class="li"><span class="t"><b>Federal University of Lafia</b><span>BSc Computer Science</span></span><small>2024–present</small></div>
       <div class="li"><span class="t"><b>Beacon of Faith Secondary School</b><span>Secondary</span></span><small>2017–2023</small></div>
       <div class="li"><span class="t"><b>Beacon of Faith Primary School</b><span>Primary</span></span><small>2010–2016</small></div>
@@ -268,10 +285,18 @@ var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 var wait=function(ms){return new Promise(function(r){setTimeout(r,reduce?Math.min(ms,150):ms)})};
 var chev='<svg class="chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5l6 6-6 6"/></svg>';
 var ic={
- mail:'<path d="M3 6h18v12H3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>',
+ mail:'<rect x="2.5" y="5" width="19" height="14" rx="2.6" fill="currentColor"/><path d="M4 7l8 6.2L20 7" fill="none" style="stroke:var(--g2)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>',
+ shield:'<path fill="currentColor" d="M12 2.5l7.5 3v5.6c0 4.7-3.1 8.7-7.5 10.4-4.4-1.7-7.5-5.7-7.5-10.4V5.5z"/><path d="M8.6 12.2l2.4 2.4 4.4-4.6" fill="none" style="stroke:var(--g2)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>',
+ search:'<circle cx="10.5" cy="10.5" r="6.2" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.2 15.2l5.3 5.3" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>',
+ umbrella:'<path fill="currentColor" d="M12 3a9.5 9.5 0 0 1 9.5 9.2H2.5A9.5 9.5 0 0 1 12 3z"/><path d="M12 12v6.3a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+ swap:'<path d="M4 8.5h15M15.5 4.5l4 4-4 4M20 15.5H5M8.5 11.5l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
+ cube:'<path d="M12 2.8l8 4.5v9.4l-8 4.5-8-4.5V7.3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4.4 7.5 12 11.8l7.6-4.3M12 11.8v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>',
+ hammer:'<path fill="currentColor" d="M17.45 13.63 20.63 10.45 13.55 3.37 10.37 6.55z"/><path d="M13.6 10.4 4.6 19.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>',
+ cap:'<path fill="currentColor" d="M12 4 1.5 9 12 14l10.5-5z"/><path fill="currentColor" d="M6 11.6v3.9c0 1.5 2.7 3 6 3s6-1.5 6-3v-3.9L12 14.5z"/><path d="M21 9.6v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
  tg:'<path fill="currentColor" d="M21.5 4.2 2.9 11.4c-1 .4-1 1.6 0 1.9l4.6 1.5 1.8 5.5c.2.7 1.1.9 1.6.4l2.6-2.4 4.6 3.4c.6.4 1.4.1 1.6-.6L22.9 5.6c.3-1-.6-1.8-1.4-1.4zM9.8 14.4l8-6.3-6.4 7.2-.3 3-1.3-3.9z"/>',
  x:'<path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/>',
  gh:'<path fill="currentColor" d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/>'};
+function tile(k,cls){return '<span class="ico'+(cls?" "+cls:"")+'" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">'+ic[k]+'</svg></span>'}
 function rows(m){
  var e=m?encodeURIComponent(m):"";
  var L=[["mail","Mail","kuskomanass@gmail.com",m?"mailto:kuskomanass@gmail.com?subject=Hi%20Xark&body="+e:"mailto:kuskomanass@gmail.com"],
@@ -279,7 +304,7 @@ function rows(m){
  ["x","X","@xarkgg",m?"https://x.com/intent/tweet?text="+e:"https://x.com/xarkgg"],
  ["gh","GitHub","@xarkgg","https://github.com/xarkgg"]];
  return L.map(function(r){var ext=r[3].indexOf("mailto")?' target="_blank" rel="noopener"':"";
-  return '<a href="'+r[3]+'"'+ext+'><span class="glyph"><svg viewBox="0 0 24 24">'+ic[r[0]]+'</svg></span><span class="t"><b>'+r[1]+'</b><span>'+r[2]+'</span></span>'+chev+'</a>'}).join("");
+  return '<a href="'+r[3]+'"'+ext+' aria-label="'+r[1]+', '+r[2]+(ext?" (opens in a new tab)":"")+'">'+tile(r[0],"i-"+r[0])+'<span class="t"><b>'+r[1]+'</b><span>'+r[2]+'</span></span>'+chev+'</a>'}).join("");
 }
 $("pList").innerHTML=rows();
 var SKILLS=["Solidity","Smart contracts","Solana","Web3","AI and LLM agents","Backend","TypeScript","DevRel","Design"];
@@ -292,7 +317,9 @@ var XP=[
  ["Shell SDK","Creator","Jun–Jul 2026","Modular Solana transaction-security SDK on npm, @shellxyz/sdk.",["Solana","SDK","Security"]]];
 function tagsHtml(a){return a.map(function(t){return"<span>"+t+"</span>"}).join("")}
 $("pTags").innerHTML=tagsHtml(SKILLS);
-$("pXpList").innerHTML=XP.map(function(r){return'<details><summary class="li"><span class="t"><b>'+r[0]+'</b><span>'+r[1]+'</span></span><small>'+r[2]+'</small>'+chev+'</summary><div class="xd"><p>'+r[3]+'</p><div class="tags">'+tagsHtml(r[4])+'</div></div></details>'}).join("");
+var XPI={"Sherwood":"shield","Exetazo":"search","Condition":"umbrella","Handshake":"swap","Legacy":"cube","Shell SDK":"hammer"};
+$("pXpList").innerHTML=XP.map(function(r){return'<details><summary class="li">'+tile(XPI[r[0]]||"cube")+'<span class="t"><b>'+r[0]+'</b><span>'+r[1]+'</span></span><small>'+r[2]+'</small>'+chev+'</summary><div class="xd"><p>'+r[3]+'</p><div class="tags">'+tagsHtml(r[4])+'</div></div></details>'}).join("");
+Array.prototype.forEach.call(document.querySelectorAll("#pEduList .li"),function(li){li.insertAdjacentHTML("afterbegin",tile("cap","i-edu"))});
 Array.prototype.forEach.call(document.querySelectorAll("#tplProjects .card"),function(c){$("pProj").appendChild(c.cloneNode(true))});
 var LV=["#1C1F2A","#0E2A6B","#133C9E","#1F5BFF","#6F95FF"],MO=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 function ghEnd(){var w=$("ghW");w.scrollLeft=w.scrollWidth}
@@ -350,7 +377,7 @@ $("form").addEventListener("submit",function(e){e.preventDefault();var i=$("msg"
  setTimeout(function(){openSheet(m)},reduce?50:450)});
 $("person").onclick=function(){openSheet()};
 var lastFocus;
-function openSheet(m){lastFocus=document.activeElement;$("sTitle").textContent=m?"Send your message to":"Reach me on";$("sMsg").hidden=!m;if(m)$("sBub").textContent=m;$("sList").innerHTML=rows(m);dev.classList.add("open");$("sheet").setAttribute("aria-hidden","false");setTimeout(function(){$("done").focus()},60)}
+function openSheet(m){lastFocus=document.activeElement;m=typeof m==="string"&&m.trim()?m:"";$("sTitle").textContent=m?"Send your message to":"Reach me on";$("sMsg").hidden=!m;$("sBub").textContent=m;$("sList").innerHTML=rows(m);dev.classList.add("open");$("sheet").setAttribute("aria-hidden","false");setTimeout(function(){$("done").focus()},60)}
 function closeSheet(){dev.classList.remove("open");$("sheet").setAttribute("aria-hidden","true");if(lastFocus)lastFocus.focus()}
 $("done").onclick=closeSheet;$("dim").onclick=closeSheet;
 function openProfile(){dev.classList.add("prof");$("profile").setAttribute("aria-hidden","false");$("profile").scrollTop=0;ghEnd();setTimeout(function(){$("back").focus()},80)}
