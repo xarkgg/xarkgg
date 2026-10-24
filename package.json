@@ -1,0 +1,12 @@
+{
+  "name": "xarkgg",
+  "private": true,
+  "description": "Portfolio site for Manass Kusko (Xark). Static, no build step.",
+  "scripts": {
+    "vendor": "mkdir -p vendor/ios-kit && cp node_modules/@kitlangton/ios-kit/ios-kit.js node_modules/@kitlangton/ios-kit/ios-kit.css node_modules/@kitlangton/ios-kit/LICENSE vendor/ios-kit/",
+    "postinstall": "npm run vendor"
+  },
+  "dependencies": {
+    "@kitlangton/ios-kit": "github:kitlangton/ios-kit"
+  }
+}
