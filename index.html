@@ -208,6 +208,22 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 .prow{margin:0 -16px;padding:2px 16px 4px;scroll-padding:0 16px}
 .pfoot{text-align:center;color:var(--sub);font:500 12px var(--sans);font-variant-numeric:tabular-nums;padding:12px 0 40px}
 .pfoot b{font:600 18px var(--sans);letter-spacing:-.02em;color:var(--ink)}
+/* scroll edge blur */
+.x-edge{position:absolute;left:0;right:0;z-index:4;pointer-events:none;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.x-edge--top{top:0;height:calc(110px + env(safe-area-inset-top));background:linear-gradient(180deg,var(--bg) 0%,rgba(11,11,15,.94) 55%,rgba(11,11,15,0) 100%);
+-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 62%,transparent 100%)}
+.x-edge--bot{bottom:0;height:calc(170px + env(safe-area-inset-bottom));background:linear-gradient(0deg,var(--bg) 0%,rgba(11,11,15,.9) 50%,rgba(11,11,15,0) 100%);
+-webkit-mask-image:linear-gradient(0deg,#000 0%,#000 55%,transparent 100%);mask-image:linear-gradient(0deg,#000 0%,#000 55%,transparent 100%)}
+/* stack reply: tags without a bubble */
+.b.x-tagrow{background:none;border:0;box-shadow:none;padding:0;max-width:100%;margin-top:6px}
+.b.x-tagrow::before{content:none!important}
+/* visits tip */
+.x-tip{position:absolute;top:100%;right:12px;margin-top:8px;max-width:min(240px,calc(100% - 24px));padding:9px 12px;border-radius:12px;font:500 13px/1.35 var(--sans);letter-spacing:-.005em;color:var(--ink);
+background:rgba(28,29,35,.9);-webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,.10),0 8px 24px rgba(0,0,0,.35);
+pointer-events:none;opacity:0;transform:translateY(-4px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.x-tip::before{content:"";position:absolute;top:-6px;right:22px;width:12px;height:6px;background:rgba(48,49,56,.95);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.x-tip.on{opacity:1;transform:none}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -218,11 +234,14 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
     <header class="top">
       <button class="av glass" id="toProfile" aria-label="Open profile"><img src="assets/avatar-profile.jpg" alt="Manass Kusko" /></button>
       <b class="nm ell">Manass Kusko</b>
-      <div class="views glass" title="Visits" aria-label="Visit count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span id="vc">…</span></div>
+      <button type="button" class="views glass" id="views" title="Visits" aria-label="Visit count" aria-describedby="vtip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span id="vc">…</span></button>
+      <p class="x-tip" id="vtip" role="tooltip">How many times this portfolio has been visited.</p>
     </header>
     <main class="thread" id="thread" aria-live="polite">
       <p class="day" id="day"><b>Today</b></p>
     </main>
+    <div class="x-edge x-edge--top" aria-hidden="true"></div>
+    <div class="x-edge x-edge--bot" aria-hidden="true"></div>
     <div class="dock">
       <div class="chipw" id="chipw" hidden><div class="chips" id="chips">
         <button class="glass" data-k="Projects">Projects</button>
@@ -316,8 +335,8 @@ function tile(k,cls){return '<span class="ico'+(cls?" "+cls:"")+'" aria-hidden="
 function rows(m){
  var e=m?encodeURIComponent(m):"";
  var L=[["mail","Mail","kuskomanass@gmail.com",m?"mailto:kuskomanass@gmail.com?subject=Hi%20xarkgg&body="+e:"mailto:kuskomanass@gmail.com"],
- ["tg","Telegram","@xarkgg",m?"https://t.me/share/url?url=https%3A%2F%2Fx.com%2Fxarkgg&text="+e:"https://t.me/xarkgg"],
- ["x","X","@xarkgg",m?"https://x.com/intent/tweet?text="+e:"https://x.com/xarkgg"],
+ ["tg","Telegram","@xarkgg",m?"https://t.me/xarkgg?text="+e:"https://t.me/xarkgg"],
+ ["x","X","@xarkgg",m?"https://x.com/messages/compose?recipient_id=2007853153132388352&text="+e:"https://x.com/xarkgg"],
  ["gh","GitHub","@xarkgg","https://github.com/xarkgg"]];
  return L.map(function(r){var ext=r[3].indexOf("mailto")?' target="_blank" rel="noopener"':"";
   return '<a href="'+r[3]+'"'+ext+' aria-label="'+r[1]+', '+r[2]+(ext?" (opens in a new tab)":"")+'">'+tile(r[0],"i-"+r[0])+'<span class="t"><b>'+r[1]+'</b><span>'+r[2]+'</span></span>'+chev+'</a>'}).join("");
@@ -378,7 +397,8 @@ function place(b){
  var side=b.classList.contains("out")?"out":"in";
  if(side==="out"&&dlv.parentNode)dlv.remove();
  var last=thread.lastElementChild;
- if(last&&last.classList.contains("b")&&last.classList.contains(side)&&!last.classList.contains("wide")&&!b.classList.contains("wide")){
+ var solo=function(n){return n.classList.contains("wide")||n.classList.contains("x-tagrow")};
+ if(last&&last.classList.contains("b")&&last.classList.contains(side)&&!solo(last)&&!solo(b)){
   last.classList.remove("tail");last.classList.add("gn");b.classList.add("gp")}
  thread.appendChild(b);
  if(side==="out"){dlv.style.animation="none";dlv.offsetWidth;dlv.style.animation="";thread.appendChild(dlv)}
@@ -394,7 +414,7 @@ async function type(ms){var t=document.createElement("div");t.className="b in ta
 async function say(html,cls){await type();add("in"+(cls?" "+cls:""),html);await wait(250)}
 var replies={
  Projects:async function(){await say("Here's what I've shipped recently.");var n=$("tplProjects").firstElementChild.cloneNode(true);return say(n,"wide")},
- Stack:async function(){await say("What I work with day to day.");return say('<div class="tags">'+skillTags(SKILLS)+"</div>")},
+ Stack:async function(){await say("What I work with day to day.");await type();add("in x-tagrow",'<div class="tags">'+skillTags(SKILLS)+"</div>");return wait(250)},
  Experience:async function(){await say("Recent builds, newest first.");
   return say('<ul class="xp">'+XP.map(function(r){return"<li><span>"+r[0]+"</span><small>"+r[2]+"</small></li>"}).join("")+"</ul><p>Currently studying Computer Science.</p>")},
  Contact:async function(){await say("Here's the best way to reach me.");openSheet()}
@@ -414,6 +434,9 @@ function closeProfile(){dev.classList.remove("prof");$("profile").setAttribute("
 $("toProfile").onclick=openProfile;$("back").onclick=closeProfile;$("pMsg").onclick=function(){openSheet()};
 document.addEventListener("keydown",function(e){if(e.key!=="Escape")return;if(dev.classList.contains("open"))closeSheet();else if(dev.classList.contains("prof"))closeProfile()});
 fetch("https://abacus.jasoncameron.dev/hit/xarkgg/portfolio").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){$("vc").textContent=d&&d.value!=null?Number(d.value).toLocaleString():"—"}).catch(function(){$("vc").textContent="—"});
+var vtip=$("vtip"),vt;
+function showTip(){clearTimeout(vt);vtip.classList.add("on");vt=setTimeout(function(){vtip.classList.remove("on")},4000)}
+setTimeout(showTip,1500);$("views").addEventListener("click",showTip);
 (async function(){busy=true;await wait(400);
  await say("I'm Manass, also known as xarkgg. I build smart contracts and on-chain products across EVM and non-EVM chains, plus AI agents and the backends behind them.");
  await say("Most of my work starts at hackathons and keeps going after. Pick a topic below, or tap my photo for the full profile.");
