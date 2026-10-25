@@ -519,7 +519,7 @@ function openSheet(m){lastFocus=document.activeElement;m=typeof m==="string"&&m.
 function closeSheet(){dev.classList.remove("open");$("sheet").setAttribute("aria-hidden","true");if(lastFocus)lastFocus.focus()}
 $("done").onclick=closeSheet;$("dim").onclick=closeSheet;
 function morph(fn){if(document.startViewTransition){try{document.startViewTransition(fn);return}catch(_){}}fn()}
-function openProfile(){morph(function(){dev.classList.add("prof");$("profile").setAttribute("aria-hidden","false");$("profile").scrollTop=0;ghEnd()});setTimeout(function(){$("back").focus()},80)}
+function openProfile(){dev.classList.add("prof");$("profile").setAttribute("aria-hidden","false");$("profile").scrollTop=0;ghEnd();setTimeout(function(){$("back").focus()},80)}
 function closeProfile(){morph(function(){dev.classList.remove("prof");$("profile").setAttribute("aria-hidden","true")});$("toProfile").focus()}
 $("toProfile").onclick=openProfile;$("back").onclick=closeProfile;
 document.addEventListener("keydown",function(e){if(e.key!=="Escape")return;if(dev.classList.contains("open"))closeSheet();else if(dev.classList.contains("prof"))closeProfile()});
