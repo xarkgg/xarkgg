@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <link rel="icon" href="assets/avatar-header.png" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="theme-color" content="#0B0B0F" />
-<meta name="color-scheme" content="dark" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#E4E4E4" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0B0B0F" />
+<meta name="color-scheme" content="dark light" />
 <script>
-try{if(localStorage.getItem("xark-theme")==="light"){document.documentElement.setAttribute("data-theme","light");
-var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content","#E4E4E4");
-var c=document.querySelector('meta[name="color-scheme"]');if(c)c.setAttribute("content","light")}}catch(e){}
+try{var xt=localStorage.getItem("xark-theme")==="light"?"#E4E4E4":"#0B0B0F";if(xt==="#E4E4E4")document.documentElement.setAttribute("data-theme","light");
+document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",xt)})}catch(e){}
 </script>
 <title>Manass Kusko (xarkgg) · Smart contract developer</title>
 <meta name="description" content="Manass Kusko (xarkgg): smart contracts, on-chain products, AI agents and backend." />
@@ -30,6 +30,11 @@ var c=document.querySelector('meta[name="color-scheme"]');if(c)c.setAttribute("c
 --glyph:#1c1c1e;--brand:#023EC0;--gh0:#DCDCDC;--gh1:#9be9a8;--gh2:#40c463;--gh3:#30a14e;--gh4:#216e39;--gh-bd:rgba(27,31,35,.06);--sw-track:#DCDCDC}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior:none}
+body{overscroll-behavior:none}
+button,a,[role=button],summary,.card,.chips button,label.x-sw{touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.thread,.sheet,#profile{overscroll-behavior:contain}
+.row,.prow,.chips,.ghw{overscroll-behavior-x:contain}
 body{font:16px/1.4 var(--sans);letter-spacing:-.005em;color:var(--ink);background-color:var(--page);
 background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E"),linear-gradient(var(--gridln) 1px,transparent 1px),linear-gradient(90deg,var(--gridln) 1px,transparent 1px);
 background-size:160px 160px,32px 32px,32px 32px;-webkit-font-smoothing:antialiased;overflow:hidden}
@@ -48,7 +53,7 @@ box-shadow:var(--glass-sh)}
 .view{position:absolute;inset:0;transition:transform .5s var(--ease),opacity .5s var(--ease)}
 /* chat */
 #chat{background:var(--glow),radial-gradient(var(--dots) 1px,transparent 1.2px) 0 0/18px 18px,var(--bg)}
-.top{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;gap:8px;padding:calc(12px + env(safe-area-inset-top)) 12px 10px;transition:opacity .3s,transform .4s var(--ease)}
+.top{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;gap:8px;padding:calc(12px + env(safe-area-inset-top, 0px)) 12px 10px;transition:opacity .3s,transform .4s var(--ease)}
 .top>*{min-width:0}
 .av{width:44px;height:44px;border-radius:50%;overflow:hidden;flex:none;padding:2px}
 .av img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
@@ -59,7 +64,7 @@ box-shadow:var(--glass-sh)}
 box-shadow:var(--glass-sh)}
 .views span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .views svg{width:12px;height:12px;flex:none;color:var(--sub)}
-.thread{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:calc(84px + env(safe-area-inset-top)) 12px 170px;display:flex;flex-direction:column;gap:2px;scroll-behavior:smooth}
+.thread{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding:calc(84px + env(safe-area-inset-top, 0px)) 12px 170px;display:flex;flex-direction:column;gap:2px;scroll-behavior:smooth}
 .thread::-webkit-scrollbar{display:none}
 .day{align-self:center;font:500 12px var(--sans);font-variant-numeric:tabular-nums;color:var(--sub);margin:14px 0 8px;letter-spacing:.02em;text-align:center}
 .day b{font-weight:500;color:#B4B8C0}
@@ -114,7 +119,7 @@ svg.cl:not([fill]){fill:#fff}
 .x-edu .x-edu__t b{display:block;font-weight:500;overflow-wrap:anywhere}
 .x-edu .x-edu__t span{display:block;font-size:13px;color:var(--sub)}
 .x-edu small{align-self:center}
-.dock{position:absolute;left:0;right:0;bottom:0;z-index:5;padding:0 12px calc(12px + env(safe-area-inset-bottom));transition:opacity .3s,transform .4s var(--ease)}
+.dock{position:absolute;left:0;right:0;bottom:0;z-index:5;padding:0 12px calc(12px + env(safe-area-inset-bottom, 0px));transition:opacity .3s,transform .4s var(--ease)}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;justify-content:flex-start}
 .chips::-webkit-scrollbar{display:none}
 .chips button{flex:none;max-width:220px;overflow:hidden;text-overflow:ellipsis;border-radius:999px;padding:0 16px;height:44px;font-size:15px;white-space:nowrap;color:var(--ink);font-weight:500;animation:pop .45s var(--spring) both;transition:transform .25s var(--spring),box-shadow .25s}
@@ -124,7 +129,7 @@ svg.cl:not([fill]){fill:#fff}
 .circ:active{transform:scale(.9)}
 .circ svg{width:22px;height:22px}
 .field{flex:1;min-width:0;height:52px;border-radius:999px;display:flex;align-items:center;padding:0 4px 0 16px;gap:6px}
-.field input{flex:1;min-width:0;border:0;background:none;font:inherit;outline:none;color:var(--ink)}
+.field input{flex:1;min-width:0;border:0;background:none;font:inherit;font-size:16px;outline:none;color:var(--ink)}
 .field input::placeholder{color:var(--sub)}
 .send{width:44px;height:44px;border-radius:50%;background:#F2F2F7;color:#0B0B0F;display:grid;place-items:center;flex:none;transition:transform .25s var(--spring)}
 .send:active{transform:scale(.88)}
@@ -185,7 +190,7 @@ details[open] .chev{transform:rotate(90deg)}
 .ghg i.e{background:none;box-shadow:none}
 /* sheet */
 .dim{position:absolute;inset:0;z-index:20;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .35s}
-.sheet{position:absolute;left:0;right:0;bottom:0;z-index:21;background:var(--s1);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 -10px 40px rgba(0,0,0,.5);border-radius:28px 28px 0 0;padding:8px 16px calc(24px + env(safe-area-inset-bottom));
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:21;background:var(--s1);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 -10px 40px rgba(0,0,0,.5);border-radius:28px 28px 0 0;padding:8px 16px calc(24px + env(safe-area-inset-bottom, 0px));
 transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%;overflow-y:auto}
 .open .dim{opacity:1;pointer-events:auto}
 .open .sheet{transform:none}
@@ -201,7 +206,7 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 .prof #profile{transform:none}
 .prof #chat{transform:translateX(-30%)}
 .prof .top,.prof .dock{opacity:0;pointer-events:none}
-.pbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:10px;padding:calc(12px + env(safe-area-inset-top)) 12px 12px;background:linear-gradient(var(--bg) 35%,rgba(var(--bg-rgb),0))}
+.pbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:10px;padding:calc(12px + env(safe-area-inset-top, 0px)) 12px 12px;background:linear-gradient(var(--bg) 35%,rgba(var(--bg-rgb),0))}
 .pbar h2{font-size:17px;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .back{color:var(--ink)}
 .back svg{width:20px;height:20px}
@@ -232,14 +237,14 @@ html.x-theming,html.x-theming *,html.x-theming *::before,html.x-theming *::after
 html.x-theming .x-sw__thumb{transition:transform .25s var(--spring)!important}
 /* scroll edge blur */
 .x-edge{position:absolute;left:0;right:0;z-index:4;pointer-events:none;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-.x-edge--top{top:0;height:calc(110px + env(safe-area-inset-top));background:linear-gradient(180deg,var(--bg) 0%,rgba(var(--bg-rgb),.94) 55%,rgba(var(--bg-rgb),0) 100%);
+.x-edge--top{top:0;height:calc(110px + env(safe-area-inset-top, 0px));background:linear-gradient(180deg,var(--bg) 0%,rgba(var(--bg-rgb),.94) 55%,rgba(var(--bg-rgb),0) 100%);
 -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 62%,transparent 100%)}
-.x-edge--bot{bottom:0;height:calc(170px + env(safe-area-inset-bottom));background:linear-gradient(0deg,var(--bg) 0%,rgba(var(--bg-rgb),.9) 50%,rgba(var(--bg-rgb),0) 100%);
+.x-edge--bot{bottom:0;height:calc(170px + env(safe-area-inset-bottom, 0px));background:linear-gradient(0deg,var(--bg) 0%,rgba(var(--bg-rgb),.9) 50%,rgba(var(--bg-rgb),0) 100%);
 -webkit-mask-image:linear-gradient(0deg,#000 0%,#000 55%,transparent 100%);mask-image:linear-gradient(0deg,#000 0%,#000 55%,transparent 100%)}
 /* stack reply: tags without a bubble */
 .b.x-tagrow{background:none;border:0;box-shadow:none;padding:0;max-width:100%;margin-top:6px}
 /* visits tip */
-.x-tip{position:absolute;top:calc(46px + env(safe-area-inset-top));right:12px;margin:4px 0 0;max-width:min(240px,calc(100% - 24px));padding:0;border:0;border-radius:0;background:none;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;
+.x-tip{position:absolute;top:calc(46px + env(safe-area-inset-top, 0px));right:12px;margin:4px 0 0;max-width:min(240px,calc(100% - 24px));padding:0;border:0;border-radius:0;background:none;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;
 font:400 11px/1.35 "Inter",system-ui,sans-serif;text-align:right;color:rgba(255,255,255,.55);
 pointer-events:none;opacity:0;transition:opacity .3s ease}
 .x-tip.on{opacity:1}
@@ -333,7 +338,7 @@ svg.cl[stroke="#fff"],[data-theme="light"] svg.cl[stroke="#fff"]{stroke:var(--br
       </div></div>
       <form class="compose" id="form" autocomplete="off">
         <button type="button" class="circ glass" id="person" aria-label="Contact options"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></button>
-        <label class="field glass"><input id="msg" placeholder="Message" aria-label="Message" enterkeyhint="send" /><button class="send is-off" id="sendBtn" aria-label="Send" aria-hidden="true" tabindex="-1" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></label>
+        <label class="field glass"><input id="msg" placeholder="Message" aria-label="Message" enterkeyhint="send" autocapitalize="sentences" autocomplete="off" /><button class="send is-off" id="sendBtn" aria-label="Send" aria-hidden="true" tabindex="-1" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></label>
       </form>
     </div>
   </section>
@@ -506,8 +511,7 @@ function setTheme(t,anim){
  if(anim&&!reduce){root.classList.add("x-theming");clearTimeout(tt);tt=setTimeout(function(){root.classList.remove("x-theming")},260)}
  if(t==="light")root.setAttribute("data-theme","light");else root.removeAttribute("data-theme");
  sw.setAttribute("aria-checked",t==="light"?"false":"true");
- var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#E4E4E4":"#0B0B0F");
- var c=document.querySelector('meta[name="color-scheme"]');if(c)c.setAttribute("content",t==="light"?"light":"dark");
+ document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",t==="light"?"#E4E4E4":"#0B0B0F")});
 }
 setTheme(root.getAttribute("data-theme")==="light"?"light":"dark");
 sw.addEventListener("click",function(){var t=root.getAttribute("data-theme")==="light"?"dark":"light";setTheme(t,true);try{localStorage.setItem("xark-theme",t)}catch(_){}});
