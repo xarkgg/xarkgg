@@ -12,9 +12,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
 <style>
-:root{color-scheme:dark;--blue:#1F5BFF;--blue2:#003FC0;--acc:#86A6FF;--bg:#0B0B0F;--s1:#15161B;--s2:#1C1D23;--in:#1F2026;--ink:#F2F3F5;--sub:#8A8F98;--sep:rgba(255,255,255,.08);
+:root{color-scheme:dark;--acc:#E5E5E7;--ring:rgba(255,255,255,.4);--bg:#0B0B0F;--s1:#15161B;--s2:#1C1D23;--in:#1F2026;--ink:#F2F3F5;--sub:#8A8F98;--sep:rgba(255,255,255,.08);
 --sans:"Inter",system-ui,sans-serif;
---glow:radial-gradient(120% 60% at 0 0,rgba(0,63,192,.12),transparent 65%);
+--glow:radial-gradient(120% 60% at 0 0,rgba(255,255,255,.04),transparent 65%);
 --spring:cubic-bezier(.34,1.56,.64,1);--ease:cubic-bezier(.22,1,.36,1)}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
@@ -24,13 +24,13 @@ background-size:160px 160px,32px 32px,32px 32px;-webkit-font-smoothing:antialias
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 a{color:inherit;text-decoration:none}
 h1,h2,h3,h4{letter-spacing:-.01em}
-:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
 .serif{font-family:var(--sans);font-style:normal;font-weight:600;letter-spacing:-.02em}
 .mono{font-family:var(--sans);font-weight:500;font-variant-numeric:tabular-nums}
 .ell{display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .device{position:relative;width:100%;max-width:440px;height:100dvh;margin:0 auto;overflow:hidden;background:var(--bg)}
 @media(min-width:600px){body{display:grid;place-items:center}
-.device{height:min(900px,calc(100dvh - 48px));border-radius:40px;box-shadow:0 0 0 1px rgba(255,255,255,.07),0 30px 90px rgba(0,0,0,.7),0 0 120px rgba(0,63,192,.08);isolation:isolate}}
+.device{height:min(900px,calc(100dvh - 48px));border-radius:40px;box-shadow:0 0 0 1px rgba(255,255,255,.07),0 30px 90px rgba(0,0,0,.7),0 0 120px rgba(255,255,255,.03);isolation:isolate}}
 .glass{background:rgba(28,29,35,.55);-webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
 box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,.10),0 8px 24px rgba(0,0,0,.35)}
 .view{position:absolute;inset:0;transition:transform .5s var(--ease),opacity .5s var(--ease)}
@@ -51,12 +51,12 @@ box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,
 .b{position:relative;max-width:78%;min-width:0;padding:9px 14px;border-radius:18px;font-size:16px;line-height:1.4;letter-spacing:-.005em;animation:pop .5s var(--spring) both;overflow-wrap:anywhere;word-break:break-word}
 .b:not(.gp){margin-top:10px}
 .b.in{align-self:flex-start;background:#1C1D23;border:1px solid rgba(255,255,255,.06);color:var(--ink);transform-origin:left bottom}
-.b.out{align-self:flex-end;background:linear-gradient(180deg,#2F6BFF,#003FC0);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 6px 10px -6px rgba(255,255,255,.18);color:#fff;transform-origin:right bottom}
+.b.out{align-self:flex-end;background:#2C2C2E;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);color:#fff;transform-origin:right bottom}
 .b.in.gp{border-top-left-radius:6px}.b.in.gn{border-bottom-left-radius:6px}
 .b.out.gp{border-top-right-radius:6px}.b.out.gn{border-bottom-right-radius:6px}
 .b.tail.in::before,.b.tail.out::before{content:"";position:absolute;width:20px;height:20px}
 .b.tail.in::before{bottom:-1px;left:-8px;background:radial-gradient(circle at 0 0,transparent 13px,#1C1D23 13.5px);clip-path:polygon(0 100%,100% 0,100% 100%);border-bottom-right-radius:4px}
-.b.tail.out::before{bottom:0;right:-7px;background:radial-gradient(circle at 100% 0,transparent 13px,#003FC0 13.5px);clip-path:polygon(0 0,100% 100%,0 100%);border-bottom-left-radius:4px}
+.b.tail.out::before{bottom:0;right:-7px;background:radial-gradient(circle at 100% 0,transparent 13px,#2C2C2E 13.5px);clip-path:polygon(0 0,100% 100%,0 100%);border-bottom-left-radius:4px}
 .b.wide{max-width:none;width:calc(100% + 24px);margin-left:-12px;margin-right:-12px;padding:0;background:none;border:0}
 .b.wide.tail::before{content:none}
 .dlv{align-self:flex-end;font:500 12px var(--sans);font-variant-numeric:tabular-nums;color:var(--sub);margin:3px 4px 0;letter-spacing:0;animation:fade .3s .15s both}
@@ -74,7 +74,7 @@ box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,
 .ci{position:relative;margin:0;width:100%;aspect-ratio:1.91/1;background:#0E0F14;overflow:hidden;border-bottom:1px solid var(--sep)}
 .ci img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .ci.fit img{object-fit:contain;background:#0E0F14}
-.ci::after{content:attr(data-i);position:absolute;inset:0;display:none;place-items:center;font:600 64px/1 var(--sans);letter-spacing:-.02em;color:#3B4160;background:radial-gradient(80% 90% at 30% 20%,rgba(0,63,192,.18),transparent 70%)}
+.ci::after{content:attr(data-i);position:absolute;inset:0;display:none;place-items:center;font:600 64px/1 var(--sans);letter-spacing:-.02em;color:#3A3A3C;background:radial-gradient(80% 90% at 30% 20%,rgba(255,255,255,.06),transparent 70%)}
 .ci.err::after{display:grid}
 .cb{padding:10px 10px 12px 12px;min-width:0}
 .card h4{font-size:16px;font-weight:600;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -82,7 +82,7 @@ box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,
 .cm{display:flex;flex-wrap:nowrap;align-items:center;gap:5px;min-width:0;white-space:nowrap}
 .cl{flex:none;width:14px;height:14px;border-radius:4px;display:block;object-fit:cover}
 svg.cl:not([fill]){fill:#fff}
-.card em{flex:none;font:500 12px/1.4 var(--sans);font-variant-numeric:tabular-nums;font-style:normal;color:#B3C6FF;background:#18213F;box-shadow:inset 0 0 0 1px #2A3A6E;padding:2px 8px;border-radius:999px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card em{flex:none;font:500 12px/1.4 var(--sans);font-variant-numeric:tabular-nums;font-style:normal;color:#E5E5E7;background:#2C2C2E;box-shadow:inset 0 0 0 1px #3A3A3C;padding:2px 8px;border-radius:999px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .card em{padding:2px 6px;letter-spacing:0}
 .dom{flex:1 1 auto;min-width:0;margin-left:1px;font:500 12px/1.4 var(--sans);font-variant-numeric:tabular-nums;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:0}
 .tags{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
@@ -104,7 +104,7 @@ svg.cl:not([fill]){fill:#fff}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;justify-content:flex-start}
 .chips::-webkit-scrollbar{display:none}
 .chips button{flex:none;max-width:220px;overflow:hidden;text-overflow:ellipsis;border-radius:999px;padding:0 16px;height:44px;font-size:15px;white-space:nowrap;color:var(--ink);font-weight:500;animation:pop .45s var(--spring) both;transition:transform .25s var(--spring),box-shadow .25s}
-.chips button:active,.chips button:focus-visible{transform:scale(.94);outline:0;box-shadow:inset 0 0 0 1px rgba(111,149,255,.7),0 0 0 1px rgba(31,91,255,.35),0 0 22px rgba(31,91,255,.45)}
+.chips button:active,.chips button:focus-visible{transform:scale(.94);outline:0;box-shadow:inset 0 0 0 1px var(--ring),0 0 0 1px rgba(255,255,255,.15)}
 .compose{display:flex;align-items:center;gap:8px}
 .circ{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;flex:none;transition:transform .25s var(--spring)}
 .circ:active{transform:scale(.9)}
@@ -112,7 +112,7 @@ svg.cl:not([fill]){fill:#fff}
 .field{flex:1;min-width:0;height:52px;border-radius:999px;display:flex;align-items:center;padding:0 4px 0 16px;gap:6px}
 .field input{flex:1;min-width:0;border:0;background:none;font:inherit;outline:none;color:var(--ink)}
 .field input::placeholder{color:var(--sub)}
-.send{width:44px;height:44px;border-radius:50%;background:linear-gradient(180deg,var(--blue),var(--blue2));color:#fff;display:grid;place-items:center;flex:none;transition:transform .25s var(--spring);box-shadow:0 0 16px rgba(31,91,255,.35)}
+.send{width:44px;height:44px;border-radius:50%;background:#F2F2F7;color:#0B0B0F;display:grid;place-items:center;flex:none;transition:transform .25s var(--spring)}
 .send:active{transform:scale(.88)}
 .send svg{width:18px;height:18px}
 /* grouped list */
@@ -140,7 +140,7 @@ box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 0 0 .5px rgba(255,255,255
 .acts .ico{transition:transform .25s var(--spring)}
 .acts a:active .ico,.acts button:active .ico{transform:scale(.92)}
 .acts a:focus-visible,.acts button:focus-visible{outline:0}
-.acts a:focus-visible .ico,.acts button:focus-visible .ico{box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 0 0 2px var(--bg),0 0 0 4px var(--acc)}
+.acts a:focus-visible .ico,.acts button:focus-visible .ico{box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 0 0 2px var(--bg),0 0 0 4px var(--ring)}
 .group .t{flex:1;min-width:0}
 .group .t b{display:block;font-weight:500;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .group .t span{font-size:13px;color:var(--sub);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -162,7 +162,7 @@ details[open] .chev{transform:rotate(90deg)}
 .ghm{display:grid;gap:3px;height:18px;font:500 12px var(--sans);font-variant-numeric:tabular-nums;color:var(--sub)}
 .ghm span{grid-row:1;white-space:nowrap}
 .ghg{display:grid;grid-template-rows:repeat(7,10px);grid-auto-flow:column;grid-auto-columns:10px;gap:3px}
-.ghg i{border-radius:3px;background:#1C1F2A;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
+.ghg i{border-radius:3px;background:#161b22;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
 .ghg i.e{background:none;box-shadow:none}
 /* sheet */
 .dim{position:absolute;inset:0;z-index:20;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .35s}
@@ -187,7 +187,7 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 .back{color:var(--ink)}
 .back svg{width:20px;height:20px}
 .phero{text-align:center;padding:8px 20px 26px}
-.big{width:132px;height:132px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 14px;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 10px 40px rgba(0,63,192,.35)}
+.big{width:132px;height:132px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 14px;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 10px 40px rgba(0,0,0,.5)}
 .phero h1{font-size:40px;line-height:1.05;overflow-wrap:anywhere}
 .phero .h{color:var(--sub);font:500 13px var(--sans);font-variant-numeric:tabular-nums;margin-top:6px}
 .phero .tl{margin-top:8px;font-size:15px;color:#C3C7CE}
@@ -196,7 +196,7 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 .acts .circ{width:56px;height:56px;color:#fff}
 .acts .circ svg{width:24px;height:24px}
 .acts a:active .circ,.acts button:active .circ{transform:scale(.9)}
-.acts a:focus-visible .circ,.acts button:focus-visible .circ{box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),0 0 0 2px var(--bg),0 0 0 4px var(--acc)}
+.acts a:focus-visible .circ,.acts button:focus-visible .circ{box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),0 0 0 2px var(--bg),0 0 0 4px var(--ring)}
 .sec{padding:0 16px;margin-bottom:26px;scroll-margin-top:84px}
 .sec h3{font:500 12px var(--sans);font-variant-numeric:tabular-nums;text-transform:uppercase;color:var(--sub);letter-spacing:.08em;margin:0 0 8px 16px}
 .prow{margin:0 -16px;padding:2px 16px 4px;scroll-padding:0 16px}
@@ -273,10 +273,9 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
     <div class="row">
       <a class="card" href="https://sherwoodnotes.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="S"><img src="https://repository-images.githubusercontent.com/1362303941/ff6263d8-4040-49df-a20e-a630fedf4893" alt="Sherwood preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Sherwood</h4><p>Downside protection for tokenized stocks on Robinhood Chain</p><div class="cm"><svg class="cl" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2.84 24h.53c.096 0 .192-.048.224-.128C7.591 13.696 11.94 8.656 14.67 5.638c.112-.128.064-.225-.096-.225h-4.88a.55.55 0 0 0-.45.225L5.746 9.972c-.514.642-.642 1.236-.642 2.086v4.43c-1.14 3.194-1.862 5.361-2.392 7.32-.032.125.016.192.129.192M20.447.646c-.754-.802-4.157-.834-5.730-.224a3 3 0 0 0-.786.465 41 41 0 0 0-3.323 3.178c-.112.113-.064.225.097.225h5.409c.497 0 .786.289.786.786v6.1c0 .16.128.208.225.064l3.258-4.254c.53-.69.69-.898.835-1.861.192-1.413.08-3.58-.77-4.479m-6.982 16.18 2.231-3.676a.7.7 0 0 0 .064-.29V6.73c0-.16-.112-.225-.224-.097-3.355 3.74-5.971 7.672-8.395 12.407-.06.12.016.225.16.177l5.009-1.54c.565-.174.882-.402 1.155-.852"/></svg><em>Robinhood / Stocks</em><span class="dom">sherwoodnotes.vercel.app</span></div></div></a>
       <a class="card" href="https://trycondition.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="C"><img src="https://repository-images.githubusercontent.com/1352271598/8f656dde-7842-493c-bf4e-61668d25e32f" alt="Condition preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Condition</h4><p>Privacy-preserving parametric insurance on Midnight</p><div class="cm"><img class="cl" src="assets/logos/midnight.png" alt="" /><em>Midnight / Insurance</em><span class="dom">trycondition.vercel.app</span></div></div></a>
-      <a class="card" href="https://exetazo.xyz" target="_blank" rel="noopener"><figure class="ci" data-i="E"><img src="https://opengraph.githubassets.com/1/xarkgg/exetazo" alt="Exetazo preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Exetazo</h4><p>Browser extension that flags risky clauses in legal agreements</p><div class="cm"><svg class="cl" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><em>Web / Legal</em><span class="dom">exetazo.xyz</span></div></div></a>
-      <a class="card" href="https://legacydemo.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="L"><img src="https://repository-images.githubusercontent.com/1318032669/71ef472e-696d-404b-9489-14d47075da0e" alt="Legacy preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Legacy</h4><p>Succession layer for tokenized real-world assets on Monad</p><div class="cm"><img class="cl" src="assets/logos/monad.png" alt="" /><em>Monad / RWA</em><span class="dom">github.com/xarkgg/legacy</span></div></div></a>
+      <a class="card" href="https://exetazo.xyz" target="_blank" rel="noopener"><figure class="ci" data-i="E"><img src="assets/thumbs/exetazo.jpg" alt="Exetazo preview" loading="lazy" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Exetazo</h4><p>Browser extension that flags risky clauses in legal agreements</p><div class="cm"><svg class="cl" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><em>Web / Legal</em><span class="dom">exetazo.xyz</span></div></div></a>
+      <a class="card" href="https://legacydemo.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="L"><img src="https://repository-images.githubusercontent.com/1318032669/71ef472e-696d-404b-9489-14d47075da0e" alt="Legacy preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Legacy</h4><p>Succession layer for tokenized real-world assets on Monad</p><div class="cm"><img class="cl" src="assets/logos/monad.png" alt="" /><em>Monad / RWA</em><span class="dom">legacydemo.vercel.app</span></div></div></a>
       <a class="card" href="https://github.com/xarkgg/handshake" target="_blank" rel="noopener"><figure class="ci" data-i="H"><img src="https://repository-images.githubusercontent.com/1341972765/a4b0f401-a243-4808-b76f-a3e745f03609" alt="Handshake preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Handshake</h4><p>Cross-chain DvP settlement on Creditcoin</p><div class="cm"><img class="cl" src="assets/logos/creditcoin.png" alt="" /><em>Creditcoin / DvP</em><span class="dom">github.com/xarkgg/handshake</span></div></div></a>
-      <a class="card" href="https://github.com/xarkgg/shell" target="_blank" rel="noopener"><figure class="ci fit" data-i="S"><img src="https://repository-images.githubusercontent.com/1279311793/2526aa18-cca3-4d9e-b78c-d7225324e72b" alt="Shell SDK preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Shell SDK</h4><p>Transaction-security SDK for Solana, published as @shellxyz/sdk</p><div class="cm"><svg class="cl" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m23.8764 18.0313-3.962 4.1393a.9201.9201 0 0 1-.306.2106.9407.9407 0 0 1-.367.0742H.4599a.4689.4689 0 0 1-.2522-.0733.4513.4513 0 0 1-.1696-.1962.4375.4375 0 0 1-.0314-.2545.4438.4438 0 0 1 .117-.2298l3.9649-4.1393a.92.92 0 0 1 .3052-.2102.9407.9407 0 0 1 .3658-.0746H23.54a.4692.4692 0 0 1 .2523.0734.4531.4531 0 0 1 .1697.196.438.438 0 0 1 .0313.2547.4442.4442 0 0 1-.1169.2297zm-3.962-8.3355a.9202.9202 0 0 0-.306-.2106.941.941 0 0 0-.367-.0742H.4599a.4687.4687 0 0 0-.2522.0734.4513.4513 0 0 0-.1696.1961.4376.4376 0 0 0-.0314.2546.444.444 0 0 0 .117.2297l3.9649 4.1394a.9204.9204 0 0 0 .3052.2102c.1154.049.24.0744.3658.0746H23.54a.469.469 0 0 0 .2523-.0734.453.453 0 0 0 .1697-.1961.4382.4382 0 0 0 .0313-.2546.4444.4444 0 0 0-.1169-.2297zM.46 6.7225h18.7815a.9411.9411 0 0 0 .367-.0742.9202.9202 0 0 0 .306-.2106l3.962-4.1394a.4442.4442 0 0 0 .117-.2297.4378.4378 0 0 0-.0314-.2546.453.453 0 0 0-.1697-.196.469.469 0 0 0-.2523-.0734H4.7596a.941.941 0 0 0-.3658.0745.9203.9203 0 0 0-.3052.2102L.1246 5.9687a.4438.4438 0 0 0-.1169.2295.4375.4375 0 0 0 .0312.2544.4512.4512 0 0 0 .1692.196.4689.4689 0 0 0 .2518.0739z"/></svg><em>Solana / Security</em><span class="dom">github.com/xarkgg/shell</span></div></div></a>
       <a class="card" href="https://folks.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="F"><img src="https://opengraph.githubassets.com/1/xarkgg/folks" alt="Folks preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Folks</h4><p>Simpler payments for creators across Africa</p><div class="cm"><svg class="cl" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><em>Web / Payments</em><span class="dom">folks.vercel.app</span></div></div></a>
     </div>
   </div>
@@ -296,7 +295,6 @@ var ic={
  umbrella:'<path fill="currentColor" d="M12 3a9.5 9.5 0 0 1 9.5 9.2H2.5A9.5 9.5 0 0 1 12 3z"/><path d="M12 12v6.3a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
  swap:'<path d="M4 8.5h15M15.5 4.5l4 4-4 4M20 15.5H5M8.5 11.5l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
  cube:'<path d="M12 2.8l8 4.5v9.4l-8 4.5-8-4.5V7.3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4.4 7.5 12 11.8l7.6-4.3M12 11.8v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>',
- hammer:'<path fill="currentColor" d="M17.45 13.63 20.63 10.45 13.55 3.37 10.37 6.55z"/><path d="M13.6 10.4 4.6 19.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>',
  cap:'<path fill="currentColor" d="M12 4 1.5 9 12 14l10.5-5z"/><path fill="currentColor" d="M6 11.6v3.9c0 1.5 2.7 3 6 3s6-1.5 6-3v-3.9L12 14.5z"/><path d="M21 9.6v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
  tg:'<path fill="currentColor" d="M21.5 4.2 2.9 11.4c-1 .4-1 1.6 0 1.9l4.6 1.5 1.8 5.5c.2.7 1.1.9 1.6.4l2.6-2.4 4.6 3.4c.6.4 1.4.1 1.6-.6L22.9 5.6c.3-1-.6-1.8-1.4-1.4zM9.8 14.4l8-6.3-6.4 7.2-.3 3-1.3-3.9z"/>',
  x:'<path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/>',
@@ -318,15 +316,14 @@ var XP=[
  ["Exetazo","Builder, Security","Sep 2026","Legal-agreement risk scanner browser extension, with deterministic, evidence-based scoring.",["TypeScript","Browser extension","Security"]],
  ["Condition","Builder","Aug–Sep 2026","Privacy-preserving parametric insurance: public policies, private claims, public proof of fair settlement.",["Privacy"]],
  ["Handshake","Builder","Aug–Sep 2026","Cross-chain delivery-versus-payment settlement.",["DeFi","TypeScript"]],
- ["Legacy","Builder, RWA","Jul–Aug 2026","Succession layer for tokenized real-world assets, built as three Solidity contracts.",["Solidity","RWA"]],
- ["Shell SDK","Creator","Jun–Jul 2026","Modular transaction-security SDK.",["SDK","Security","TypeScript"]]];
+ ["Legacy","Builder, RWA","Jul–Aug 2026","Succession layer for tokenized real-world assets, built as three Solidity contracts.",["Solidity","RWA"]]];
 function tagsHtml(a){return a.map(function(t){return"<span>"+t+"</span>"}).join("")}
 $("pTags").innerHTML=tagsHtml(SKILLS);
-var XPI={"Sherwood":"shield","Exetazo":"search","Condition":"umbrella","Handshake":"swap","Legacy":"cube","Shell SDK":"hammer"};
+var XPI={"Sherwood":"shield","Exetazo":"search","Condition":"umbrella","Handshake":"swap","Legacy":"cube"};
 $("pXpList").innerHTML=XP.map(function(r){return'<details><summary class="li">'+tile(XPI[r[0]]||"cube")+'<span class="t"><b>'+r[0]+'</b><span>'+r[1]+'</span></span><small>'+r[2]+'</small>'+chev+'</summary><div class="xd"><p>'+r[3]+'</p><div class="tags">'+tagsHtml(r[4])+'</div></div></details>'}).join("");
 Array.prototype.forEach.call(document.querySelectorAll("#pEduList .li"),function(li){li.insertAdjacentHTML("afterbegin",tile("cap","i-edu"))});
 Array.prototype.forEach.call(document.querySelectorAll("#tplProjects .card"),function(c){$("pProj").appendChild(c.cloneNode(true))});
-var LV=["#1C1F2A","#0E2A6B","#133C9E","#1F5BFF","#6F95FF"],MO=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var LV=["#161b22","#0e4429","#006d32","#26a641","#39d353"],MO=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 function ghEnd(){var w=$("ghW");w.scrollLeft=w.scrollWidth}
 function gh(list,total){
  var off=new Date(list[0].date+"T00:00:00Z").getUTCDay(),h="",i,m="",last=-1;
