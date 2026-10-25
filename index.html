@@ -52,13 +52,7 @@ box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,
 .b:not(.gp){margin-top:10px}
 .b.in{align-self:flex-start;background:#1C1D23;border:1px solid rgba(255,255,255,.06);color:var(--ink);transform-origin:left bottom}
 .b.out{align-self:flex-end;background:#2C2C2E;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);color:#fff;transform-origin:right bottom}
-.b.in.gp{border-top-left-radius:6px}.b.in.gn{border-bottom-left-radius:6px}
-.b.out.gp{border-top-right-radius:6px}.b.out.gn{border-bottom-right-radius:6px}
-.b.tail.in::before,.b.tail.out::before{content:"";position:absolute;width:20px;height:20px}
-.b.tail.in::before{bottom:-1px;left:-8px;background:radial-gradient(circle at 0 0,transparent 13px,#1C1D23 13.5px);clip-path:polygon(0 100%,100% 0,100% 100%);border-bottom-right-radius:4px}
-.b.tail.out::before{bottom:0;right:-7px;background:radial-gradient(circle at 100% 0,transparent 13px,#2C2C2E 13.5px);clip-path:polygon(0 0,100% 100%,0 100%);border-bottom-left-radius:4px}
 .b.wide{max-width:none;width:calc(100% + 24px);margin-left:-12px;margin-right:-12px;padding:0;background:none;border:0}
-.b.wide.tail::before{content:none}
 .dlv{align-self:flex-end;font:500 12px var(--sans);font-variant-numeric:tabular-nums;color:var(--sub);margin:3px 4px 0;letter-spacing:0;animation:fade .3s .15s both}
 @keyframes pop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
 @keyframes fade{from{opacity:0}}
@@ -223,7 +217,6 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 -webkit-mask-image:linear-gradient(0deg,#000 0%,#000 55%,transparent 100%);mask-image:linear-gradient(0deg,#000 0%,#000 55%,transparent 100%)}
 /* stack reply: tags without a bubble */
 .b.x-tagrow{background:none;border:0;box-shadow:none;padding:0;max-width:100%;margin-top:6px}
-.b.x-tagrow::before{content:none!important}
 /* visits tip */
 .x-tip{position:absolute;top:100%;right:12px;margin:4px 0 0;max-width:min(240px,calc(100% - 24px));padding:0;border:0;border-radius:0;background:none;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;
 font:400 11px/1.35 "Inter",system-ui,sans-serif;text-align:right;color:rgba(255,255,255,.55);
@@ -293,7 +286,7 @@ pointer-events:none;opacity:0;transition:opacity .3s ease}
   <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sTitle" aria-hidden="true">
     <div class="grab"></div>
     <div class="shead"><h2 id="sTitle">Reach me on</h2><button class="done" id="done">Done</button></div>
-    <div class="smsg" id="sMsg" hidden><div class="b out tail" id="sBub"></div></div>
+    <div class="smsg" id="sMsg" hidden><div class="b out" id="sBub"></div></div>
     <div class="group" id="sList"></div>
   </div>
 
@@ -390,18 +383,18 @@ function place(b){
  var last=thread.lastElementChild;
  var solo=function(n){return n.classList.contains("wide")||n.classList.contains("x-tagrow")};
  if(last&&last.classList.contains("b")&&last.classList.contains(side)&&!solo(last)&&!solo(b)){
-  last.classList.remove("tail");last.classList.add("gn");b.classList.add("gp")}
+  last.classList.add("gn");b.classList.add("gp")}
  thread.appendChild(b);
  if(side==="out"){dlv.style.animation="none";dlv.offsetWidth;dlv.style.animation="";thread.appendChild(dlv)}
  scroll();return b;
 }
 function add(cls,html){
- var b=document.createElement("div");b.className="b tail "+cls;
+ var b=document.createElement("div");b.className="b "+cls;
  if(typeof html==="string")b.innerHTML=html;else b.appendChild(html);
  return place(b);
 }
-async function type(ms){var t=document.createElement("div");t.className="b in tail typing";t.setAttribute("aria-label","xarkgg is typing");t.innerHTML="<span></span><span></span><span></span>";place(t);await wait(ms||700);
- var p=t.previousElementSibling;t.remove();if(t.classList.contains("gp")&&p){p.classList.remove("gn");p.classList.add("tail")}}
+async function type(ms){var t=document.createElement("div");t.className="b in typing";t.setAttribute("aria-label","xarkgg is typing");t.innerHTML="<span></span><span></span><span></span>";place(t);await wait(ms||700);
+ var p=t.previousElementSibling;t.remove();if(t.classList.contains("gp")&&p){p.classList.remove("gn")}}
 async function say(html,cls){await type();add("in"+(cls?" "+cls:""),html);await wait(250)}
 var replies={
  Projects:async function(){await say("Here's what I've shipped recently.");var n=$("tplProjects").firstElementChild.cloneNode(true);return say(n,"wide")},
