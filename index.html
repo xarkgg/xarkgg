@@ -199,8 +199,8 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 .phero .tl{margin-top:8px;font-size:15px;color:#C3C7CE}
 .acts{display:flex;justify-content:center;gap:22px;margin-top:20px}
 .acts a,.acts button{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:var(--acc)}
-.acts .circ{width:56px;height:56px;color:#fff}
-.acts .circ svg{width:24px;height:24px}
+.acts .circ{width:44px;height:44px;color:#fff}
+.acts .circ svg{width:20px;height:20px}
 .acts a:active .circ,.acts button:active .circ{transform:scale(.9)}
 .acts a:focus-visible .circ,.acts button:focus-visible .circ{box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),0 0 0 2px var(--bg),0 0 0 4px var(--ring)}
 .sec{padding:0 16px;margin-bottom:26px;scroll-margin-top:84px}
@@ -219,7 +219,7 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 .b.x-tagrow::before{content:none!important}
 /* visits tip */
 .x-tip{position:absolute;top:100%;right:12px;margin:4px 0 0;max-width:min(240px,calc(100% - 24px));padding:0;border:0;border-radius:0;background:none;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;
-font:400 11px/1.35 "Inter",system-ui,sans-serif;text-align:right;color:rgba(255,255,255,.55);
+font:400 12px/1.35 "Inter",system-ui,sans-serif;text-align:right;color:rgba(255,255,255,.55);
 pointer-events:none;opacity:0;transition:opacity .3s ease}
 .x-tip.on{opacity:1}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
@@ -260,7 +260,7 @@ pointer-events:none;opacity:0;transition:opacity .3s ease}
       <img class="big" src="assets/avatar-profile.jpg" alt="Manass Kusko" />
       <h1 class="serif">Manass Kusko</h1>
       <p class="h">@xarkgg</p>
-      <p class="tl">Smart contracts, on-chain products, AI agents and backend.</p>
+      <p class="tl">Backend Engineer, Smart Contracts and LLM Programmer.</p>
       <div class="acts">
         <button id="pMsg"><span class="circ glass" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.5L5 21.5l4-2c.9.3 2 .5 3 .5 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg></span>Message</button>
         <a href="https://github.com/xarkgg" target="_blank" rel="noopener" aria-label="GitHub (opens in a new tab)"><span class="circ glass" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></span>GitHub</a>
@@ -274,20 +274,11 @@ pointer-events:none;opacity:0;transition:opacity .3s ease}
       </div>
     </div>
     <div class="sec" id="pSkills"><h3>Skills</h3><div class="group pad"><div class="tags" id="pTags"></div></div></div>
-    <div class="sec" id="pXp"><h3>Experience</h3><div class="group tiled" id="pXpList"></div></div>
     <div class="sec" id="pEdu"><h3>Education</h3><div class="group tiled" id="pEduList">
       <a class="li" href="https://fulafia.edu.ng" target="_blank" rel="noopener"><span class="ico x-logo x-logo--w x-logo--pad" aria-hidden="true"><img src="assets/logos/fulafia-logo.png" alt="" /></span><span class="t"><b>Federal University of Lafia</b><span>BSc Computer Science</span></span><small>2024–present</small></a>
       <a class="li" href="https://beaconoffaith.vercel.app/" target="_blank" rel="noopener"><span class="ico x-logo x-logo--w" aria-hidden="true"><img src="assets/logos/beacon-logo.png" alt="" /></span><span class="t"><b>Beacon of Faith Secondary School</b><span>Secondary</span></span><small>2017–2023</small></a>
       <a class="li" href="https://beaconoffaith.vercel.app/" target="_blank" rel="noopener"><span class="ico x-logo x-logo--w" aria-hidden="true"><img src="assets/logos/beacon-logo.png" alt="" /></span><span class="t"><b>Beacon of Faith Primary School</b><span>Primary</span></span><small>2010–2016</small></a>
-    </div>
-    <div hidden id="tplLogos">
-      <img data-k="Sherwood" src="assets/logos/sherwood-logo.png" alt="" />
-      <img data-k="Condition" src="assets/logos/condition-logo.png" alt="" />
-      <img data-k="Exetazo" src="assets/logos/exetazo-logo.png" alt="" />
-      <img data-k="Legacy" data-w="1" src="assets/logos/legacy-logo.png" alt="" />
-      <img data-k="Folks" src="assets/logos/folks-logo.png" alt="" />
     </div></div>
-    <div class="sec"><h3>Connect</h3><div class="group" id="pList"></div></div>
     <p class="pfoot"><b>xarkgg</b> · built with care</p>
   </section>
 
@@ -339,7 +330,6 @@ function rows(m){
  return L.map(function(r){var ext=r[3].indexOf("mailto")?' target="_blank" rel="noopener"':"";
   return '<a href="'+r[3]+'"'+ext+' aria-label="'+r[1]+', '+r[2]+(ext?" (opens in a new tab)":"")+'">'+tile(r[0],"i-"+r[0])+'<span class="t"><b>'+r[1]+'</b><span>'+r[2]+'</span></span>'+chev+'</a>'}).join("");
 }
-$("pList").innerHTML=rows();
 var SKILLS=["Solidity","Smart contracts","EVM","Non-EVM chains","Web3","AI and LLM agents","Backend","TypeScript","DevRel","Design"];
 var XP=[
  ["Sherwood","Builder","Sep–Oct 2026","Downside protection for tokenized stocks.",["Solidity","DeFi"]],
@@ -347,7 +337,6 @@ var XP=[
  ["Condition","Builder","Aug–Sep 2026","Privacy-preserving parametric insurance: public policies, private claims, public proof of fair settlement.",["Privacy"]],
  ["Handshake","Builder","Aug–Sep 2026","Cross-chain delivery-versus-payment settlement.",["DeFi","TypeScript"]],
  ["Legacy","Builder, RWA","Jul–Aug 2026","Succession layer for tokenized real-world assets, built as three Solidity contracts.",["Solidity","RWA"]]];
-function tagsHtml(a){return a.map(function(t){return"<span>"+t+"</span>"}).join("")}
 var LN=' fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
 var SKI={
  "Solidity":['fill="#c8c8c8"','<path d="M4.409 6.608L7.981.255l3.572 6.353H4.409zM8.411 0l3.569 6.348L15.552 0H8.411zm4.036 17.392l3.572 6.354 3.575-6.354h-7.147zm-.608-10.284h-7.43l3.715 6.605 3.715-6.605zm.428-.25h7.428L15.982.255l-3.715 6.603zM15.589 24l-3.569-6.349L8.448 24h7.141zm-3.856-6.858H4.306l3.712 6.603 3.715-6.603zm.428-.25h7.433l-3.718-6.605-3.715 6.605z"/>'],
@@ -362,10 +351,6 @@ var SKI={
  "DevRel":[LN,'<path d="M3 5.5A1.5 1.5 0 0 1 4.5 4h9A1.5 1.5 0 0 1 15 5.5v5a1.5 1.5 0 0 1-1.5 1.5H8l-3.5 3V12A1.5 1.5 0 0 1 3 10.5z"/><path d="M18 9h1.5A1.5 1.5 0 0 1 21 10.5v5a1.5 1.5 0 0 1-1.5 1.5H19v3l-3.5-3H11a1.5 1.5 0 0 1-1.5-1.5V15"/>']};
 function skillTags(a){return a.map(function(t){var s=SKI[t];return s?'<span class="x-ti"><svg class="cl" viewBox="0 0 24 24" '+s[0]+' aria-hidden="true" focusable="false">'+s[1]+'</svg>'+t+'</span>':"<span>"+t+"</span>"}).join("")}
 $("pTags").innerHTML=skillTags(SKILLS);
-var XPI={"Sherwood":"shield","Exetazo":"search","Condition":"umbrella","Handshake":"swap","Legacy":"cube"};
-var LOGO={};Array.prototype.forEach.call(document.querySelectorAll("#tplLogos img"),function(im){LOGO[im.getAttribute("data-k")]=im});
-function xpTile(k){var im=LOGO[k];if(!im)return tile(XPI[k]||"cube");var s=document.createElement("span");s.className="ico x-logo"+(im.hasAttribute("data-w")?" x-logo--w":"");s.setAttribute("aria-hidden","true");s.appendChild(im.cloneNode(true));return s.outerHTML}
-$("pXpList").innerHTML=XP.map(function(r){return'<details><summary class="li">'+xpTile(r[0])+'<span class="t"><b>'+r[0]+'</b><span>'+r[1]+'</span></span><small>'+r[2]+'</small>'+chev+'</summary><div class="xd"><p>'+r[3]+'</p><div class="tags">'+tagsHtml(r[4])+'</div></div></details>'}).join("");
 Array.prototype.forEach.call(document.querySelectorAll("#tplProjects .card"),function(c){$("pProj").appendChild(c.cloneNode(true))});
 var LV=["#161b22","#0e4429","#006d32","#26a641","#39d353"],MO=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 function ghEnd(){var w=$("ghW");w.scrollLeft=w.scrollWidth}
