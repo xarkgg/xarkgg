@@ -160,10 +160,6 @@ box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 0 0 .5px rgba(255,255,255
 .i-gh{--g1:#3A3F47;--g2:#161B22}
 .i-msg{--g1:#34C759;--g2:#248A3D}
 .i-edu{--g1:#FF9F0A;--g2:#F57C00}
-.acts .ico{transition:transform .25s var(--spring)}
-.acts a:active .ico,.acts button:active .ico{transform:scale(.92)}
-.acts a:focus-visible,.acts button:focus-visible{outline:0}
-.acts a:focus-visible .ico,.acts button:focus-visible .ico{box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 0 0 2px var(--bg),0 0 0 4px var(--ring)}
 .group .t{flex:1;min-width:0}
 .group .t b{display:block;font-weight:500;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .group .t span{font-size:13px;color:var(--sub);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -214,12 +210,6 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 .phero h1{font-size:40px;line-height:1.05;overflow-wrap:anywhere}
 .phero .h{color:var(--sub);font:500 13px var(--sans);font-variant-numeric:tabular-nums;margin-top:6px}
 .phero .tl{margin-top:8px;font-size:15px;color:#C3C7CE}
-.acts{display:flex;justify-content:center;gap:22px;margin-top:20px}
-.acts a,.acts button{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:var(--acc)}
-.acts .circ{width:44px;height:44px;color:#fff}
-.acts .circ svg{width:20px;height:20px}
-.acts a:active .circ,.acts button:active .circ{transform:scale(.9)}
-.acts a:focus-visible .circ,.acts button:focus-visible .circ{box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),0 0 0 2px var(--bg),0 0 0 4px var(--ring)}
 .sec{padding:0 16px;margin-bottom:26px;scroll-margin-top:84px}
 .sec h3{font:500 12px var(--sans);font-variant-numeric:tabular-nums;text-transform:uppercase;color:var(--sub);letter-spacing:.08em;margin:0 0 8px 16px}
 .prow{margin:0 -16px;padding:2px 16px 4px;scroll-padding:0 16px}
@@ -280,8 +270,6 @@ pointer-events:none;opacity:0;transition:opacity .3s ease}
 [data-theme="light"] .grab{background:#c7c7cc}
 [data-theme="light"] #profile{box-shadow:-10px 0 30px rgba(0,0,0,.08)}
 [data-theme="light"] .big{box-shadow:0 0 0 1px rgba(0,0,0,.06),0 10px 40px rgba(0,0,0,.12)}
-[data-theme="light"] .acts .circ{color:var(--glyph)}
-[data-theme="light"] .acts a:focus-visible .circ,[data-theme="light"] .acts button:focus-visible .circ{box-shadow:inset 0 0 0 1px rgba(0,0,0,.06),0 0 0 2px var(--bg),0 0 0 4px var(--ring)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -321,11 +309,6 @@ pointer-events:none;opacity:0;transition:opacity .3s ease}
       <h1 class="serif">Manass Kusko</h1>
       <p class="h">@xarkgg</p>
       <p class="tl">Backend Engineer, Smart Contracts and LLM Programmer.</p>
-      <div class="acts">
-        <button id="pMsg"><span class="circ glass" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.5L5 21.5l4-2c.9.3 2 .5 3 .5 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg></span>Message</button>
-        <a href="https://github.com/xarkgg" target="_blank" rel="noopener" aria-label="GitHub (opens in a new tab)"><span class="circ glass" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></span>GitHub</a>
-        <a href="https://x.com/xarkgg" target="_blank" rel="noopener" aria-label="X (opens in a new tab)"><span class="circ glass" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg></span>X</a>
-      </div>
     </div>
     <div class="sec" id="pProjects"><h3>Projects</h3><div class="row prow" id="pProj"></div></div>
     <div class="sec" id="pActivity"><h3>GitHub activity</h3>
@@ -476,7 +459,7 @@ function closeSheet(){dev.classList.remove("open");$("sheet").setAttribute("aria
 $("done").onclick=closeSheet;$("dim").onclick=closeSheet;
 function openProfile(){dev.classList.add("prof");$("profile").setAttribute("aria-hidden","false");$("profile").scrollTop=0;ghEnd();setTimeout(function(){$("back").focus()},80)}
 function closeProfile(){dev.classList.remove("prof");$("profile").setAttribute("aria-hidden","true");$("toProfile").focus()}
-$("toProfile").onclick=openProfile;$("back").onclick=closeProfile;$("pMsg").onclick=function(){openSheet()};
+$("toProfile").onclick=openProfile;$("back").onclick=closeProfile;
 document.addEventListener("keydown",function(e){if(e.key!=="Escape")return;if(dev.classList.contains("open"))closeSheet();else if(dev.classList.contains("prof"))closeProfile()});
 fetch("https://abacus.jasoncameron.dev/hit/xarkgg/portfolio").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){$("vc").textContent=d&&d.value!=null?Number(d.value).toLocaleString():"—"}).catch(function(){$("vc").textContent="—"});
 var vtip=$("vtip"),vt;
