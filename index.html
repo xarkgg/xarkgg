@@ -20,7 +20,7 @@ document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setA
 :root{color-scheme:dark;--acc:#E5E5E7;--ring:rgba(255,255,255,.4);--bg:#0B0B0F;--s1:#15161B;--s2:#1C1D23;--in:#1F2026;--ink:#F2F3F5;--sub:#8A8F98;--sep:rgba(255,255,255,.08);
 --sans:"Inter",system-ui,sans-serif;
 --glow:radial-gradient(120% 60% at 0 0,rgba(255,255,255,.04),transparent 65%);
---spring:cubic-bezier(.34,1.56,.64,1);--ease:cubic-bezier(.22,1,.36,1);
+--spring:cubic-bezier(.34,1.56,.64,1);--ease:cubic-bezier(.22,1,.36,1);--ease-out:cubic-bezier(0.23,1,0.32,1);--ease-drawer:cubic-bezier(0.32,0.72,0,1);interpolate-size:allow-keywords;
 --bg-rgb:11,11,15;--page:#050507;--gridln:rgba(255,255,255,.025);--dots:rgba(255,255,255,.035);
 --glass:rgba(28,29,35,.55);--glass-sh:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,.10),0 8px 24px rgba(0,0,0,.35);
 --glyph:#fff;--brand:#4D7BEA;--gh0:#161b22;--gh1:#0e4429;--gh2:#006d32;--gh3:#26a641;--gh4:#39d353;--gh-bd:rgba(255,255,255,.04);--sw-track:#39393d}
@@ -68,7 +68,7 @@ box-shadow:var(--glass-sh)}
 .thread::-webkit-scrollbar{display:none}
 .day{align-self:center;font:500 12px var(--sans);font-variant-numeric:tabular-nums;color:var(--sub);margin:14px 0 8px;letter-spacing:.02em;text-align:center}
 .day b{font-weight:500;color:#B4B8C0}
-.b{position:relative;max-width:78%;min-width:0;padding:9px 14px;border-radius:18px;font-size:16px;line-height:1.4;letter-spacing:-.005em;animation:pop .5s var(--spring) both;overflow-wrap:anywhere;word-break:break-word}
+.b{position:relative;max-width:78%;min-width:0;padding:9px 14px;border-radius:18px;font-size:16px;line-height:1.4;letter-spacing:-.005em;animation:x-bub .35s var(--spring) both;overflow-wrap:anywhere;word-break:break-word}
 .b:not(.gp){margin-top:10px}
 .b.in{align-self:flex-start;background:#1C1D23;border:1px solid rgba(255,255,255,.06);color:var(--ink);transform-origin:left bottom}
 .b.out{align-self:flex-end;background:#2C2C2E;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);color:#fff;transform-origin:right bottom}
@@ -76,6 +76,15 @@ box-shadow:var(--glass-sh)}
 .dlv{align-self:flex-end;font:500 12px var(--sans);font-variant-numeric:tabular-nums;color:var(--sub);margin:3px 4px 0;letter-spacing:0;animation:fade .3s .15s both}
 @keyframes pop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
 @keyframes fade{from{opacity:0}}
+@keyframes x-bub{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:none}}
+@keyframes x-card{from{opacity:0;transform:scale(.97)}}
+.b .row .card{animation:x-card .3s var(--ease-out) backwards}
+.b .row .card:nth-child(2){animation-delay:50ms}
+.b .row .card:nth-child(3){animation-delay:.1s}
+.b .row .card:nth-child(4){animation-delay:.15s}
+.b .row .card:nth-child(5){animation-delay:.2s}
+.b .row .card:nth-child(6){animation-delay:.25s}
+.b .row .card:nth-child(n+7){animation-delay:.3s}
 .typing{display:flex;gap:5px;padding:13px 14px}
 .typing span{width:8px;height:8px;border-radius:50%;background:#8A8F98;animation:pulse 1.2s infinite ease-in-out}
 .typing span:nth-child(2){animation-delay:.18s}.typing span:nth-child(3){animation-delay:.36s}
@@ -175,6 +184,8 @@ box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 0 0 .5px rgba(255,255,255
 summary{list-style:none;cursor:pointer}
 summary::-webkit-details-marker{display:none}
 details[open] .chev{transform:rotate(90deg)}
+details::details-content{block-size:0;opacity:0;overflow:clip;transition:block-size 250ms var(--ease-out),opacity 200ms var(--ease-out),content-visibility 250ms allow-discrete}
+details[open]::details-content{block-size:auto;opacity:1}
 .xd{padding:0 16px 14px}
 .xd p{font-size:14px;color:#C3C7CE;margin-bottom:10px;overflow-wrap:anywhere}
 .sheet .group{background:var(--s2)}
@@ -211,6 +222,11 @@ transform:translateY(105%);transition:transform .5s var(--spring);max-height:88%
 .back{color:var(--ink)}
 .back svg{width:20px;height:20px}
 .phero{text-align:center;padding:8px 20px 26px}
+#toProfile img{view-transition-name:pfp}
+.prof #toProfile img{view-transition-name:none}
+.prof .big{view-transition-name:pfp}
+::view-transition-group(pfp){animation-duration:400ms;animation-timing-function:var(--ease-drawer)}
+::view-transition-old(root),::view-transition-new(root){animation:none}
 .big{width:132px;height:132px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 14px;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 10px 40px rgba(0,0,0,.5)}
 .phero h1{font-size:40px;line-height:1.05;overflow-wrap:anywhere}
 .phero .h{color:var(--sub);font:500 13px var(--sans);font-variant-numeric:tabular-nums;margin-top:6px}
@@ -312,7 +328,11 @@ svg.cl[stroke="#fff"],[data-theme="light"] svg.cl[stroke="#fff"]{stroke:var(--br
 .chev,[data-theme="light"] .chev{color:var(--brand)}
 #person svg{color:var(--brand)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+.b,.b .row .card{animation:fade 150ms var(--ease-out) backwards!important}
+details::details-content{transition:opacity 150ms var(--ease-out),content-visibility 150ms allow-discrete!important}
+::view-transition-group(pfp){animation:none}
+::view-transition-old(pfp),::view-transition-new(pfp){animation-duration:150ms}}
 </style>
 </head>
 <body>
@@ -498,8 +518,9 @@ var lastFocus;
 function openSheet(m){lastFocus=document.activeElement;m=typeof m==="string"&&m.trim()?m:"";$("sTitle").textContent=m?"Send your message to":"Reach me on";$("sMsg").hidden=!m;$("sBub").textContent=m;$("sList").innerHTML=rows(m);dev.classList.add("open");$("sheet").setAttribute("aria-hidden","false");setTimeout(function(){$("done").focus()},60)}
 function closeSheet(){dev.classList.remove("open");$("sheet").setAttribute("aria-hidden","true");if(lastFocus)lastFocus.focus()}
 $("done").onclick=closeSheet;$("dim").onclick=closeSheet;
-function openProfile(){dev.classList.add("prof");$("profile").setAttribute("aria-hidden","false");$("profile").scrollTop=0;ghEnd();setTimeout(function(){$("back").focus()},80)}
-function closeProfile(){dev.classList.remove("prof");$("profile").setAttribute("aria-hidden","true");$("toProfile").focus()}
+function morph(fn){if(document.startViewTransition){try{document.startViewTransition(fn);return}catch(_){}}fn()}
+function openProfile(){morph(function(){dev.classList.add("prof");$("profile").setAttribute("aria-hidden","false");$("profile").scrollTop=0;ghEnd()});setTimeout(function(){$("back").focus()},80)}
+function closeProfile(){morph(function(){dev.classList.remove("prof");$("profile").setAttribute("aria-hidden","true")});$("toProfile").focus()}
 $("toProfile").onclick=openProfile;$("back").onclick=closeProfile;
 document.addEventListener("keydown",function(e){if(e.key!=="Escape")return;if(dev.classList.contains("open"))closeSheet();else if(dev.classList.contains("prof"))closeProfile()});
 fetch("https://abacus.jasoncameron.dev/hit/xarkgg/portfolio").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){$("vc").textContent=d&&d.value!=null?Number(d.value).toLocaleString():"—"}).catch(function(){$("vc").textContent="—"});
