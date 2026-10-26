@@ -404,6 +404,30 @@ padding:0 max(24px,calc((100% - 1160px)/2))}
 .x-tagrow .tags{display:grid;grid-template-columns:repeat(4,max-content);gap:6px}
 .x-tagrow .tags span{display:inline-flex;align-items:center}
 }
+
+/* hire me: desktop only */
+.x-hire,.x-hd{display:none}
+@media(min-width:960px){
+.x-hire{display:block}
+.x-hire-btn,.x-hire-send{display:block;width:100%;height:48px;border-radius:14px;background:var(--brand);color:#fff;font:600 16px var(--sans);letter-spacing:-.01em;transition:transform .25s var(--spring),filter .2s}
+.x-hire-btn:hover,.x-hire-send:hover{filter:brightness(1.08)}
+.x-hire-btn:active,.x-hire-send:active{transform:scale(.97)}
+.x-hire-send:disabled{opacity:.45;pointer-events:none}
+.pexp #profile{grid-template-areas:"bar bar" "hero hero" "proj proj" "edu skills" "edu act" "hire act" "foot foot"}
+.pexp #pHire{grid-area:hire;align-self:end}
+.pexp .dim{left:0}
+.pexp .sheet{left:50%;width:min(520px,calc(100% - 48px))}
+#sBub{white-space:pre-wrap;max-height:200px;overflow-y:auto}
+.dim{left:0!important}
+.sheet{left:50%!important;width:min(520px,calc(100% - 48px))!important}
+.x-hd{display:block;position:absolute;left:50%;top:50%;z-index:22;width:min(520px,calc(100% - 48px));max-height:calc(100% - 48px);overflow-y:auto;background:var(--s1);border-radius:28px;padding:14px 16px 16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 30px 80px rgba(0,0,0,.55);transform:translate(-50%,calc(50vh + 60%));opacity:0;pointer-events:none;transition:transform .5s var(--spring),opacity .3s ease}
+.hopen .x-hd{transform:translate(-50%,-50%);opacity:1;pointer-events:auto}
+.hopen .dim{opacity:1;pointer-events:auto;left:0}
+.x-hd textarea{display:block;width:100%;resize:none;border:0;outline:0;background:var(--s2);color:var(--ink);font:400 16px/1.45 var(--sans);padding:14px 16px;border-radius:18px;box-shadow:inset 0 0 0 1px var(--sep);margin-bottom:12px}
+.x-hd textarea:focus{box-shadow:inset 0 0 0 1.5px var(--brand)}
+[data-theme="light"] .x-hd{background:#E4E4E4;box-shadow:0 30px 80px rgba(0,0,0,.14)}
+[data-theme="light"] .x-hd textarea{background:#EFEFEF}
+}
 </style>
 </head>
 <body>
@@ -454,10 +478,16 @@ padding:0 max(24px,calc((100% - 1160px)/2))}
       <a class="li" href="https://beaconoffaith.vercel.app/" target="_blank" rel="noopener"><span class="ico x-logo x-logo--w" aria-hidden="true"><img src="assets/logos/beacon-logo.png" alt="" /></span><span class="t"><b>Beacon of Faith Secondary School</b><span>Secondary</span></span><small>2017–2023</small></a>
       <a class="li" href="https://beaconoffaith.vercel.app/" target="_blank" rel="noopener"><span class="ico x-logo x-logo--w" aria-hidden="true"><img src="assets/logos/beacon-logo.png" alt="" /></span><span class="t"><b>Beacon of Faith Primary School</b><span>Primary</span></span><small>2010–2016</small></a>
     </div></div>
+    <div class="sec x-hire" id="pHire"><button type="button" class="x-hire-btn" id="hireBtn">Hire me</button></div>
     <div class="pfoot"><button type="button" class="x-sw" id="themeSw" role="switch" aria-checked="true" aria-label="Dark mode"><span class="x-sw__track"><span class="x-sw__thumb"><svg class="x-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.7 14.9A8.6 8.6 0 0 1 9.1 3.3a.5.5 0 0 0-.6-.7A9.6 9.6 0 1 0 21.4 15.5a.5.5 0 0 0-.7-.6z"/></svg><svg class="x-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.6" fill="currentColor"/><path d="M12 1.8v2.6M12 19.6v2.6M1.8 12h2.6M19.6 12h2.6M4.8 4.8l1.8 1.8M17.4 17.4l1.8 1.8M4.8 19.2l1.8-1.8M17.4 6.6l1.8-1.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span></span></button><span>©2026</span></div>
   </section>
 
   <div class="dim" id="dim"></div>
+  <div class="x-hd" id="hire" role="dialog" aria-modal="true" aria-labelledby="hTitle" aria-hidden="true">
+    <div class="shead"><h2 id="hTitle">Hire me</h2><button type="button" class="done" id="hClear">Clear</button></div>
+    <textarea id="hMsg" aria-label="Your message" rows="14" autocapitalize="sentences"></textarea>
+    <button type="button" class="x-hire-send" id="hSend">Send</button>
+  </div>
   <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sTitle" aria-hidden="true">
     <div class="grab"></div>
     <div class="shead"><h2 id="sTitle">Reach me on</h2><button class="done" id="done">Done</button></div>
@@ -591,6 +621,18 @@ function closeSheet(){dev.classList.remove("open");$("sheet").setAttribute("aria
 $("done").onclick=closeSheet;$("dim").onclick=closeSheet;
 function morph(fn){if(document.startViewTransition){try{document.startViewTransition(fn);return}catch(_){}}fn()}
 var desk=matchMedia("(min-width:960px)");function syncDesk(){$("profile").setAttribute("aria-hidden",desk.matches?"false":(dev.classList.contains("prof")?"false":"true"))}syncDesk();desk.addEventListener("change",function(){if(!desk.matches){dev.classList.remove("pexp","cexp");$("profile").classList.remove("x-exp")}syncDesk()});$("chat").addEventListener("pointerdown",function(e){if(desk.matches&&!dev.classList.contains("pexp")&&!dev.classList.contains("cexp")&&!e.target.closest("#toProfile"))dev.classList.add("cexp")});$("chat").addEventListener("focusin",function(e){if(desk.matches&&!dev.classList.contains("pexp")&&!dev.classList.contains("cexp")&&!e.target.closest("#toProfile"))dev.classList.add("cexp")});$("profile").addEventListener("click",function(e){if(desk.matches&&!dev.classList.contains("pexp")&&!e.target.closest("a,button"))openProfile()});
+var HIRE="Hi xarkgg,\n\nI'm [your name] from [company or project]. We're looking for a backend engineer to help with [role or project].\n\nScope: [what needs building]\nTimeline: [start date and duration]\nBudget: [rate or budget]\n\nWould you be open to a quick chat?\n\nBest,\n[your name]";
+var hMsg=$("hMsg"),hSend=$("hSend"),hFocus;
+function syncHire(){hSend.disabled=!hMsg.value.trim()}
+function openHire(){hFocus=document.activeElement;if(!hMsg.value.trim())hMsg.value=HIRE;syncHire();dev.classList.add("hopen");$("hire").setAttribute("aria-hidden","false");setTimeout(function(){hMsg.focus();var k=hMsg.value.indexOf("[");if(k>-1)hMsg.setSelectionRange(k,hMsg.value.indexOf("]",k)+1)},120)}
+function closeHire(back){dev.classList.remove("hopen");$("hire").setAttribute("aria-hidden","true");if(back&&hFocus)hFocus.focus()}
+$("hireBtn").addEventListener("click",function(e){e.stopPropagation();openHire()});
+$("hClear").onclick=function(){hMsg.value="";syncHire();hMsg.focus()};
+hMsg.addEventListener("input",syncHire);
+hMsg.addEventListener("click",function(){var v=hMsg.value,c=hMsg.selectionStart;if(hMsg.selectionEnd!==c)return;var a=v.lastIndexOf("[",c),b=v.indexOf("]",a);if(a>-1&&b>=c-1&&v.lastIndexOf("]",c-1)<a&&v.slice(a,b).indexOf("\n")<0)hMsg.setSelectionRange(a,b+1)});
+hSend.onclick=function(){var m=hMsg.value.trim();if(!m)return;closeHire(false);setTimeout(function(){openSheet(m)},reduce?50:300)};
+$("dim").addEventListener("click",function(){if(dev.classList.contains("hopen"))closeHire(true)});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&dev.classList.contains("hopen")){e.stopImmediatePropagation();closeHire(true)}},true);
 function openProfile(){if(desk.matches){dev.classList.add("pexp");$("profile").classList.add("x-exp");$("profile").scrollTop=0;setTimeout(function(){$("back").focus()},80);return}dev.classList.add("prof");$("profile").setAttribute("aria-hidden","false");$("profile").scrollTop=0;ghEnd();setTimeout(function(){$("back").focus()},80)}
 function closeProfile(){if(desk.matches){dev.classList.remove("pexp","cexp");$("profile").classList.remove("x-exp");$("profile").scrollTop=0;return}morph(function(){dev.classList.remove("prof");$("profile").setAttribute("aria-hidden","true")});$("toProfile").focus()}
 $("toProfile").onclick=openProfile;$("back").onclick=closeProfile;
