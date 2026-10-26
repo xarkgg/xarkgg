@@ -333,6 +333,27 @@ svg.cl[stroke="#fff"],[data-theme="light"] svg.cl[stroke="#fff"]{stroke:var(--br
 details::details-content{transition:opacity 150ms var(--ease-out),content-visibility 150ms allow-discrete!important}
 ::view-transition-group(pfp){animation:none}
 ::view-transition-old(pfp),::view-transition-new(pfp){animation-duration:150ms}}
+
+/* desktop: WhatsApp Web split, profile pane left, chat right */
+@media(min-width:960px){
+body{display:block;background-image:none}
+[data-theme="light"] body{background-image:none}
+.device,[data-theme="light"] .device{max-width:none;width:100%;height:100dvh;border-radius:0;box-shadow:none}
+#profile,.prof #profile{transform:none;right:auto;width:380px;box-shadow:none;border-right:1px solid var(--hair,rgba(127,127,127,.18));z-index:6}
+#chat,.prof #chat{transform:none;left:380px}
+.prof .top,.prof .dock{opacity:1;pointer-events:auto}
+#back{display:none}
+#toProfile{pointer-events:none}
+.thread{padding-left:max(24px,calc((100% - 760px)/2));padding-right:max(24px,calc((100% - 760px)/2))}
+.b.wide{width:calc(100% + 48px);margin-left:-24px;margin-right:-24px}
+.top{padding-left:24px;padding-right:24px}
+.dock{left:50%;right:auto;width:min(784px,100%);transform:translateX(-50%);padding-left:24px;padding-right:24px}
+.chipw{margin:0}
+.dim{left:380px}
+.sheet{left:calc(380px + (100% - 380px)/2);right:auto;width:min(520px,calc(100% - 428px));transform:translate(-50%,calc(100% + 48px));bottom:24px;border-radius:28px;padding-bottom:24px}
+.open .sheet{transform:translate(-50%,0)}
+.x-tip{right:24px}
+}
 </style>
 </head>
 <body>
@@ -519,8 +540,9 @@ function openSheet(m){lastFocus=document.activeElement;m=typeof m==="string"&&m.
 function closeSheet(){dev.classList.remove("open");$("sheet").setAttribute("aria-hidden","true");if(lastFocus)lastFocus.focus()}
 $("done").onclick=closeSheet;$("dim").onclick=closeSheet;
 function morph(fn){if(document.startViewTransition){try{document.startViewTransition(fn);return}catch(_){}}fn()}
-function openProfile(){dev.classList.add("prof");$("profile").setAttribute("aria-hidden","false");$("profile").scrollTop=0;ghEnd();setTimeout(function(){$("back").focus()},80)}
-function closeProfile(){morph(function(){dev.classList.remove("prof");$("profile").setAttribute("aria-hidden","true")});$("toProfile").focus()}
+var desk=matchMedia("(min-width:960px)");function syncDesk(){$("profile").setAttribute("aria-hidden",desk.matches?"false":(dev.classList.contains("prof")?"false":"true"))}syncDesk();desk.addEventListener("change",syncDesk);
+function openProfile(){if(desk.matches)return;dev.classList.add("prof");$("profile").setAttribute("aria-hidden","false");$("profile").scrollTop=0;ghEnd();setTimeout(function(){$("back").focus()},80)}
+function closeProfile(){if(desk.matches)return;morph(function(){dev.classList.remove("prof");$("profile").setAttribute("aria-hidden","true")});$("toProfile").focus()}
 $("toProfile").onclick=openProfile;$("back").onclick=closeProfile;
 document.addEventListener("keydown",function(e){if(e.key!=="Escape")return;if(dev.classList.contains("open"))closeSheet();else if(dev.classList.contains("prof"))closeProfile()});
 fetch("https://abacus.jasoncameron.dev/hit/xarkgg/portfolio").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){$("vc").textContent=d&&d.value!=null?Number(d.value).toLocaleString():"—"}).catch(function(){$("vc").textContent="—"});
