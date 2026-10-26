@@ -394,6 +394,16 @@ padding:0 max(24px,calc((100% - 1160px)/2))}
 .cexp.pexp #profile{transform:none;opacity:1}
 }
 :root{--slide:cubic-bezier(.45,0,.2,1)}
+@media(min-width:960px){
+.cexp .dim{left:0}
+.cexp .sheet{left:50%;width:min(520px,calc(100% - 48px))}
+.device{overflow:clip}
+.sheet{top:50%;bottom:auto;max-height:min(640px,calc(100% - 48px));transform:translate(-50%,calc(50vh + 60%));opacity:0;transition:transform .5s var(--spring),opacity .3s ease}
+.open .sheet{transform:translate(-50%,-50%);opacity:1}
+.sheet .grab{display:none}
+.x-tagrow .tags{display:grid;grid-template-columns:repeat(4,max-content);gap:6px}
+.x-tagrow .tags span{display:inline-flex;align-items:center}
+}
 </style>
 </head>
 <body>
