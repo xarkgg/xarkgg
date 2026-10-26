@@ -11,6 +11,11 @@
 try{var xt=localStorage.getItem("xark-theme")==="light"?"#E4E4E4":"#0B0B0F";if(xt==="#E4E4E4")document.documentElement.setAttribute("data-theme","light");
 document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",xt)})}catch(e){}
 </script>
+<script>
+try{(function(){var q=new URLSearchParams(location.search).get("season"),d=new Date(),m=d.getMonth()+1,n=d.getDate(),s="";
+if(m===10&&n===31)s="halloween";else if((m===12&&n>=20)||(m===1&&n<=3))s="christmas";
+if(q==="halloween"||q==="christmas"||q==="none")s=q==="none"?"":q;if(s)document.documentElement.setAttribute("data-season",s)})()}catch(e){}
+</script>
 <title>Manass Kusko (xarkgg) · Smart contract developer</title>
 <meta name="description" content="Manass Kusko (xarkgg): smart contracts, on-chain products, AI agents and backend." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -322,6 +327,22 @@ pointer-events:none;opacity:0;transition:opacity .3s ease}
 [data-theme="light"] .big{box-shadow:0 0 0 4px #EFEFEF,0 0 0 5px rgba(0,0,0,.06),0 6px 20px rgba(0,0,0,.10)}
 [data-theme="light"] .pfoot{color:#57575C}
 [data-theme="light"] .x-sw__thumb{box-shadow:0 1px 3px rgba(0,0,0,.18),0 0 0 .5px rgba(0,0,0,.06)}
+/* seasonal themes: Halloween (Oct 31) and Christmas (Dec 20 to Jan 3), visitor's local date; preview with ?season=halloween|christmas */
+[data-season="halloween"]{--brand:#FF8A1F;--glow:radial-gradient(120% 60% at 0 0,rgba(255,122,24,.10),transparent 65%);--gh1:#631c03;--gh2:#bd561d;--gh3:#fa7a18;--gh4:#fddf68}
+[data-season="halloween"][data-theme="light"]{--brand:#D9600B;--glow:radial-gradient(120% 60% at 0 0,rgba(255,122,24,.12),transparent 65%);--gh1:#ffee4a;--gh2:#ffc501;--gh3:#fe9600;--gh4:#03001c}
+[data-season="christmas"]{--brand:#F2555A;--glow:radial-gradient(120% 60% at 0 0,rgba(242,85,90,.09),transparent 60%),radial-gradient(90% 50% at 100% 100%,rgba(38,166,65,.08),transparent 65%)}
+[data-season="christmas"][data-theme="light"]{--brand:#C8102E;--glow:radial-gradient(120% 60% at 0 0,rgba(200,16,46,.08),transparent 60%),radial-gradient(90% 50% at 100% 100%,rgba(48,161,78,.08),transparent 65%)}
+.x-fx{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.x-fx i{position:absolute;top:-12px;border-radius:50%;background:#fff;opacity:.55;animation:x-snow linear infinite}
+[data-theme="light"] .x-fx i{background:#9aa6b8}
+@keyframes x-snow{to{transform:translate3d(var(--dx),calc(100dvh + 24px),0)}}
+.x-fx svg{position:absolute;left:-40px;width:26px;height:14px;color:var(--brand);opacity:.4;animation:x-bat linear infinite}
+[data-theme="light"] .x-fx svg{opacity:.35}
+.x-fx svg path{animation:x-flap .35s ease-in-out infinite alternate;transform-origin:50% 60%}
+@keyframes x-bat{0%{transform:translate3d(0,0,0)}50%{transform:translate3d(calc(50vw + 20px),-30px,0)}100%{transform:translate3d(calc(100vw + 80px),10px,0)}}
+@keyframes x-flap{to{transform:scaleY(.45)}}
+.day em{font-style:normal;color:var(--brand)}
+@media(prefers-reduced-motion:reduce){.x-fx{display:none}}
 /* brand tint: generic UI icons only (--brand: #023EC0 light, #4D7BEA lifted for dark) */
 svg.cl[stroke="#fff"],[data-theme="light"] svg.cl[stroke="#fff"]{stroke:var(--brand)}
 .views svg,[data-theme="light"] .views svg{color:var(--brand)}
@@ -592,6 +613,12 @@ fetch("https://github-contributions-api.jogruber.de/v4/xarkgg?y=last").then(func
 function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
 function scroll(){thread.scrollTop=thread.scrollHeight}
 try{$("day").innerHTML="<b>Today</b> "+esc(new Date().toLocaleTimeString([],{hour:"numeric",minute:"2-digit"}))}catch(_){}
+try{(function(){var se=document.documentElement.getAttribute("data-season");if(!se)return;
+$("day").insertAdjacentHTML("beforeend"," · <em>"+(se==="halloween"?"Happy Halloween":"Happy holidays")+"</em>");
+if(reduce)return;var fx=document.createElement("div");fx.className="x-fx";fx.setAttribute("aria-hidden","true");var h="",i,r=Math.random;
+if(se==="christmas"){for(i=0;i<28;i++){var z=(2+r()*3).toFixed(1);h+='<i style="left:'+(r()*100).toFixed(1)+'%;width:'+z+'px;height:'+z+'px;--dx:'+((r()-.5)*60|0)+'px;animation-duration:'+(9+r()*9).toFixed(1)+'s;animation-delay:-'+(r()*18).toFixed(1)+'s;opacity:'+(.25+r()*.45).toFixed(2)+'"></i>'}}
+else{for(i=0;i<4;i++)h+='<svg viewBox="0 0 26 14" style="top:'+(12+r()*45).toFixed(0)+'%;animation-duration:'+(16+r()*10).toFixed(1)+'s;animation-delay:-'+(r()*20).toFixed(1)+'s"><path fill="currentColor" d="M13 5c-1-1.6-2.6-2.2-4-1.6-.7-1.3-2.2-2-3.6-1.6.4 1 .1 2-.8 2.6C3.2 3.6 1.6 4 0 5.6c1.6-.3 3 .2 3.8 1.3.9-.8 2.4-.9 3.4-.1.8-.9 2.2-1 3.2-.3L13 9l2.6-2.5c1-.7 2.4-.6 3.2.3 1-.8 2.5-.7 3.4.1.8-1.1 2.2-1.6 3.8-1.3C24.4 4 22.8 3.6 21.4 4.4c-.9-.6-1.2-1.6-.8-2.6-1.4-.4-2.9.3-3.6 1.6-1.4-.6-3-.0-4 1.6z"/></svg>'}
+fx.innerHTML=h;var t=$("thread");t.parentNode.insertBefore(fx,t)})()}catch(_){}
 var dlv=document.createElement("p");dlv.className="dlv";dlv.textContent="Delivered";
 function place(b){
  var side=b.classList.contains("out")?"out":"in";
