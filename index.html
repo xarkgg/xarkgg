@@ -354,6 +354,41 @@ body{display:block;background-image:none}
 .open .sheet{transform:translate(-50%,0)}
 .x-tip{right:24px}
 }
+
+/* desktop v2: chat card over profile, expandable profile */
+@media(min-width:960px){
+.device{background:var(--bg)}
+#profile,.prof #profile{border-right:0;transition:width .55s var(--ease)}
+#chat,.prof #chat{border-radius:28px 0 0 28px;overflow:hidden;z-index:7;box-shadow:-1px 0 0 rgba(255,255,255,.07),-18px 0 50px rgba(0,0,0,.55);transition:transform .55s var(--ease)}
+[data-theme="light"] #chat{box-shadow:-1px 0 0 rgba(0,0,0,.06),-18px 0 50px rgba(0,0,0,.12)}
+#profile:not(.x-exp){cursor:pointer}
+#profile a,#profile button{cursor:pointer}
+.chipw{margin:0}
+.chips{padding:4px 0 10px;overflow:visible}
+.chips button{flex:1 1 0;max-width:none}
+#toProfile{pointer-events:auto}
+.pexp #chat{transform:translateX(calc(100% + 60px))}
+.pexp #profile{width:100%}
+.pexp #back{display:grid}
+.pexp #profile{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:24px;align-content:start;
+grid-template-areas:"bar bar" "hero hero" "proj proj" "act skills" "act edu" "foot foot";
+padding:0 max(24px,calc((100% - 1160px)/2))}
+.pexp #profile>.pbar{grid-area:bar}
+.pexp #profile>.phero{grid-area:hero}
+.pexp #pProjects{grid-area:proj}
+.pexp #pActivity{grid-area:act}
+.pexp #pSkills{grid-area:skills}
+.pexp #pEdu{grid-area:edu}
+.pexp #profile>.pfoot{grid-area:foot}
+.pexp #profile>.sec,.pexp #profile>.phero{animation:x-fadein .45s var(--ease) both}
+}
+@keyframes x-fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(min-width:960px){
+.pexp #pProj{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;overflow:visible;margin:0;padding:2px 0 4px}
+.pexp #pProj .card{width:auto}
+.pexp #profile>.pbar{margin:0 calc(-1 * max(24px,(100vw - 1160px)/2));padding-left:max(24px,calc((100vw - 1160px)/2));padding-right:max(24px,calc((100vw - 1160px)/2))}
+}
+@media(min-width:960px){.chipw .chips{padding:4px 0 10px}.chipw::before,.chipw::after{display:none}}
 </style>
 </head>
 <body>
@@ -540,11 +575,11 @@ function openSheet(m){lastFocus=document.activeElement;m=typeof m==="string"&&m.
 function closeSheet(){dev.classList.remove("open");$("sheet").setAttribute("aria-hidden","true");if(lastFocus)lastFocus.focus()}
 $("done").onclick=closeSheet;$("dim").onclick=closeSheet;
 function morph(fn){if(document.startViewTransition){try{document.startViewTransition(fn);return}catch(_){}}fn()}
-var desk=matchMedia("(min-width:960px)");function syncDesk(){$("profile").setAttribute("aria-hidden",desk.matches?"false":(dev.classList.contains("prof")?"false":"true"))}syncDesk();desk.addEventListener("change",syncDesk);
-function openProfile(){if(desk.matches)return;dev.classList.add("prof");$("profile").setAttribute("aria-hidden","false");$("profile").scrollTop=0;ghEnd();setTimeout(function(){$("back").focus()},80)}
-function closeProfile(){if(desk.matches)return;morph(function(){dev.classList.remove("prof");$("profile").setAttribute("aria-hidden","true")});$("toProfile").focus()}
+var desk=matchMedia("(min-width:960px)");function syncDesk(){$("profile").setAttribute("aria-hidden",desk.matches?"false":(dev.classList.contains("prof")?"false":"true"))}syncDesk();desk.addEventListener("change",function(){if(!desk.matches){dev.classList.remove("pexp");$("profile").classList.remove("x-exp")}syncDesk()});$("profile").addEventListener("click",function(e){if(desk.matches&&!dev.classList.contains("pexp")&&!e.target.closest("a,button"))openProfile()});
+function openProfile(){if(desk.matches){dev.classList.add("pexp");$("profile").classList.add("x-exp");$("profile").scrollTop=0;setTimeout(function(){$("back").focus()},80);return}dev.classList.add("prof");$("profile").setAttribute("aria-hidden","false");$("profile").scrollTop=0;ghEnd();setTimeout(function(){$("back").focus()},80)}
+function closeProfile(){if(desk.matches){dev.classList.remove("pexp");$("profile").classList.remove("x-exp");$("profile").scrollTop=0;return}morph(function(){dev.classList.remove("prof");$("profile").setAttribute("aria-hidden","true")});$("toProfile").focus()}
 $("toProfile").onclick=openProfile;$("back").onclick=closeProfile;
-document.addEventListener("keydown",function(e){if(e.key!=="Escape")return;if(dev.classList.contains("open"))closeSheet();else if(dev.classList.contains("prof"))closeProfile()});
+document.addEventListener("keydown",function(e){if(e.key!=="Escape")return;if(dev.classList.contains("open"))closeSheet();else if(dev.classList.contains("prof")||dev.classList.contains("pexp"))closeProfile()});
 fetch("https://abacus.jasoncameron.dev/hit/xarkgg/portfolio").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){$("vc").textContent=d&&d.value!=null?Number(d.value).toLocaleString():"—"}).catch(function(){$("vc").textContent="—"});
 var vtip=$("vtip"),vt;
 function showTip(){clearTimeout(vt);vtip.classList.add("on");vt=setTimeout(function(){vtip.classList.remove("on")},3500)}
