@@ -7,6 +7,16 @@
     "postinstall": "npm run vendor"
   },
   "dependencies": {
-    "@kitlangton/ios-kit": "github:kitlangton/ios-kit"
+    "@kitlangton/ios-kit": "github:kitlangton/ios-kit",
+    "@tsparticles/engine": "3.9.1",
+    "@tsparticles/react": "3.0.0",
+    "@tsparticles/slim": "3.9.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "typescript": "5.9.3"
   }
 }
