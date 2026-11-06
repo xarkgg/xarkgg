@@ -4,6 +4,7 @@
   "description": "Portfolio site for Manass Kusko (Xark). Static, no build step.",
   "scripts": {
     "vendor": "mkdir -p vendor/ios-kit && cp node_modules/@kitlangton/ios-kit/ios-kit.js node_modules/@kitlangton/ios-kit/ios-kit.css node_modules/@kitlangton/ios-kit/LICENSE vendor/ios-kit/",
+    "build:preloader": "node scripts/build-preloader.mjs",
     "postinstall": "npm run vendor"
   },
   "dependencies": {
@@ -15,8 +16,12 @@
     "react-dom": "19.3.1"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "4.3.4",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
+    "esbuild": "0.28.2",
+    "postcss": "8.5.32",
+    "tailwindcss": "4.3.4",
     "typescript": "5.9.3"
   }
 }
