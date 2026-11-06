@@ -21,14 +21,6 @@ if(q==="halloween"||q==="christmas"||q==="none")s=q==="none"?"":q;if(s)document.
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-<link rel="stylesheet" href="vendor/nano-preloader/nano-preloader.css" />
-<link rel="preload" href="vendor/nano-preloader/nano-preloader.js" as="script" />
-<noscript><style>#nano-preloader-root{display:none!important}</style></noscript>
-<style>
-#nano-preloader-root .nano-boot{position:absolute;inset:0;display:grid;place-items:center;font:600 26px/1 Inter,system-ui,sans-serif;color:rgba(255,255,255,.9);letter-spacing:-.08em}
-@media (prefers-reduced-motion:no-preference){#nano-preloader-root .nano-boot{animation:nano-boot-pulse 2.4s ease-in-out infinite}}
-@keyframes nano-boot-pulse{0%,100%{opacity:.55}50%{opacity:.95}}
-</style>
 <style>
 :root{color-scheme:dark;--acc:#E5E5E7;--ring:rgba(255,255,255,.4);--bg:#0B0B0F;--s1:#15161B;--s2:#1C1D23;--in:#1F2026;--ink:#F2F3F5;--sub:#8A8F98;--sep:rgba(255,255,255,.08);
 --sans:"Inter",system-ui,sans-serif;
@@ -518,8 +510,6 @@ padding:0 max(24px,calc((100% - 1160px)/2))}
 </style>
 </head>
 <body>
-<div id="nano-preloader-root" style="position:fixed;inset:0;z-index:9999;background:#000"><span class="nano-boot" aria-hidden="true">X</span></div>
-<script>window.setTimeout(function(){var n=document.getElementById("nano-preloader-root");if(n&&!n.hasAttribute("data-nano-ready"))n.remove()},12000)</script>
 <div class="device" id="dev">
   <section class="view" id="chat" aria-label="Chat with xarkgg">
     <header class="top">
@@ -784,6 +774,5 @@ sw.addEventListener("click",function(){var t=root.getAttribute("data-theme")==="
  $("chipw").hidden=false;busy=false;})();
 })();
 </script>
-<script src="vendor/nano-preloader/nano-preloader.js" defer onerror="var n=document.getElementById('nano-preloader-root');if(n)n.remove()"></script>
 </body>
 </html>
