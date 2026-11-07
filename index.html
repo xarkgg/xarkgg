@@ -96,6 +96,9 @@ box-shadow:var(--glass-sh)}
 @keyframes pulse{0%,70%,100%{opacity:.35;transform:scale(.85)}35%{opacity:1;transform:scale(1)}}
 .row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 12px 4px;scroll-padding:0 12px;scrollbar-width:none}
 .row::-webkit-scrollbar{display:none}
+.row.has-more{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 40px),transparent)}
+@keyframes x-tug{0%{transform:translateX(0)}20%{transform:translateX(-12px)}56%{transform:translateX(3px)}78%{transform:translateX(-4px)}100%{transform:translateX(0)}}
+.row.tug{animation:x-tug 1.1s var(--ease-out) both}
 .card{position:relative;flex:0 0 auto;width:260px;min-width:0;scroll-snap-align:start;display:flex;flex-direction:column;background:var(--s1);border:1px solid var(--sep);border-radius:18px;overflow:hidden;transition:transform .3s var(--spring)}
 .card,.prow .card{width:min(334px,calc(100vw - 24px))}
 .card:active{transform:scale(.97)}
@@ -543,7 +546,7 @@ padding:0 max(24px,calc((100% - 1160px)/2))}
       <img class="big" src="assets/avatar-profile.jpg" alt="Manass Kusko" />
       <h1 class="serif">Manass Kusko</h1>
       <p class="h">@xarkgg</p>
-      <p class="tl">Backend Engineer, Smart Contracts and LLM Programmer.</p>
+      <p class="tl">Software Engineer, Smart Contracts and LLM Programmer.</p>
     </div>
     <div class="sec" id="pProjects"><h3>Projects</h3><div class="row prow" id="pProj"></div></div>
     <div class="sec" id="pActivity"><h3>GitHub activity</h3>
@@ -635,6 +638,7 @@ var SKI={
 function skillTags(a){return a.map(function(t){var s=SKI[t];return s?'<span class="x-ti"><svg class="cl" viewBox="0 0 24 24" '+s[0]+' aria-hidden="true" focusable="false">'+s[1]+'</svg>'+t+'</span>':"<span>"+t+"</span>"}).join("")}
 $("pTags").innerHTML=skillTags(SKILLS);
 Array.prototype.forEach.call(document.querySelectorAll("#tplProjects .card"),function(c){$("pProj").appendChild(c.cloneNode(true))});
+hintRow($("pProj"));
 var LV=["#161b22","#0e4429","#006d32","#26a641","#39d353"],MO=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 function ghEnd(){var w=$("ghW");w.scrollLeft=w.scrollWidth}
 function gh(list,total){
@@ -716,9 +720,16 @@ function add(cls,html){
 }
 async function type(ms){var t=document.createElement("div");t.className="b in typing";t.setAttribute("aria-label","xarkgg is typing");t.innerHTML="<span></span><span></span><span></span>";place(t);await wait(ms||700);
  var p=t.previousElementSibling;t.remove();if(t.classList.contains("gp")&&p){p.classList.remove("gn")}}
-async function say(html,cls){await type();add("in"+(cls?" "+cls:""),html);await wait(250)}
+async function say(html,cls){await type();var b=add("in"+(cls?" "+cls:""),html);await wait(250);return b}
+function hintRow(row){
+ if(!row)return;
+ var upd=function(){var rem=row.scrollWidth-row.clientWidth;row.classList.toggle("has-more",rem>4&&row.scrollLeft<rem-4)};
+ row.addEventListener("scroll",upd,{passive:true});
+ upd();
+ if(!reduce&&row.scrollWidth-row.clientWidth>4){row.classList.add("tug");row.addEventListener("animationend",function(){row.classList.remove("tug")},{once:true})}
+}
 var replies={
- Projects:async function(){await say("Here's what I've shipped recently.");var n=$("tplProjects").firstElementChild.cloneNode(true);return say(n,"wide")},
+ Projects:async function(){await say("Here's what I've shipped recently.");var n=$("tplProjects").firstElementChild.cloneNode(true);var b=await say(n,"wide");hintRow(b.querySelector(".row"))},
  Stack:async function(){await say("What I work with day to day.");await type();add("in x-tagrow",'<div class="tags">'+skillTags(SKILLS)+"</div>");return wait(250)},
  Education:async function(){await say("Where I've studied.");var n=$("tplEdu").firstElementChild.cloneNode(true);return say(n)},
  Contact:async function(){await say("Here's the best way to reach me.");openSheet()}

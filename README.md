@@ -1,6 +1,4 @@
-### Hey, I'm Manass Kusko (xarkgg)
-
-Backend engineer working on smart contracts and LLM agents. I like building things that move real value — on-chain finance, insurance, and agents that actually do the work.
+Software engineer working on smart contracts and LLM agents. I like building things that move real value — on-chain finance, insurance, and agents that actually do the work.
 
 Studying computer science, shipping something new most weeks. Lately that has meant Sherwood, Condition, Exetazo and Handshake.
 
