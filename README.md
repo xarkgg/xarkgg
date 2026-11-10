@@ -2,4 +2,4 @@ Software engineer working on smart contracts and LLM agents. I like building thi
 
 Solidity · Rust · TypeScript · Python · Backend · LLM agents · Design
 
-[xarkgg.vercel.app](https://xarkgg.vercel.app) · [X](https://x.com/xarkgg) · [Telegram](https://t.me/xarkgg) · [Email](mailto:kuskomanass@gmail.com)
+[<img src="assets/social/portfolio.png" width="48" height="48" alt="Portfolio" title="Portfolio">](https://xarkgg.vercel.app) &nbsp; [<img src="assets/social/x.png" width="48" height="48" alt="X" title="X">](https://x.com/xarkgg) &nbsp; [<img src="assets/social/telegram.png" width="48" height="48" alt="Telegram" title="Telegram">](https://t.me/xarkgg) &nbsp; [<img src="assets/social/gmail.png" width="48" height="48" alt="Email" title="Email">](mailto:kuskomanass@gmail.com)
