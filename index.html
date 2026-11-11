@@ -442,7 +442,7 @@ body{display:block;background-image:none}
 .pexp #profile{width:100%}
 .pexp #back{display:grid}
 .pexp #profile{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:24px;align-content:start;
-grid-template-areas:"bar bar" "hero hero" "proj proj" "edu skills" "edu act" "foot foot";
+grid-template-areas:"bar bar" "hero hero" "proj proj" "cert cert" "edu skills" "edu act" "foot foot";
 padding:0 max(24px,calc((100% - 1160px)/2))}
 .pexp #profile>.pbar{grid-area:bar}
 .pexp #profile>.phero{grid-area:hero}
@@ -450,6 +450,7 @@ padding:0 max(24px,calc((100% - 1160px)/2))}
 .pexp #pActivity{grid-area:act}
 .pexp #pSkills{grid-area:skills}
 .pexp #pEdu{grid-area:edu}
+.pexp #pCert{grid-area:cert}
 .pexp #profile>.pfoot{grid-area:foot}
 .pexp #profile>.sec,.pexp #profile>.phero{animation:x-fadein .6s var(--ease) both}
 }
@@ -497,7 +498,7 @@ padding:0 max(24px,calc((100% - 1160px)/2))}
 .x-hire-btn:hover,.x-hire-send:hover{filter:brightness(1.08)}
 .x-hire-btn:active,.x-hire-send:active{transform:scale(.97)}
 .x-hire-send:disabled{opacity:.45;pointer-events:none}
-.pexp #profile{grid-template-areas:"bar bar" "hero hero" "proj proj" "edu skills" "edu act" "hire act" "foot foot"}
+.pexp #profile{grid-template-areas:"bar bar" "hero hero" "proj proj" "cert cert" "edu skills" "edu act" "hire act" "foot foot"}
 .pexp #pHire{grid-area:hire;align-self:end}
 .pexp .dim{left:0}
 .pexp .sheet{left:50%;width:min(520px,calc(100% - 48px))}
@@ -533,6 +534,7 @@ padding:0 max(24px,calc((100% - 1160px)/2))}
         <button class="glass" data-k="Projects">Projects</button>
         <button class="glass" data-k="Stack">Stack</button>
         <button class="glass" data-k="Education">Education</button>
+        <button class="glass" data-k="Certs">Certs</button>
         <button class="glass" data-k="Contact">Contact</button>
       </div></div>
       <form class="compose" id="form" autocomplete="off">
@@ -557,6 +559,9 @@ padding:0 max(24px,calc((100% - 1160px)/2))}
       </div>
     </div>
     <div class="sec" id="pSkills"><h3>Skills</h3><div class="tags" id="pTags"></div></div>
+    <div class="sec" id="pCert"><h3>Certifications</h3><div class="group tiled" id="pCertList">
+      <a class="li" href="assets/zetaris-certificate.jpg" target="_blank" rel="noopener" aria-label="Zetaris x SpaceXSI AI Data Harness Solution Developer, issued November 2026, credential ID ZTR-DHSD-ZK8V4P (opens the certificate in a new tab)"><span class="ico x-logo x-logo--w" aria-hidden="true"><img src="assets/logos/zetaris-logo.png" alt="" /></span><span class="t"><b>Zetaris × SpaceXSI</b><span>AI Data Harness Solution Developer</span></span><small>Nov 2026</small></a>
+    </div></div>
     <div class="sec" id="pEdu"><h3>Education</h3><div class="group tiled" id="pEduList">
       <a class="li" href="https://fulafia.edu.ng" target="_blank" rel="noopener"><span class="ico x-logo x-logo--w x-logo--pad" aria-hidden="true"><img src="assets/logos/fulafia-logo.png" alt="" /></span><span class="t"><b>Federal University of Lafia</b><span>BSc Computer Science</span></span><small>2024–present</small></a>
       <a class="li" href="https://beaconoffaith.vercel.app/" target="_blank" rel="noopener"><span class="ico x-logo x-logo--w" aria-hidden="true"><img src="assets/logos/beacon-logo.png" alt="" /></span><span class="t"><b>Beacon of Faith Secondary School</b><span>Secondary</span></span><small>2017–2023</small></a>
@@ -590,6 +595,11 @@ padding:0 max(24px,calc((100% - 1160px)/2))}
       <a class="card" href="https://github.com/xarkgg/handshake" target="_blank" rel="noopener"><figure class="ci" data-i="H"><img src="https://repository-images.githubusercontent.com/1341972765/a4b0f401-a243-4808-b76f-a3e745f03609" alt="Handshake preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Handshake</h4><p>Cross-chain DvP settlement on Creditcoin</p><div class="cm"><img class="cl" src="assets/logos/creditcoin.png" alt="" /><em>Creditcoin / DvP</em><span class="dom">github.com/xarkgg/handshake</span></div></div></a>
       <a class="card" href="https://folks.vercel.app" target="_blank" rel="noopener"><figure class="ci" data-i="F"><img src="https://repository-images.githubusercontent.com/1367679047/f070558b-d17c-4440-b0e1-75a977921fc0" alt="Folks preview" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('err');this.remove()" /></figure><div class="cb"><h4>Folks</h4><p>Simpler payments for creators across Africa</p><div class="cm"><svg class="cl" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><em>Web / Payments</em><span class="dom">folks.vercel.app</span></div></div></a>
     </div>
+  </div>
+  <div hidden id="tplCert">
+    <ul class="xp x-edu">
+      <li><a href="assets/zetaris-certificate.jpg" target="_blank" rel="noopener" aria-label="Zetaris x SpaceXSI AI Data Harness Solution Developer, issued November 2026, credential ID ZTR-DHSD-ZK8V4P (opens the certificate in a new tab)"><span class="ico x-logo x-logo--w" aria-hidden="true"><img src="assets/logos/zetaris-logo.png" alt="" /></span><span class="x-edu__t"><b>Zetaris × SpaceXSI</b><span>AI Data Harness Solution Developer · ZTR-DHSD-ZK8V4P</span></span><small>Nov 2026</small></a></li>
+    </ul>
   </div>
   <div hidden id="tplEdu">
     <ul class="xp x-edu">
@@ -738,6 +748,7 @@ var replies={
  Projects:async function(){await say("Here's what I've shipped recently.");var n=$("tplProjects").firstElementChild.cloneNode(true);var b=await say(n,"wide");hintRow(b.querySelector(".row"))},
  Stack:async function(){await say("What I work with day to day.");await type();add("in x-tagrow",'<div class="tags">'+skillTags(SKILLS)+"</div>");return wait(250)},
  Education:async function(){await say("Where I've studied.");var n=$("tplEdu").firstElementChild.cloneNode(true);return say(n)},
+ Certs:async function(){await say("Certified by Zetaris at the Open Agent Hackathon.");var n=$("tplCert").firstElementChild.cloneNode(true);return say(n)},
  Contact:async function(){await say("Here's the best way to reach me.");openSheet()}
 };
 var q=Promise.resolve();
@@ -745,7 +756,7 @@ chips.addEventListener("click",function(e){var k=e.target.closest("button");if(!
 function syncSend(){var b=$("sendBtn"),on=!!$("msg").value.trim();b.classList.toggle("is-off",!on);b.disabled=!on;if(on){b.removeAttribute("aria-hidden");b.removeAttribute("tabindex")}else{b.setAttribute("aria-hidden","true");b.setAttribute("tabindex","-1")}}
 $("msg").addEventListener("input",syncSend);syncSend();
 $("form").addEventListener("submit",function(e){e.preventDefault();var i=$("msg"),m=i.value.trim();if(!m)return;i.value="";syncSend();add("out",esc(m));
- var route=/\b(education|school|university|study|studies|studying)\b/i.test(m)?"Education":/\b(experience|work|builds?|projects?)\b/i.test(m)?"Projects":null;
+ var route=/\b(education|school|university|study|studies|studying)\b/i.test(m)?"Education":/\b(cert|certs|certificate|certification|certified|credential|zetaris)\b/i.test(m)?"Certs":/\b(experience|work|builds?|projects?)\b/i.test(m)?"Projects":null;
  if(route){q=q.then(function(){return wait(200)}).then(function(){return replies[route]()}).catch(function(){});return}
  try{fetch("/api/message",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text:m,client:12})}).catch(function(){})}catch(_){}
  setTimeout(function(){openSheet(m)},reduce?50:450)});
