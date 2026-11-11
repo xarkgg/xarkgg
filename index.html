@@ -180,6 +180,8 @@ box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 0 0 .5px rgba(255,255,255
 .i-x{--g1:#2A2A2A;--g2:#000000}
 .i-x svg{width:52%;height:52%}
 .i-gh{--g1:#3A3F47;--g2:#161B22}
+.i-li{--g1:#0A66C2;--g2:#04508F}
+.i-li svg{width:58%;height:58%;filter:none}
 .i-msg{--g1:#34C759;--g2:#248A3D}
 .i-edu{--g1:#FF9F0A;--g2:#F57C00}
 .group .t{flex:1;min-width:0}
@@ -615,13 +617,15 @@ var ic={
  cap:'<path fill="currentColor" d="M12 4 1.5 9 12 14l10.5-5z"/><path fill="currentColor" d="M6 11.6v3.9c0 1.5 2.7 3 6 3s6-1.5 6-3v-3.9L12 14.5z"/><path d="M21 9.6v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
  tg:'<path fill="currentColor" d="M21.5 4.2 2.9 11.4c-1 .4-1 1.6 0 1.9l4.6 1.5 1.8 5.5c.2.7 1.1.9 1.6.4l2.6-2.4 4.6 3.4c.6.4 1.4.1 1.6-.6L22.9 5.6c.3-1-.6-1.8-1.4-1.4zM9.8 14.4l8-6.3-6.4 7.2-.3 3-1.3-3.9z"/>',
  x:'<path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/>',
- gh:'<path fill="currentColor" d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/>'};
+ gh:'<path fill="currentColor" d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/>',
+ li:'<path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21H9z"/>'};
 function tile(k,cls){return '<span class="ico'+(cls?" "+cls:"")+'" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">'+ic[k]+'</svg></span>'}
 function rows(m){
  var e=m?encodeURIComponent(m):"";
  var L=[["mail","Mail","kuskomanass@gmail.com",m?"mailto:kuskomanass@gmail.com?subject=Hi%20xarkgg&body="+e:"mailto:kuskomanass@gmail.com"],
  ["tg","Telegram","@xarkgg",m?"https://t.me/xarkgg?text="+e:"https://t.me/xarkgg"],
  ["x","X","@xarkgg",m?"https://x.com/messages/compose?recipient_id=2007853153132388352&text="+e:"https://x.com/xarkgg"],
+ ["li","LinkedIn","Manass Kusko","https://ng.linkedin.com/in/manass-kusko-81bb60429"],
  ["gh","GitHub","@xarkgg","https://github.com/xarkgg"]];
  return L.map(function(r){var ext=r[3].indexOf("mailto")?' target="_blank" rel="noopener"':"";
   return '<a href="'+r[3]+'"'+ext+' aria-label="'+r[1]+', '+r[2]+(ext?" (opens in a new tab)":"")+'">'+tile(r[0],"i-"+r[0])+'<span class="t"><b>'+r[1]+'</b><span>'+r[2]+'</span></span>'+chev+'</a>'}).join("");
