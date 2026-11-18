@@ -26,9 +26,10 @@ const arg = (name, fallback) => {
 const W = Number(arg('width', 1200));
 const H = Number(arg('height', 630));
 const OUT = resolve(ROOT, arg('out', 'assets/og/home.png'));
-const URL_LABEL = arg('url', 'xarkgg.vercel.app');
+const SRC = arg('src', ''); // preview another site instead of this repo
+const URL_LABEL = arg('url', SRC ? SRC.replace(/^https?:\/\//, '') : 'xarkgg.vercel.app');
 const DELAY = Number(arg('delay', 1400));
-const THEME = arg('theme', 'dark'); // dark | light | auto (follows the page)
+const THEME = arg('theme', SRC ? 'auto' : 'dark'); // dark | light | auto (follows the page)
 
 // Card chrome per theme. The window furniture has to match the page inside it,
 // otherwise a light page sits in a dark frame and reads as a bug.
@@ -104,8 +105,12 @@ const pad = Math.round(H * 0.095);          // outer breathing room
 const frameW = W - pad * 2;
 const chromeH = Math.round(H * 0.064);      // title bar height
 const radius = Math.round(H * 0.024);
+const cropH = H - pad * 2 - chromeH;        // height of the page area inside
 
-function cardHtml(origin) {
+function cardHtml(src, shot) {
+  const inner = shot
+    ? `<img class="shot" src="${shot}" alt="">`
+    : `<iframe src="${src}" title="preview"></iframe>`;
   return `<!doctype html>
 <html><head><meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -172,7 +177,7 @@ function cardHtml(origin) {
   .lock { width: .74em; height: .74em; opacity: .75; }
   .viewport {
     position: relative;
-    height: ${H - pad * 2 - chromeH}px;
+    height: ${cropH}px;
     overflow: hidden;
     background: ${T.bg};
   }
@@ -182,6 +187,11 @@ function cardHtml(origin) {
     height: ${Math.round(H * 1.25)}px;  /* taller than the crop so it reads as a window */
     border: 0;
     pointer-events: none;
+  }
+  .viewport .shot {
+    display: block;
+    width: ${frameW}px;
+    height: auto;
   }
 </style></head>
 <body>
@@ -196,7 +206,7 @@ function cardHtml(origin) {
         <span>${URL_LABEL}</span>
       </div>
     </div>
-    <div class="viewport"><iframe src="${origin}/" title="preview"></iframe></div>
+    <div class="viewport">${inner}</div>
   </div>
 </body></html>`;
 }
@@ -206,6 +216,9 @@ const puppeteer = (await import(PUPPETEER)).default;
 
 const browser = await puppeteer.launch({
   headless: 'new',
+  // Note: WebGL already works here through SwiftShader/Vulkan. Do NOT pass
+  // --use-gl=angle; it yields a context whose renderer is unusable and apps
+  // then report "this browser can't run WebGL".
   args: ['--no-sandbox', '--disable-dev-shm-usage', '--hide-scrollbars', '--font-render-hinting=none'],
 });
 
@@ -215,32 +228,60 @@ try {
   await page.emulateMediaFeatures([
     { name: 'prefers-color-scheme', value: THEME === 'light' ? 'light' : 'dark' },
   ]);
-  await page.setContent(cardHtml(origin), { waitUntil: 'networkidle0', timeout: 45000 });
+  // A third-party site is captured by navigating to it directly: a cross-origin
+  // iframe gives no DOM access, so there is no way to wait for the app to finish
+  // booting and a slow splash screen gets baked into the card.
+  let shot = '';
+  if (SRC) {
+    const capture = await browser.newPage();
+    await capture.setViewport({
+      width: frameW,
+      height: Math.round(cropH * 1.35),
+      deviceScaleFactor: 2,
+    });
+    await capture.emulateMediaFeatures([
+      { name: 'prefers-color-scheme', value: THEME === 'light' ? 'light' : 'dark' },
+    ]);
+    await capture.goto(SRC, { waitUntil: 'networkidle2', timeout: 60000 }).catch((e) => {
+      console.warn(`still busy after 60s on ${SRC}: ${e.message}`);
+    });
+    await capture.evaluate(() => document.fonts.ready).catch(() => {});
+    await new Promise((r) => setTimeout(r, DELAY));
+    shot = `data:image/png;base64,${await capture.screenshot({ type: 'png', encoding: 'base64' })}`;
+    await capture.close();
+  }
+
+  await page.setContent(cardHtml(SRC || `${origin}/`, shot), { waitUntil: 'load', timeout: 60000 });
 
   // Reach into the previewed page: kill its scrollbar, pin the theme under the
   // frame to the card's theme, and wait for its own fonts so the crop isn't an
-  // unstyled flash.
+  // unstyled flash. A third-party site is cross-origin, so this only works for
+  // our own page — there we just let it settle.
   const frame = page.frames().find((f) => f !== page.mainFrame());
-  await frame.evaluate((theme) => {
-    if (theme !== 'auto') document.documentElement.setAttribute('data-theme', theme);
-    const style = document.createElement('style');
-    style.textContent = 'html{scrollbar-width:none!important}html::-webkit-scrollbar{display:none!important}';
-    document.head.appendChild(style);
-  }, THEME).catch(() => {});
+  if (!SRC) {
+    await frame.evaluate((theme) => {
+      if (theme !== 'auto') document.documentElement.setAttribute('data-theme', theme);
+      const style = document.createElement('style');
+      style.textContent = 'html{scrollbar-width:none!important}html::-webkit-scrollbar{display:none!important}';
+      document.head.appendChild(style);
+    }, THEME).catch(() => {});
+  }
 
   await page.evaluate(() => document.fonts.ready).catch(() => {});
 
   // The page fills its view counter from a network request; without someone
   // waiting on it the card can capture the "—" placeholder instead of a number.
-  await frame
-    .waitForFunction(
-      () => {
-        const el = document.getElementById('vc');
-        return !el || /\d/.test(el.textContent);
-      },
-      { timeout: 10000 },
-    )
-    .catch(() => console.warn('view counter never resolved; card may show "—"'));
+  if (!SRC) {
+    await frame
+      .waitForFunction(
+        () => {
+          const el = document.getElementById('vc');
+          return !el || /\d/.test(el.textContent);
+        },
+        { timeout: 10000 },
+      )
+      .catch(() => console.warn('view counter never resolved; card may show "—"'));
+  }
 
   await new Promise((r) => setTimeout(r, DELAY));
 
