@@ -28,6 +28,43 @@ const H = Number(arg('height', 630));
 const OUT = resolve(ROOT, arg('out', 'assets/og/home.png'));
 const URL_LABEL = arg('url', 'xarkgg.vercel.app');
 const DELAY = Number(arg('delay', 1400));
+const THEME = arg('theme', 'dark'); // dark | light | auto (follows the page)
+
+// Card chrome per theme. The window furniture has to match the page inside it,
+// otherwise a light page sits in a dark frame and reads as a bug.
+const THEMES = {
+  dark: {
+    bg: '#0B0B0F',
+    glow: `radial-gradient(120% 70% at 12% 0%, rgba(255,255,255,.055), transparent 62%),
+      radial-gradient(90% 60% at 100% 100%, rgba(77,123,234,.10), transparent 60%)`,
+    window: '#15161B',
+    ring: 'rgba(255,255,255,.09)',
+    halo: 'rgba(255,255,255,.015)',
+    shadow: 'rgba(0,0,0,.85)',
+    chrome: 'linear-gradient(180deg, #1B1C22, #15161B)',
+    chromeLine: 'rgba(255,255,255,.07)',
+    pill: 'rgba(255,255,255,.055)',
+    pillRing: 'rgba(255,255,255,.06)',
+    pillText: '#8A8F98',
+  },
+  light: {
+    bg: '#E4E4E4',
+    glow: `radial-gradient(120% 70% at 12% 0%, rgba(255,255,255,.75), transparent 62%),
+      radial-gradient(90% 60% at 100% 100%, rgba(2,62,192,.07), transparent 60%)`,
+    window: '#F4F4F4',
+    ring: 'rgba(0,0,0,.10)',
+    halo: 'rgba(0,0,0,.012)',
+    shadow: 'rgba(0,0,0,.30)',
+    chrome: 'linear-gradient(180deg, #FAFAFA, #F0F0F0)',
+    chromeLine: 'rgba(0,0,0,.08)',
+    pill: 'rgba(0,0,0,.06)',
+    pillRing: 'rgba(0,0,0,.07)',
+    pillText: '#6B6B70',
+  },
+};
+
+const T = THEMES[THEME] ?? THEMES.dark;
+
 
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -78,10 +115,8 @@ function cardHtml(origin) {
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; width: ${W}px; height: ${H}px; overflow: hidden; }
   body {
-    background: #0B0B0F;
-    background-image:
-      radial-gradient(120% 70% at 12% 0%, rgba(255,255,255,.055), transparent 62%),
-      radial-gradient(90% 60% at 100% 100%, rgba(77,123,234,.10), transparent 60%);
+    background: ${T.bg};
+    background-image: ${T.glow};
     font-family: Inter, system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     display: flex;
@@ -92,11 +127,11 @@ function cardHtml(origin) {
     width: ${frameW}px;
     border-radius: ${radius}px;
     overflow: hidden;
-    background: #15161B;
+    background: ${T.window};
     box-shadow:
-      0 0 0 1px rgba(255,255,255,.09),
-      0 ${Math.round(H * 0.08)}px ${Math.round(H * 0.13)}px -${Math.round(H * 0.04)}px rgba(0,0,0,.85),
-      0 0 0 ${Math.round(H * 0.05)}px rgba(255,255,255,.015);
+      0 0 0 1px ${T.ring},
+      0 ${Math.round(H * 0.08)}px ${Math.round(H * 0.13)}px -${Math.round(H * 0.04)}px ${T.shadow},
+      0 0 0 ${Math.round(H * 0.05)}px ${T.halo};
   }
   .chrome {
     height: ${chromeH}px;
@@ -104,8 +139,8 @@ function cardHtml(origin) {
     align-items: center;
     gap: ${Math.round(chromeH * 0.3)}px;
     padding: 0 ${Math.round(chromeH * 0.42)}px;
-    background: linear-gradient(180deg, #1B1C22, #15161B);
-    border-bottom: 1px solid rgba(255,255,255,.07);
+    background: ${T.chrome};
+    border-bottom: 1px solid ${T.chromeLine};
   }
   .dots { display: flex; gap: ${Math.round(chromeH * 0.2)}px; flex: 0 0 auto; }
   .dots i {
@@ -123,13 +158,13 @@ function cardHtml(origin) {
     height: ${Math.round(chromeH * 0.56)}px;
     margin-inline: auto;
     border-radius: ${Math.round(chromeH * 0.16)}px;
-    background: rgba(255,255,255,.055);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+    background: ${T.pill};
+    box-shadow: inset 0 0 0 1px ${T.pillRing};
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    color: #8A8F98;
+    color: ${T.pillText};
     font-size: ${Math.round(chromeH * 0.27)}px;
     font-weight: 500;
     letter-spacing: .01em;
@@ -139,7 +174,7 @@ function cardHtml(origin) {
     position: relative;
     height: ${H - pad * 2 - chromeH}px;
     overflow: hidden;
-    background: #0B0B0F;
+    background: ${T.bg};
   }
   .viewport iframe {
     display: block;
@@ -177,18 +212,21 @@ const browser = await puppeteer.launch({
 try {
   const page = await browser.newPage();
   await page.setViewport({ width: W, height: H, deviceScaleFactor: 2 });
-  await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'dark' }]);
+  await page.emulateMediaFeatures([
+    { name: 'prefers-color-scheme', value: THEME === 'light' ? 'light' : 'dark' },
+  ]);
   await page.setContent(cardHtml(origin), { waitUntil: 'networkidle0', timeout: 45000 });
 
-  // Reach into the previewed page: kill its scrollbar, force the dark theme,
-  // and wait for its own fonts so the crop isn't an unstyled flash.
+  // Reach into the previewed page: kill its scrollbar, pin the theme under the
+  // frame to the card's theme, and wait for its own fonts so the crop isn't an
+  // unstyled flash.
   const frame = page.frames().find((f) => f !== page.mainFrame());
-  await frame.evaluate(() => {
-    document.documentElement.setAttribute('data-theme', 'dark');
+  await frame.evaluate((theme) => {
+    if (theme !== 'auto') document.documentElement.setAttribute('data-theme', theme);
     const style = document.createElement('style');
     style.textContent = 'html{scrollbar-width:none!important}html::-webkit-scrollbar{display:none!important}';
     document.head.appendChild(style);
-  }).catch(() => {});
+  }, THEME).catch(() => {});
 
   await page.evaluate(() => document.fonts.ready).catch(() => {});
 
